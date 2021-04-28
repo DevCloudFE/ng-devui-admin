@@ -1,0 +1,41 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+@import 'src/app/@shared/styles/common.scss';
+
+.da-gantt-container {
+  overflow: scroll;
+  background-color: $devui-base-bg;
+
+  margin-bottom: 32px;
+  padding: 14px;
+
+  .da-gantt-header {
+    position: relative;
+    border-bottom: 1px solid $devui-dividing-line;
+  }
+
+  .da-gantt-body {
+    position: relative;
+    min-height: 400px;
+
+    .da-gantt-item {
+      height: 40px;
+      padding-top: 8px;
+    }
+  }
+}
+
+::ng-deep .devui-gantt-tips {
+  & .da-gantt-title {
+    font-size: $devui-font-size-card-title;
+    color: $devui-text;
+    line-height: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  & .da-gantt-content {
+    font-size: $devui-font-size;
+    color: $devui-text;
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let item of messageItems" class="da-settings-item">
+    <div>
+      <div>{{ item.title }}</div>
+      <div class="da-settings-item-content">
+        <span>{{ item.description }}</span>
+      </div>
+    </div>
+    <div class="da-settings-item-operation">
+      <d-toggle [checked]="true"></d-toggle>
+    </div>
+  </li>
+</ul>

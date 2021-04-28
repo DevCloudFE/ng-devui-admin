@@ -1,0 +1,68 @@
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="16">
+      <div class="da-content-card">
+        <div class="da-content-title">
+          {{ 'dashboard.monitor.taskComplete' | translate }}
+        </div>
+        <da-monitor-progress></da-monitor-progress>
+      </div>
+    </da-col-item>
+    <da-col-item [daSpan]="24" [daXs]="8">
+      <div class="da-content-card">
+        <div class="da-content-title">
+          {{ 'dashboard.monitor.occupancy' | translate }}
+        </div>
+        <div class="da-echart-wrapper">
+          <d-echarts [options]="monitorOptions" height="100%" (chartReady)="getOccupationChart($event)"></d-echarts>
+        </div>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="16">
+      <div class="da-content-card da-dashboard-row-item-1">
+        <div class="da-content-title">
+          {{ 'dashboard.monitor.userDistribute' | translate }}
+        </div>
+        <div class="da-user-distribute">
+          <div class="da-distribute-item">
+            <p class="da-distribute-item-title">实时用户数目</p>
+            <p class="da-distribute-item-content">{{ liveUsers }} 人</p>
+          </div>
+          <div class="da-distribute-item">
+            <p class="da-distribute-item-title">累计用户数</p>
+            <p class="da-distribute-item-content">{{ totalUsers }} 人</p>
+          </div>
+          <div class="da-distribute-item">
+            <p class="da-distribute-item-title">当前活跃省份</p>
+            <p class="da-distribute-item-content">{{ liveProvince }}</p>
+          </div>
+        </div>
+        <d-echarts [options]="mapOptions" [height]="'700px'"></d-echarts>
+      </div>
+    </da-col-item>
+    <da-col-item [daSpan]="24" [daXs]="8">
+      <da-layout-col [daSpace]="24" class="da-monitor-col">
+        <da-row-item [daFlex]="16">
+          <div class="da-content-card">
+            <div class="da-content-title">
+              {{ 'dashboard.monitor.tendency' | translate }}
+            </div>
+            <d-echarts [options]="serviceOptions" (chartReady)="getServiceChart($event)"></d-echarts>
+          </div>
+        </da-row-item>
+        <da-row-item [daFlex]="8">
+          <div class="da-content-card">
+            <div class="da-content-title">
+              {{ 'dashboard.monitor.taskExec' | translate }}
+            </div>
+            <div class="da-monitor-task-exec">
+              <d-time-axis [data]="time_axis_data_horizontal"></d-time-axis>
+            </div>
+          </div>
+        </da-row-item>
+      </da-layout-col>
+    </da-col-item>
+  </da-layout-row>
+</div>

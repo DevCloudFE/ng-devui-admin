@@ -1,0 +1,40 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+@import 'src/app/@shared/styles/common.scss';
+
+.da-content-wrapper {
+  .da-content-card {
+    height: 100%;
+    width: 100%;
+  }
+
+  .da-table-wrapper {
+    padding: 0 10px;
+  }
+
+  d-tabs {
+    margin: 20px;
+  }
+
+  .da-work-group-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+
+  .da-content-title {
+    margin-bottom: 20px;
+  }
+
+  .da-team {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    width: 200px;
+
+    .da-team-title {
+      margin-left: 12px;
+    }
+  }
+}

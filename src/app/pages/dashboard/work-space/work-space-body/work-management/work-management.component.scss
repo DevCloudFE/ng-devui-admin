@@ -1,0 +1,54 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.list-group .list-group-item {
+  padding: 0 16px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.drag-handle {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.da-work-item-container {
+  border: 1px solid $devui-dividing-line;
+  margin: 0 20px 20px 20px;
+}
+
+.da-work-item-container .header {
+  font-size: $devui-font-size-page-title;
+  padding: 10px;
+}
+
+.list-group {
+  padding: 0 10px 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-group > li {
+  height: 28px;
+  line-height: 28px;
+  font-size: $devui-font-size;
+  color: $devui-text;
+  background: $devui-base-bg;
+  border: 1px solid $devui-line;
+  border-radius: $devui-border-radius;
+  width: 80px;
+  margin: 10px;
+  text-align: center;
+}
+
+.quadrant-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}

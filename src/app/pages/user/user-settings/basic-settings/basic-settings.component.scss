@@ -1,0 +1,43 @@
+@import "~ng-devui/styles-var/devui-var.scss";
+
+.da-settings-layout {
+  .da-settings-avatar {
+    margin-left: 48px;
+    font-size: $devui-font-size-lg;
+
+    .da-settings-img {
+      margin: 12px 0;
+    }
+
+    .da-settings-btn {
+      width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  form {
+    font-size: $devui-font-size-lg;
+
+    d-button {
+      margin-top: 16px;
+    }
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .da-settings-layout {
+    .da-settings-avatar {
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

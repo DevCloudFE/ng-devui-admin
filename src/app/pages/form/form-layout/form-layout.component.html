@@ -1,0 +1,57 @@
+<div class="da-content-banner">
+  <d-breadcrumb>
+    <d-breadcrumb-item>
+      <a routerLink="/">{{ "form.breadcrumb.home" | translate}}</a>
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{"form.breadcrumb.formPage" | translate}}
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{"form.breadcrumb.formLayout" | translate}}
+    </d-breadcrumb-item>
+  </d-breadcrumb>
+  <div class="da-content-banner-title">
+    {{ "form.formLayout.title" | translate }}
+  </div>
+  <div>{{ "form.formLayout.description" | translate }}</div>
+</div>
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="14">
+      <div class="da-content-card da-form-card">
+        <div class="da-content-title da-form-card-title">
+          {{ "form.formLayout.horizontalForm" | translate }}
+        </div>
+        <da-horizontal-form></da-horizontal-form>
+      </div>
+    </da-col-item>
+    <da-col-item [daSpan]="24" [daXs]="10">
+      <div class="da-content-card da-form-card" style="min-width: 50%">
+        <div class="da-content-title da-form-card-title">
+          {{ "form.formLayout.verticalForm" | translate }}
+        </div>
+        <da-vertical-form></da-vertical-form>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-content-card da-form-card">
+        <div class="da-content-title da-form-card-title">
+          {{ "form.formLayout.modalForm" | translate }}
+        </div>
+        <da-modal-form style="margin-left: 24px"></da-modal-form>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-content-card da-form-card">
+        <div class="da-content-title da-form-card-title">
+          {{ "form.formLayout.multiForm" | translate }}
+        </div>
+        <da-multi-columns-form></da-multi-columns-form>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

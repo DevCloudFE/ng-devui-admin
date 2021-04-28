@@ -1,0 +1,40 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+@import 'src/app/@shared/styles/common.scss';
+
+.da-monitor-task-exec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.da-echart-wrapper {
+  width: 100%;
+  height: 200px;
+}
+
+.da-user-distribute {
+  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  .da-distribute-item-title {
+    font-size: $devui-font-size-page-title;
+    color: $devui-aide-text;
+  }
+
+  .da-distribute-item-content {
+    font-size: $devui-font-size-price;
+    min-width: 160px;
+  }
+}
+
+.da-content-card {
+  height: 100%;
+}
+
+.da-monitor-col {
+  height: 100%;
+}

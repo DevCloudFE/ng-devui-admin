@@ -1,0 +1,10 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card da-analysis-line">
+      <div class="da-content-title">
+        {{ "dashboard.analysis.visitingData" | translate }}
+      </div>
+      <d-echarts [options]="options" class="da-echarts-line"></d-echarts>
+    </div>
+  </da-col-item>
+</da-layout-row>

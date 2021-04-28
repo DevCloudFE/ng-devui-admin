@@ -1,0 +1,49 @@
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="16">
+      <div class="da-content-card da-work-space-quadrant">
+        <div class="da-content-title">工作安排</div>
+        <da-work-management [quadrantWidth]="workItemWidth"></da-work-management>
+      </div>
+    </da-col-item>
+    <da-col-item [daSpan]="24" [daXs]="8">
+      <div class="da-content-card">
+        <div class="da-content-title">进行中的项目</div>
+        <d-tabs [(activeTab)]="tabActiveId" type="slider" customWidth="90px">
+          <d-tab *ngFor="let item of tabItems" [id]="item.id">
+            <ng-template dTabTitle>
+              {{ item.title }}
+            </ng-template>
+            <ng-template dTabContent>
+              <div class="da-table-wrapper">
+                <da-work-item-table
+                  [tableData]="item.content['tableData']"
+                  [tableOptions]="item.content['tableOptions']"
+                ></da-work-item-table>
+              </div>
+            </ng-template>
+          </d-tab>
+        </d-tabs>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="16">
+      <div class="da-content-card">
+        <div class="da-content-title">所处的团队</div>
+        <div class="da-work-group-wrapper">
+          <div class="da-team" *ngFor="let item of workGroups">
+            <d-avatar [name]="item?.departmentTitle[0]" [width]="30" [height]="30" [imgSrc]="item?.imgSrc"></d-avatar>
+            <div class="da-team-title">{{ item?.departmentTitle }}</div>
+          </div>
+        </div>
+      </div>
+    </da-col-item>
+    <da-col-item [daSpan]="24" [daXs]="8">
+      <div class="da-content-card">
+        <div class="da-content-title">快捷操作</div>
+        <da-work-operation></da-work-operation>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

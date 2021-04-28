@@ -1,0 +1,41 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card">
+      <div class="da-content-title">
+        {{ 'dashboard.analysis.taskComplete' | translate }}
+      </div>
+      <div #ganttContainer class="da-gantt-container">
+        <div class="da-gantt-header" [style.width]="ganttScaleWidth">
+          <d-gantt-scale [ganttBarContainerElement]="ganttBody"></d-gantt-scale>
+        </div>
+        <div #ganttBody class="da-gantt-body" [style.width]="ganttScaleWidth">
+          <div class="da-gantt-item" *ngFor="let item of list">
+            <d-gantt-bar
+              [startDate]="item?.startDate"
+              [endDate]="item?.endDate"
+              [tipTemplateRef]="tipTemplate"
+              [id]="item?.id"
+              [progressRate]="item?.progressRate"
+              (barMoveStartEvent)="onGanttBarMoveStart($event)"
+              (barMovingEvent)="onGanttBarMoving($event)"
+              (barResizeStartEvent)="onGanttBarResizeStart($event)"
+              (barResizingEvent)="onGanttBarResizing($event)"
+              (barMoveEndEvent)="onGanttBarMove($event)"
+              (barResizeEndEvent)="onGanttBarResize($event)"
+              (barProgressEvent)="onBarProgressEvent($event)"
+            ></d-gantt-bar>
+          </div>
+        </div>
+      </div>
+      <ng-template #tipTemplate let-ganttInstance="ganttInstance" let-data="data">
+        <div class="da-gantt-title">{{ data?.title }}</div>
+        <div class="da-gantt-content">
+          <div>Duration: {{ ganttInstance?.duration }}</div>
+          <div>ProgressRate: {{ (ganttInstance?.progressRate || 0) + '%' }}</div>
+          <div>startDate: {{ ganttInstance?.startDate | i18nDate: 'short' }}</div>
+          <div>endDate: {{ ganttInstance?.endDate | i18nDate: 'short' }}</div>
+        </div>
+      </ng-template>
+    </div>
+  </da-col-item>
+</da-layout-row>

@@ -1,0 +1,12 @@
+@import "~ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-anaylsis-statics {
+  display: flex;
+  flex-direction: column;
+
+  .da-historgram {
+    height: 20rem;
+    padding-bottom: 12px;
+  }
+}

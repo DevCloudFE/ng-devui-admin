@@ -1,0 +1,24 @@
+@import "~ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.status {
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  &.success {
+    background-color: $devui-success !important;
+  }
+
+  &.error {
+    background-color: $devui-contrast !important;
+  }
+
+  &.pending {
+    background-color: $devui-warning-line !important;
+  }
+}

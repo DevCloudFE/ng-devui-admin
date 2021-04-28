@@ -1,0 +1,29 @@
+<da-layout-row [daGutter]="[0, 0]">
+  <da-col-item [daSpan]="24" [daXs]="24">
+    <div class="da-abnormal">
+      <da-layout-col [daGutter]="[0, 0]" [daAlign]="'center'" >
+        <da-row-item>
+          <div class="da-abnormal-img">
+            <img src="assets/img/abnormal/403{{darkMode}}.png"/>
+          </div>
+        </da-row-item>
+        <da-row-item>
+          <div class="da-abnormal-title">403</div>
+        </da-row-item>
+        <da-row-item>
+        <div class="da-abnormal-description">
+          {{ "abnormal.403.description" | translate }}
+        </div>
+        </da-row-item>
+        <da-row-item>
+        <div class="da-abnormal-button">
+          <a href="/">
+            <d-button>{{ "abnormal.backHome" | translate }}</d-button>
+          </a>
+        </div>
+        </da-row-item>
+    </da-layout-col>
+  </div>
+  </da-col-item>
+</da-layout-row>
+

@@ -1,0 +1,27 @@
+@import "src/app/@shared/styles/common.scss";
+
+.input-block {
+  display: inline-flex;
+  width: 12%;
+  margin: 12px 12px 12px 0;
+}
+
+.tips-icon {
+  cursor: pointer;
+}
+
+:host::ng-deep {
+  .devui-form-item {
+    display: inline-flex !important;
+    width: 260px;
+    margin: 12px 24px 12px 0 !important;
+
+    .devui-form-label {
+      flex-basis: 100px !important;
+    }
+  }
+  .devui-form-operation {
+    display: inline-flex !important;
+    margin-left: 0 !important;
+  }
+}

@@ -1,0 +1,14 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+
+.da-work-operation {
+  margin-left: 12px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  d-button {
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+}

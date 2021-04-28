@@ -1,0 +1,15 @@
+<div class="da-progress">
+  <div class="da-progress-container">
+    <d-progress [isCircle]="true" [percentage]="progress1" [barbgcolor]="'#50D4AB'"></d-progress>
+  </div>
+  <div class="da-progress-container">
+    <d-progress [isCircle]="true" [percentage]="progress2" [barbgcolor]="'#50D4AB'" [strokeWidth]="8"> </d-progress>
+  </div>
+  <div class="da-progress-container">
+    <d-progress [isCircle]="true" [percentage]="100" [barbgcolor]="'#50D4AB'">
+      <ng-template let-percentage="percentage">
+        <span class="da-progress-icon-position icon-right"></span>
+      </ng-template>
+    </d-progress>
+  </div>
+</div>

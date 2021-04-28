@@ -1,0 +1,43 @@
+<div class="da-work-space-wrapper">
+  <div class="da-content-banner">
+    <d-breadcrumb>
+      <d-breadcrumb-item
+        ><a routerLink="/">{{ 'dashboard.breadcrumb.home' | translate }}</a></d-breadcrumb-item
+      >
+      <d-breadcrumb-item>Dashboard</d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'dashboard.breadcrumb.workSpace' | translate }}</d-breadcrumb-item>
+    </d-breadcrumb>
+    <div class="da-content-banner-title">
+      {{ 'dashboard.workSpace.name' | translate }}
+    </div>
+    <div class="da-work">
+      <div class="da-profile">
+        <d-avatar [imgSrc]="imgSrc" [width]="52" [height]="52" [isRound]="false"></d-avatar>
+        <div class="da-description">
+          <p class="da-user-name">
+            {{ 'dashboard.workSpace.descriptionPrefix' | translate }}
+            {{ userName }}, {{ 'dashboard.workSpace.descriptionSuffix' | translate }}！
+          </p>
+          <p class="da-description-subtitle">
+            {{ 'dashboard.workSpace.title' | translate }} |
+            {{ 'dashboard.workSpace.role' | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="da-projects">
+        <div class="da-projects-item">
+          <span class="da-projects-title">待处理</span>
+          <span class="da-projects-detail">15</span>
+        </div>
+        <div class="da-projects-item">
+          <span class="da-projects-title">我跟踪</span>
+          <span class="da-projects-detail">10</span>
+        </div>
+        <div class="da-projects-item">
+          <span class="da-projects-title">有风险</span>
+          <span class="da-projects-detail">3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="da-list-wrap">
+  <div class="da-content-banner">
+    <d-breadcrumb>
+      <d-breadcrumb-item
+        ><a routerLink="/">{{
+          "list.breadcrumb.home" | translate
+        }}</a></d-breadcrumb-item
+      >
+      <d-breadcrumb-item>{{
+        "list.breadcrumb.formPage" | translate
+      }}</d-breadcrumb-item>
+      <d-breadcrumb-item>{{
+        "list.breadcrumb.treeList" | translate
+      }}</d-breadcrumb-item>
+    </d-breadcrumb>
+    <div class="da-content-banner-title">
+      {{ "list.treeList.title" | translate }}
+    </div>
+    <div>{{ "list.treeList.description" | translate }}</div>
+  </div>
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24, 24]">
+      <da-col-item [daSpan]="24" [daXs]="24">
+        <div class="da-list-container">
+          <div class="da-list-header">
+            <d-search
+              style="width: 200px"
+              [size]="'sm'"
+              [(ngModel)]="keyword"
+              (searchFn)="onSearch()"
+              class="inline"
+            ></d-search>
+          </div>
+          <div class="da-list-content" dLoading [loading]="busy">
+            <d-data-table
+              [dataSource]="basicDataSource"
+              [tableWidthConfig]="tableWidthConfig"
+              [checkableRelation]="checkableRelation"
+              [loadChildrenTable]="loadChildrenTable"
+              [loadAllChildrenTable]="loadAllChildrenTable"
+              [scrollable]="true"
+            >
+              <thead dTableHead [checkable]="true">
+                <tr dTableRow>
+                  <th
+                    dHeadCell
+                    [nestedColumn]="true"
+                    [iconFoldTable]="iconParentOpen"
+                    [iconUnFoldTable]="iconParentClose"
+                  >
+                    Id
+                  </th>
+                  <th dHeadCell>Title</th>
+                  <th dHeadCell>Priority</th>
+                  <th dHeadCell>Iteration</th>
+                  <th dHeadCell>Assignee</th>
+                  <th dHeadCell>Status</th>
+                  <th dHeadCell>Timeline</th>
+                </tr>
+              </thead>
+              <tbody dTableBody>
+                <ng-template
+                  let-rowItem="rowItem"
+                  let-rowIndex="rowIndex"
+                  let-nestedLayer="nestedLayer"
+                  let-nestedIndex="nestedIndex"
+                >
+                  <tr
+                    dTableRow
+                    [ngClass]="{ 'da-table-row-selected': rowItem.$checked }"
+                  >
+                    <td dTableCell class="devui-checkable-cell">
+                      <d-checkbox
+                        [ngModelOptions]="{ standalone: true }"
+                        [ngModel]="rowItem.$checked"
+                        [halfchecked]="rowItem.$halfChecked"
+                        [disabled]="rowItem.$checkDisabled"
+                        (ngModelChange)="
+                          onRowCheckChange(
+                            $event,
+                            rowIndex,
+                            nestedIndex,
+                            rowItem
+                          )
+                        "
+                        dTooltip
+                        [content]="rowItem.$checkBoxTips"
+                        [position]="['top', 'right', 'bottom', 'left']"
+                        [showAnimation]="false"
+                      >
+                      </d-checkbox>
+                    </td>
+                    <td
+                      dTableCell
+                      [nestedColumn]="true"
+                      [rowItem]="rowItem"
+                      [nestedLayer]="nestedLayer"
+                      [iconFoldTable]="iconParentOpen"
+                      [iconUnFoldTable]="iconParentClose"
+                      (toggleChildTableEvent)="
+                        onChildTableToggle($event, rowItem)
+                      "
+                    >
+                      {{ rowItem?.id }}
+                    </td>
+                    <td dTableCell>
+                      <span
+                        [title]="rowItem?.title"
+                        class="over-flow-ellipsis"
+                      >
+                        <d-tag [tag]="'Epic'" [labelStyle]="'epic'"></d-tag>
+                        {{ rowItem?.title }}
+                      </span>
+                    </td>
+                    <td dTableCell>
+                      <d-tag
+                        [tag]="rowItem?.priority"
+                        [labelStyle]="rowItem?.priority"
+                      ></d-tag>
+                    </td>
+                    <td dTableCell>{{ rowItem?.iteration }}</td>
+                    <td dTableCell>
+                      <d-avatar
+                        [name]="rowItem?.assignee"
+                        [width]="24"
+                        [height]="24"
+                      ></d-avatar>
+                      <span style="margin-left: 6px">{{
+                        rowItem?.assignee
+                      }}</span>
+                    </td>
+                    <td dTableCell>
+                      <span [ngClass]="rowItem?.status?.split(' ')[0]">{{
+                        rowItem?.status || "--"
+                      }}</span>
+                    </td>
+                    <td dTableCell>{{ rowItem?.timeline }}</td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </d-data-table>
+          </div>
+          <div class="da-list-footer">
+            <d-pagination
+              [size]="'sm'"
+              [total]="pager.total"
+              [(pageSize)]="pager.pageSize"
+              [(pageIndex)]="pager.pageIndex"
+              [canViewTotal]="true"
+              [canChangePageSize]="true"
+              [canJumpPage]="true"
+              [maxItems]="5"
+              (pageIndexChange)="onPageChange($event)"
+              (pageSizeChange)="onSizeChange($event)"
+            >
+            </d-pagination>
+          </div>
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+</div>

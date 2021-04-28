@@ -1,0 +1,66 @@
+@import '~ng-devui/styles-var/devui-var.scss';
+@import 'src/app/@shared/styles/common.scss';
+
+.da-work-space-wrapper {
+  .da-content-banner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .da-work {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .da-profile {
+      display: flex;
+      .da-description {
+        margin-left: 16px;
+
+        .da-user-name {
+          font-size: $devui-font-size-price;
+        }
+
+        .da-description-subtitle {
+          margin-top: 8px;
+          font-size: $devui-font-size-card-title;
+          color: $devui-aide-text;
+        }
+      }
+    }
+
+    .da-projects {
+      display: flex;
+      width: 300px;
+
+      .da-projects-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: $devui-font-size-price;
+        border-right: 1px solid $devui-dividing-line;
+
+        .da-projects-title {
+          display: block;
+          color: $devui-aide-text-stress;
+          font-size: $devui-font-size-card-title;
+        }
+
+        .da-projects-detail {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .da-projects {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+}

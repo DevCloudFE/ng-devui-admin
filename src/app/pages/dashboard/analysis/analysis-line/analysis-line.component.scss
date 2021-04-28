@@ -1,0 +1,13 @@
+@import "~ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-analysis-line {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .da-echarts-line {
+    margin-top: 8px;
+    padding: 12px;
+  }
+}

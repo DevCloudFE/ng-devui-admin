@@ -1,0 +1,72 @@
+<da-layout-row class="da-analysis-echarts" [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24" [daXs]="12">
+    <div class="da-content-card">
+      <div class="da-content-title">
+        {{ 'dashboard.analysis.serviceWaterLine' | translate }}
+      </div>
+      <da-layout-row [daGutter]="[24, 24]">
+        <da-col-item [daSpan]="24" [daXs]="12">
+          <d-echarts [options]="serviceData" height="20rem" width="100%"></d-echarts>
+        </da-col-item>
+        <da-col-item [daSpan]="24" [daXs]="12">
+          <div class="da-table-wrapper">
+            <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
+            <d-data-table [dataSource]="serviceSource" fixHeader="true" tableHeight="220px" scrollable="true">
+              <thead dTableHead>
+                <tr dTableRow>
+                  <th dHeadCell *ngFor="let colOption of dataTableServiceOption.columns">
+                    {{ colOption.header }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody dTableBody>
+                <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                  <tr dTableRow>
+                    <td dTableCell *ngFor="let colOption of dataTableServiceOption.columns">
+                      {{ colOption.fieldType === 'date' ? (rowItem[colOption.field] | i18nDate: 'short':false) : rowItem[colOption.field] }}
+                    </td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </d-data-table>
+          </div>
+        </da-col-item>
+      </da-layout-row>
+    </div>
+  </da-col-item>
+  <da-col-item [daSpan]="24" [daXs]="12">
+    <div class="da-echart-container da-content-card">
+      <div class="da-content-title">
+        {{ 'dashboard.analysis.userVisiting' | translate }}
+      </div>
+      <da-layout-row [daGutter]="[24, 24]">
+        <da-col-item [daSpan]="24" [daXs]="16">
+          <d-echarts [options]="pieData" height="20rem" width="100%"></d-echarts>
+        </da-col-item>
+        <da-col-item [daSpan]="24" [daXs]="8">
+          <div class="da-table-wrapper">
+            <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
+            <d-data-table [dataSource]="pieSource" fixHeader="true" tableHeight="220px" scrollable="true">
+              <thead dTableHead>
+                <tr dTableRow>
+                  <th dHeadCell *ngFor="let colOption of dataTablePieOption.columns">
+                    {{ colOption.header }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody dTableBody>
+                <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                  <tr dTableRow>
+                    <td dTableCell *ngFor="let colOption of dataTablePieOption.columns">
+                      {{ colOption.fieldType === 'date' ? (rowItem[colOption.field] | i18nDate: 'short':false) : rowItem[colOption.field] }}
+                    </td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </d-data-table>
+          </div>
+        </da-col-item>
+      </da-layout-row>
+    </div>
+  </da-col-item>
+</da-layout-row>

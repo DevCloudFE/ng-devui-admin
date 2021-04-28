@@ -1,0 +1,43 @@
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24">
+      <div class="da-content-card">
+        <div class="da-user-settings">
+          <da-layout-row [daGutter]="[0, 0]">
+            <da-col-item [daMl]="4" [daMm]="6">
+              <div class="da-user-settings-sidebar">
+                <ul class="da-user-settings-menu">
+                  <li
+                    *ngFor="let item of menus"
+                    (click)="itemClickFn(item)"
+                    [ngClass]="{ 'da-item-active': item.isActive }"
+                  >
+                    {{ item.title }}
+                  </li>
+                </ul>
+              </div>
+            </da-col-item>
+            <da-col-item [daMl]="20" [daMm]="18">
+              <div class="da-user-settings-content">
+                <div *ngIf="menus[0].isActive">
+                  <div class="da-settings-header">基本设置</div>
+                  <da-basic-settings></da-basic-settings>
+                </div>
+
+                <div *ngIf="menus[1].isActive">
+                  <div class="da-settings-header">安全设置</div>
+                  <da-security-settings></da-security-settings>
+                </div>
+
+                <div *ngIf="menus[2].isActive">
+                  <div class="da-settings-header">消息通知</div>
+                  <da-message-notification></da-message-notification>
+                </div>
+              </div>
+            </da-col-item>
+          </da-layout-row>
+        </div>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

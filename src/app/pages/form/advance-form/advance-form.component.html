@@ -1,0 +1,275 @@
+<div class="da-content-banner">
+  <d-breadcrumb>
+    <d-breadcrumb-item>
+      <a routerLink="/">
+        {{ "form.breadcrumb.home" | translate }}
+      </a>
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{ "form.breadcrumb.formPage" | translate }}
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{ "form.breadcrumb.advancedForm" | translate }}
+    </d-breadcrumb-item>
+  </d-breadcrumb>
+  <div class="da-content-banner-title">
+    {{ "form.advancedForm.title" | translate }}
+  </div>
+  <div>{{ "form.advancedForm.description" | translate }}</div>
+</div>
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-advance-form" dLoading [loading]="busy">
+        <div class="da-advace-form-content">
+          <d-data-table #dataTable [dataSource]="listData" [scrollable]="true" [tableWidthConfig]="tableWidthConfig">
+            <thead dTableHead>
+              <tr dTableRow>
+                <th dHeadCell>Id</th>
+                <th dHeadCell>Title</th>
+                <th dHeadCell>Priority</th>
+                <th dHeadCell>Iteration</th>
+                <th dHeadCell>Assignee</th>
+                <th dHeadCell>Status</th>
+                <th dHeadCell>Timeline</th>
+                <th dHeadCell>Actions</th>
+              </tr>
+            </thead>
+            <tbody dTableBody>
+              <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                <tr dTableRow *ngIf="rowIndex === 0">
+                  <td dTableCell [attr.colspan]="tableWidthConfig.length">
+                    <div
+                      *ngIf="!headerNewForm"
+                      (click)="newRow()"
+                      class="cursor-pointer"
+                    >
+                      <span class="tips-icon icon-add"></span>
+                      <span style="margin-left: 10px">Create new data</span>
+                    </div>
+                    <div *ngIf="headerNewForm" class="edit-padding-fix">
+                      <da-admin-form
+                        [formConfig]="formConfig"
+                        [formData]="defaultRowData"
+                        class="editable-row"
+                        (submitted)="quickRowAdded($event)"
+                        (canceled)="quickRowCancel()"
+                      ></da-admin-form>
+                    </div>
+                  </td>
+                </tr>
+                <tr dTableRow>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['idEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'id'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['idEdit']">{{ rowItem?.id }}</span>
+                    <div *ngIf="rowItem['idEdit']" class="edit-padding-fix">
+                      <input
+                        class="devui-form-control"
+                        name="id"
+                        [(ngModel)]="rowItem.id"
+                        [attr.maxlength]="100"
+                        [attr.minlength]="3"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['titleEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'title'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['titleEdit']"
+                      ><d-tag [tag]="'Epic'" [labelStyle]="'epic'"></d-tag>
+                      {{ rowItem?.title }}</span
+                    >
+                    <div *ngIf="rowItem['titleEdit']" class="edit-padding-fix">
+                      <input
+                        class="devui-form-control"
+                        name="title"
+                        [(ngModel)]="rowItem.title"
+                        [attr.maxlength]="100"
+                        [attr.minlength]="3"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['priorityEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'priority'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['priorityEdit']"
+                      ><d-tag
+                        [tag]="rowItem?.priority"
+                        [labelStyle]="rowItem?.priority"
+                      ></d-tag
+                    ></span>
+                    <div
+                      *ngIf="rowItem['priorityEdit']"
+                      class="edit-padding-fix"
+                    >
+                      <d-select
+                        name="priority"
+                        [(ngModel)]="rowItem.priority"
+                        [options]="priorities"
+                      ></d-select>
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['iterationEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'iteration'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['iterationEdit']">{{
+                      rowItem?.iteration
+                    }}</span>
+                    <div
+                      *ngIf="rowItem['iterationEdit']"
+                      class="edit-padding-fix"
+                    >
+                      <input
+                        dTextInput
+                        size="sm"
+                        [(ngModel)]="rowItem.iteration"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['assigneeEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'assignee'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['assigneeEdit']">
+                      <d-avatar
+                        [name]="rowItem.assignee"
+                        [width]="24"
+                        [height]="24"
+                      ></d-avatar>
+                      <span style="margin-left: 6px">{{
+                        rowItem.assignee
+                      }}</span>
+                    </span>
+                    <div
+                      *ngIf="rowItem['assigneeEdit']"
+                      class="edit-padding-fix"
+                    >
+                      <input
+                        dTextInput
+                        size="sm"
+                        [(ngModel)]="rowItem.assignee"
+                      />
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [editableTip]="editableTip"
+                    [(editing)]="rowItem['statusEdit']"
+                    [rowItem]="rowItem"
+                    [field]="'status'"
+                    [beforeEditStart]="beforeEditStart"
+                    [beforeEditEnd]="beforeEditEnd"
+                  >
+                    <span *ngIf="!rowItem['statusEdit']"
+                      ><span [ngClass]="rowItem?.status.split(' ')[0]">{{
+                        rowItem?.status || "--"
+                      }}</span></span
+                    >
+                    <div *ngIf="rowItem['statusEdit']" class="edit-padding-fix">
+                      <d-select
+                        name="status"
+                        [(ngModel)]="rowItem.status"
+                        [options]="['Stuck', 'Done', 'Working on it']"
+                      ></d-select>
+                    </div>
+                  </td>
+                  <td
+                    dTableCell
+                    [editable]="true"
+                    [(editing)]="rowItem['dateEdit']"
+                  >
+                    <span *ngIf="!rowItem['dateEdit']">{{
+                      rowItem?.timeline | i18nDate: "short":false
+                    }}</span>
+                    <form
+                      *ngIf="rowItem['dateEdit']"
+                      class="form-inline edit-padding-fix"
+                    >
+                      <div class="devui-form-group">
+                        <div class="devui-input-group devui-dropdown-origin">
+                          <input
+                            class="devui-form-control search"
+                            name="date"
+                            [(ngModel)]="rowItem.timeline"
+                            dDatepicker
+                            appendToBody
+                            #datePicker="datepicker"
+                            [autoOpen]="true"
+                            (ngModelChange)="onEditEnd(rowItem, 'dateEdit')"
+                          />
+                          <div
+                            class="devui-input-group-addon"
+                            (click)="datePicker.toggle()"
+                          >
+                            <i class="icon icon-calendar"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <d-button
+                      icon="icon-delete"
+                      bsStyle="text-dark"
+                      title="delete"
+                      (click)="deleteRow(rowIndex)"
+                    ></d-button>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </d-data-table>
+        </div>
+        <d-pagination
+          [size]="'sm'"
+          [total]="pager.total"
+          [(pageSize)]="pager.pageSize"
+          [(pageIndex)]="pager.pageIndex"
+          [canViewTotal]="true"
+          [canChangePageSize]="true"
+          [canJumpPage]="true"
+          [maxItems]="5"
+          (pageIndexChange)="onPageChange($event)"
+          (pageSizeChange)="onSizeChange($event)"
+        >
+        </d-pagination>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>
