@@ -136,6 +136,7 @@ export class PagesComponent implements OnInit {
       title: '',
       content: PersonalizeComponent,
       backdropCloseable: true,
+      draggable: false,
       onClose: () => {},
       buttons: [],
     });

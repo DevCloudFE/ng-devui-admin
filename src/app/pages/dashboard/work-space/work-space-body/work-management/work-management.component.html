@@ -3,12 +3,7 @@
     <div class="header">待安排的工作</div>
     <div class="card-block">
       <ul class="list-group">
-        <li
-          dDraggable
-          *ngFor="let item of list"
-          [dragData]="{ item: item, parent: list }"
-          class="list-group-item over-flow-ellipsis"
-        >
+        <li dDraggable *ngFor="let item of list" [dragData]="{ item: item, parent: list }" class="list-group-item over-flow-ellipsis">
           {{ item.title }}
         </li>
       </ul>
@@ -19,6 +14,7 @@
       [labelData]="labelData"
       [diagramId]="'basic-quadrant-diagram'"
       (dropEvent)="dropEvent($event)"
+      [currentLabelSize]="currentLableSize"
       [view]="{
         height: 480,
         width: quadrantWidth

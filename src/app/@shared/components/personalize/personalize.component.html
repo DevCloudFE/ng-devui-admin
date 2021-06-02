@@ -3,7 +3,7 @@
     <div class="da-title">{{ 'personalize.title' | translate }}</div>
   </div>
   <da-layout-row [daGutter]="[12, 12]">
-    <da-col-item *ngFor="let item of configs" [daSpan]="24" [daMl]="8">
+    <da-col-item *ngFor="let item of configs; let i = index;" [daSpan]="24" [daMl]="8" [daOrder]="i">
       <div class="item">
         <div class="da-item-title">
           <!-- TODO: add prefix da- -->
@@ -33,32 +33,32 @@
         </d-radio-group>
       </div>
     </da-col-item>
-  </da-layout-row>
-  <da-layout-row class="da-color-picker" [daGutter]="[12, 12]">
-    <da-layout-col  class="themes" *ngFor="let theme of themeColors" [daSpan]="24" [daMl]="12">
-      <div class="da-theme-name">
-        <i class="icon {{ theme.icon }}"></i>{{ theme?.name }}
-      </div>
-      <da-layout-row class="da-theme-colors">
-        <div
-          class="da-color-avatar"
-          [ngClass]="{
-            'is-active': customColor === color && customDark === theme.isDark
-          }"
-          *ngFor="let color of theme.colors"
-          [style.backgroundColor]="color"
-          (click)="selectColor(color, theme)"
-        >
-          <i
-            class="icon icon-right"
-            *ngIf="
-              customColor === color &&
-              customDark === theme.isDark &&
-              currentTheme === themeType.Custom
-            "
-          ></i>
+    <da-row-item class="da-color-picker"  [daOrderMl]="2">
+      <da-layout-col  class="themes" *ngFor="let theme of themeColors" [daSpan]="24" [daMl]="12">
+        <div class="da-theme-name">
+          <i class="icon {{ theme.icon }}"></i>{{ theme?.name }}
         </div>
-      </da-layout-row>
-    </da-layout-col>
+        <da-layout-row class="da-theme-colors">
+          <div
+            class="da-color-avatar"
+            [ngClass]="{
+              'is-active': customColor === color && customDark === theme.isDark
+            }"
+            *ngFor="let color of theme.colors"
+            [style.backgroundColor]="color"
+            (click)="selectColor(color, theme)"
+          >
+            <i
+              class="icon icon-right"
+              *ngIf="
+                customColor === color &&
+                customDark === theme.isDark &&
+                currentTheme === themeType.Custom
+              "
+            ></i>
+          </div>
+        </da-layout-row>
+      </da-layout-col>
+    </da-row-item>
   </da-layout-row>
 </div>

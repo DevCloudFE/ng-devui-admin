@@ -47,14 +47,14 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   .da-header-item-label {
     width: 80px;
   }
 }
 
 :host::ng-deep {
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1023px) {
     .devui-pagination {
       .devui-total-size,
       .devui-jump-container {

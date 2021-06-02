@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { EchartsService } from 'src/app/@core/mock/echarts.service';
 
 @Component({
@@ -6,7 +8,7 @@ import { EchartsService } from 'src/app/@core/mock/echarts.service';
   templateUrl: './echarts.component.html',
   styleUrls: ['./echarts.component.scss'],
 })
-export class EchartsComponent implements OnInit {
+export class EchartsComponent implements OnInit, AfterViewInit {
   pieData;
   serviceData;
 
@@ -43,6 +45,11 @@ export class EchartsComponent implements OnInit {
   serviceSource = [];
   pieSource = [];
 
+  resizeSub: Subscription;
+  pieChart: any;
+
+  @ViewChild('chartWrapper') chartWrapper: ElementRef;
+
   constructor(private echartsService: EchartsService) {}
 
   ngOnInit(): void {
@@ -67,5 +74,32 @@ export class EchartsComponent implements OnInit {
         this.pieSource.push(temp);
       }
     });
+  }
+
+  getPieChart(e) {
+    this.pieChart = e;
+  }
+
+  ngAfterViewInit(): void {
+    this.resizeSub = fromEvent(window, 'resize')
+      .pipe(debounceTime(500))
+      .subscribe((v) => {
+        if (this.chartWrapper?.nativeElement?.clientWidth < 630) {
+          this.pieData.legend = {
+            orient: 'horizontal',
+            bottom: 'auto',
+            data: ['可容忍', '满意', '不可容忍', '极端异常', '良好'],
+          };
+          this.pieChart.setOption(this.pieData, true);
+        } else {
+          this.pieData.legend = {
+            orient: 'vertical',
+            left: 'auto',
+            top: 'center',
+            data: ['可容忍', '满意', '不可容忍', '极端异常', '良好'],
+          };
+          this.pieChart.setOption(this.pieData, true);
+        }
+      });
   }
 }
