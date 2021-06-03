@@ -29,8 +29,8 @@ body {
     background-color: $devui-list-item-active-bg !important;
   }
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   .modal-dialog {
-    max-width: 85% !important;
+    max-width: 400px !important;
   }
 }

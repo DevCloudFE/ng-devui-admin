@@ -12,15 +12,17 @@
 </p>
 
 <h1 align="center">DevUI Admin</h1>
-DevUI Admin 是一个企业级中后台前端/设计解决方案，依据 DevUI Design 设计价值观，我们在自身的设计规范和基础组件的基础上，构建出了后台管理模板 DevUI Admin
+DevUI Admin 是一个企业级中后台前端/设计解决方案，依据 DevUI Design 设计价值观，我们在自身的设计规范和基础组件的基础上，构建出了后台管理模板 DevUI Admin。
 
+&nbsp;
 ![avatar](home.png)
-
 - 预览：https://devui.design/admin/
 - 首页：https://devui.design/admin-page/home
 - 文档：https://devui.design/admin-page/docs/getting-started
 
 ## 特性
+
+![avatar](home-1.png)
 
 - 响应式：适应不同屏幕大小，为用户提供更舒适的界面与用户体验
 - 个性化主题：支持多种主题风格与个性化配置动态切换
@@ -32,7 +34,7 @@ DevUI Admin 是一个企业级中后台前端/设计解决方案，依据 DevUI 
 ## 使用
 
 ```bash
-ng new your-project && cd your-project
+ng new your-project && cd your-project  # 创建选项：非严格模式 & SCSS
 ng add ng-devui-admin
 
 npm start # open http://localhost:4200

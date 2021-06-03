@@ -11,8 +11,7 @@ import { WorkItemService } from 'src/app/@core/mock/work-item.service';
   templateUrl: './work-space-body.component.html',
   styleUrls: ['./work-space-body.component.scss'],
 })
-export class WorkSpaceBodyComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy {
   resizeSub: any;
   workItemElement: any;
   workItemWidth: number;
@@ -27,10 +26,7 @@ export class WorkSpaceBodyComponent
   tabActiveId = 'tab1';
   tabItems;
 
-  constructor(
-    private workItemService: WorkItemService,
-    private workGroupService: WorkGroupService
-  ) {}
+  constructor(private workItemService: WorkItemService, private workGroupService: WorkGroupService) {}
 
   ngOnInit(): void {
     this.workItemElement = document.querySelector('.da-work-space-quadrant');

@@ -274,9 +274,8 @@ export class EchartsService {
     },
     legend: {
       orient: 'vertical',
-      x: 'left',
-      y: 'center',
-      left: '10px',
+      left: 'auto',
+      top: 'center',
       data: ['可容忍', '满意', '不可容忍', '极端异常', '良好'],
     },
     series: [
@@ -591,20 +590,7 @@ export class EchartsService {
     xAxis: [
       {
         type: 'category',
-        data: [
-          '1月',
-          '2月',
-          '3月',
-          '4月',
-          '5月',
-          '6月',
-          '7月',
-          '8月',
-          '9月',
-          '10月',
-          '11月',
-          '12月',
-        ],
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         axisPointer: {
           type: 'shadow',
         },
@@ -655,17 +641,7 @@ export class EchartsService {
       min: 0,
       max: 200,
       inRange: {
-        color: [
-          '#BDFDFF',
-          '#9FE1FF',
-          '#81C5FF',
-          '#61AAFF',
-          '#3F8FEC',
-          '#0676D0',
-          '#005DB4',
-          '#004698',
-          '#00307E',
-        ],
+        color: ['#BDFDFF', '#9FE1FF', '#81C5FF', '#61AAFF', '#3F8FEC', '#0676D0', '#005DB4', '#004698', '#00307E'],
       },
       text: ['High', 'Low'], // 文本，默认为数值文本
       calculable: true,

@@ -11,7 +11,7 @@
         <da-col-item [daSpan]="24" [daXs]="12">
           <div class="da-table-wrapper">
             <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
-            <d-data-table [dataSource]="serviceSource" fixHeader="true" tableHeight="220px" scrollable="true">
+            <d-data-table [dataSource]="serviceSource" fixHeader="true" maxHeight="220px" scrollable="true" [type]="'striped'">
               <thead dTableHead>
                 <tr dTableRow>
                   <th dHeadCell *ngFor="let colOption of dataTableServiceOption.columns">
@@ -35,18 +35,18 @@
     </div>
   </da-col-item>
   <da-col-item [daSpan]="24" [daXs]="12">
-    <div class="da-echart-container da-content-card">
+    <div class="da-echart-container da-content-card" #chartWrapper>
       <div class="da-content-title">
         {{ 'dashboard.analysis.userVisiting' | translate }}
       </div>
       <da-layout-row [daGutter]="[24, 24]">
         <da-col-item [daSpan]="24" [daXs]="16">
-          <d-echarts [options]="pieData" height="20rem" width="100%"></d-echarts>
+          <d-echarts [options]="pieData" height="20rem" width="100%" (chartReady)="getPieChart($event)"></d-echarts>
         </da-col-item>
         <da-col-item [daSpan]="24" [daXs]="8">
           <div class="da-table-wrapper">
             <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
-            <d-data-table [dataSource]="pieSource" fixHeader="true" tableHeight="220px" scrollable="true">
+            <d-data-table [dataSource]="pieSource" fixHeader="true" maxHeight="220px" scrollable="true" [type]="'striped'">
               <thead dTableHead>
                 <tr dTableRow>
                   <th dHeadCell *ngFor="let colOption of dataTablePieOption.columns">

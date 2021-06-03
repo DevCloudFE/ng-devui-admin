@@ -1,6 +1,6 @@
 {
   "name": "ng-devui-admin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "DevUI Admin based on Angular and DevUI components",
   "repository": {
@@ -34,14 +34,14 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "color": "^3.1.3",
-    "echarts": "^4.7.0",
+    "echarts": "^5.1.1",
     "ng-devui": "^11.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1002.0",
+    "@angular-devkit/build-angular": "~0.1102.0",
     "@angular/cli": "~11.2.9",
     "@angular/compiler-cli": "~11.2.10",
     "@types/node": "^12.11.1",

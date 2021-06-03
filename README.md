@@ -14,13 +14,15 @@
 <h1 align="center">DevUI Admin</h1>
 DevUI Admin is an enterprise-level mid- and back-end front-end/design solution. Based on DevUI Design design values, we build a back-end management template DevUI Admin based on its design specifications and basic components.
 
-![avatar](home-en.png)
+&nbsp;
+![avatar](home.png)
 
 - Preview: https://devui.design/admin/
 - Home Page: https://devui.design/admin-page/home
 - Document：https://devui.design/admin-page/docs/getting-started
 
 ## Features
+![avatar](home-1.png)
 
 - Responsive: Adapting to different screen sizes, providing users with a more comfortable interface and user experience.
 - Personal Theme: Supports dynamic switching between multiple theme styles and personalized configurations.
@@ -32,7 +34,7 @@ DevUI Admin is an enterprise-level mid- and back-end front-end/design solution. 
 ## Usage
 
 ```bash
-ng new your-project && cd your-project
+ng new your-project && cd your-project  # Create options: non-strict mode & SCSS
 ng add ng-devui-admin
 
 npm start # open http://localhost:4200

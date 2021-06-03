@@ -87,7 +87,8 @@
   }
 }
 .da-color-picker {
-  margin-top: 24px;
+  display: flex;
+  width: 100%;
 }
 
 .da-theme-name {
@@ -98,6 +99,7 @@
   font-size: $devui-font-size-page-title;
   font-weight: 600;
   margin-bottom: 12px;
+  margin-top: 24px;
 
   .icon {
     font-size: $devui-font-size-data-overview;
@@ -140,18 +142,25 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   .da-personalize-content {
     ul {
       margin-right: 0 !important;
     }
   }
 
+  .da-color-picker {
+    display: block;
+    margin-bottom: 12px;
+
+    .da-theme-name {
+      margin-top: 12px;
+    }
+  }
+
   .da-theme-colors {
     justify-content: space-between;
     .da-color-avatar {
-      width: 24px;
-      height: 24px;
       margin-left: 0;
     }
   }
