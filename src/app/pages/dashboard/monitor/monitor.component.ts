@@ -42,8 +42,8 @@ export class MonitorComponent implements OnInit, OnDestroy, AfterViewInit {
         { text: 'Download', type: 'success', status: 'runned' },
         { text: 'Check', type: 'success', status: 'runned' },
         { text: 'Build', type: 'primary', status: 'running' },
-        { text: 'Depoy', type: 'primary', status: '' },
-        { text: 'End', type: 'primary', status: '' },
+        { text: 'Depoy', type: 'primary' },
+        { text: 'End', type: 'primary' },
       ],
     };
 
