@@ -1,19 +1,19 @@
 <div class="da-content-banner">
   <d-breadcrumb>
     <d-breadcrumb-item>
-      <a routerLink="/">{{ "form.breadcrumb.home" | translate }}</a>
+      <a routerLink="/">{{ 'form.breadcrumb.home' | translate }}</a>
     </d-breadcrumb-item>
     <d-breadcrumb-item>
-      {{ "form.breadcrumb.formPage" | translate }}
+      {{ 'form.breadcrumb.formPage' | translate }}
     </d-breadcrumb-item>
     <d-breadcrumb-item>
-      {{ "form.breadcrumb.basicForm" | translate }}
+      {{ 'form.breadcrumb.basicForm' | translate }}
     </d-breadcrumb-item>
   </d-breadcrumb>
   <div class="da-content-banner-title">
-    {{ "form.basicForm.title" | translate }}
+    {{ 'form.basicForm.title' | translate }}
   </div>
-  <div>{{ "form.basicForm.description" | translate }}</div>
+  <div>{{ 'form.basicForm.description' | translate }}</div>
 </div>
 <div class="da-content-wrapper">
   <da-layout-row [daGutter]="[24, 24]">
@@ -25,18 +25,13 @@
           [dValidateRules]="{
             message: 'The form verification failed, please check.'
           }"
-          [layout]="'vertical'"
+          [layout]="verticalLayout"
           #projectForm="dValidateRules"
           (dSubmit)="submitProjectForm($event)"
           autocomplete="off"
         >
           <d-form-item>
-            <d-form-label
-              [required]="true"
-              [hasHelp]="true"
-              [helpTips]="'This is the project name.'"
-              >Project Name</d-form-label
-            >
+            <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'This is the project name.'">Project Name</d-form-label>
             <d-form-control>
               <input
                 dTextInput
@@ -58,12 +53,7 @@
           </d-form-item>
 
           <d-form-item>
-            <d-form-label
-              [required]="true"
-              [hasHelp]="true"
-              [helpTips]="'Owner of each project.'"
-              >Owner</d-form-label
-            >
+            <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'Owner of each project.'">Owner</d-form-label>
             <d-form-control>
               <d-select
                 [options]="OwnerOptions"
@@ -82,12 +72,7 @@
           </d-form-item>
 
           <d-form-item>
-            <d-form-label
-              [required]="true"
-              [hasHelp]="true"
-              [helpTips]="'Executor of each project.'"
-              >Executor</d-form-label
-            >
+            <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'Executor of each project.'">Executor</d-form-label>
             <d-form-control>
               <d-select
                 [options]="ExecutorOptions"
@@ -125,10 +110,7 @@
                 >
                   <i class="icon icon-close"></i>
                 </div>
-                <div
-                  class="devui-input-group-addon"
-                  (click)="dateRangePicker.toggle()"
-                >
+                <div class="devui-input-group-addon" (click)="dateRangePicker.toggle()">
                   <i class="icon icon-calendar"></i>
                 </div>
               </div>
@@ -151,19 +133,9 @@
           </d-form-item>
 
           <d-form-item [dHasFeedback]="true">
-            <d-form-label
-              [required]="true"
-              [hasHelp]="true"
-              [helpTips]="'whether project is disclosure.'"
-              >Disclosure</d-form-label
-            >
+            <d-form-label [required]="true" [hasHelp]="true" [helpTips]="'whether project is disclosure.'">Disclosure</d-form-label>
             <d-form-control>
-              <d-radio-group
-                [name]="'city'"
-                [values]="securityValue"
-                [cssStyle]="'row'"
-                [(ngModel)]="projectFormData.projectSecurity"
-              >
+              <d-radio-group [name]="'city'" [values]="securityValue" [cssStyle]="'row'" [(ngModel)]="projectFormData.projectSecurity">
               </d-radio-group>
             </d-form-control>
           </d-form-item>

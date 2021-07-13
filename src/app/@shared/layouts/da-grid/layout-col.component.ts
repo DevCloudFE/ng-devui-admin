@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, HostBinding, Input, AfterViewInit } from '@angular/core';
 import { ElementRef, Renderer2, OnInit, OnChanges, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { DaAlign, DaJustify, DaAlignSelf } from './layout.types';
+import { DaAlign, DaJustify, DaAlignSelf, DaMergedProperty } from './layout.types';
 import { setGridClass, setScreenPointFlex, setScreenPointElementsSpaceAndGutter } from './layout-utils';
 import { Subject } from 'rxjs';
 import { DaScreenMediaQueryService } from './screen-media-query.service';
@@ -51,14 +51,14 @@ export class LayoutColComponent implements OnInit, AfterViewInit, OnChanges, OnD
   @Input() daGutterXl: number | number[];
 
   @Input() daSpan: number;
-  @Input() daMs: number;
-  @Input() daMm: number;
-  @Input() daMl: number;
-  @Input() daXs: number;
-  @Input() daSm: number;
-  @Input() daMd: number;
-  @Input() daLg: number;
-  @Input() daXl: number;
+  @Input() daMs: number | DaMergedProperty;
+  @Input() daMm: number | DaMergedProperty;
+  @Input() daMl: number | DaMergedProperty;
+  @Input() daXs: number | DaMergedProperty;
+  @Input() daSm: number | DaMergedProperty;
+  @Input() daMd: number | DaMergedProperty;
+  @Input() daLg: number | DaMergedProperty;
+  @Input() daXl: number | DaMergedProperty;
 
   @Input() daOffset: number;
   @Input() daOffsetMs: number;

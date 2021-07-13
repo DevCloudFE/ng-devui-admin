@@ -6,6 +6,7 @@ export default {
       'basicForm': 'Basic Form',
       'formLayout': 'Form Layout',
       'advancedForm': 'Advanced Form',
+      'dynamicForm': 'Dynamic Form'
     },
     'basicForm':{
       'title': 'Basic Form',
@@ -22,6 +23,10 @@ export default {
     'advancedForm': {
       'title': 'Advanced Form',
       'description': 'Advanced forms are used to edit related information in the list.'
+    },
+    'dynamicForm': {
+      'title': 'Dynamic Form',
+      'description': 'Dynamic forms can be created based on the metadata (JSON) of the business object model. The creation is quick, structured, and easy to maintain. For details about the differences between forms and normal forms, see the actual code.'
     }
   }
 }

@@ -1,5 +1,7 @@
+import { FormLayout } from 'ng-devui';
+
 export interface FormConfig {
-  layout: 'horizontal'|'vertical'|'columns';
+  layout: FormLayout;
   labelSize: 'sm' | '' | 'lg';
   items: any;
 }

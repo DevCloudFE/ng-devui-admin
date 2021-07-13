@@ -24,22 +24,22 @@ export class UserCenterComponent implements OnInit {
     },
   ];
 
-  activeTab = 'first';
+  activeTab: string | number = 'first';
 
   tabs = [
     {
       id: 'first',
-      label: 'Articles'
+      label: 'Articles',
     },
     {
       id: 'second',
-      label: 'Project'
-    }
-  ]
+      label: 'Project',
+    },
+  ];
 
   articles = [];
 
-  projects = []
+  projects = [];
 
   workGroups = [];
 
@@ -55,34 +55,34 @@ export class UserCenterComponent implements OnInit {
     this.getListData();
   }
 
-  getListData () {
+  getListData() {
     switch (this.activeTab) {
       case 'first':
         this.getArticles();
         return;
       case 'second':
         this.getProjects();
-        return
+        return;
     }
   }
 
-  getArticles () {
-    this.spaceBusy = this.userDataService.getArticles().subscribe(res => {
+  getArticles() {
+    this.spaceBusy = this.userDataService.getArticles().subscribe((res) => {
       this.articles = res;
-    })
+    });
   }
 
-  getProjects () {
-    this.spaceBusy = this.userDataService.getProjects().subscribe(res => {
+  getProjects() {
+    this.spaceBusy = this.userDataService.getProjects().subscribe((res) => {
       this.projects = res;
-    })
+    });
   }
 
-  activeTabChange (e) {
+  activeTabChange(e) {
     this.getListData();
   }
 
-  actionHandler (key, item) {
+  actionHandler(key, item) {
     if (item[key + 'Attached']) {
       item[key] -= 1;
     } else {

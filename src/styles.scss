@@ -1,4 +1,4 @@
-@import "./custom-theme.scss";
+@import './custom-theme.scss';
 
 html,
 body {
@@ -29,8 +29,26 @@ body {
     background-color: $devui-list-item-active-bg !important;
   }
 }
+
+.da-notice-modal {
+  width: 320px;
+  max-height: 380px;
+}
+
 @media only screen and (max-width: 1023px) {
   .modal-dialog {
     max-width: 400px !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .da-notice-modal {
+    left: 40px !important;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+  .da-notice-modal {
+    left: 60px !important;
   }
 }

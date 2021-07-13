@@ -1,0 +1,56 @@
+<form 
+  dForm
+  ngForm
+  [dValidateRules]="formRules"
+  #dynamicForm="dValidateRules"
+  [layout]="layout"
+  [labelSize]="labelSize"
+  [labelAlign]="labelAlign"
+  (dSubmit)="submitForm($event)"
+>
+  <ng-container *ngFor="let formItem of formItems">
+    <d-form-item [dHasFeedback]="formItem.hasFeedback">
+      <d-form-label [required]="formItem.required" [hasHelp]="formItem.hasHelp" [helpTips]="formItem.helpTips">{{formItem.label}}</d-form-label>
+      <d-form-control [feedbackStatus]="formItem.feedbackStatus">
+        <ng-template [ngTemplateOutlet]="widgetTemplate"></ng-template>
+      </d-form-control>
+    </d-form-item>
+    <ng-template #widgetTemplate>
+      <ng-container *ngIf="formItem.type === 'radio'">
+        <da-radio-widget [ui]="formItem.ui" [name]="formItem.key"></da-radio-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'textInput'">
+        <da-text-input-widget [ui]="formItem.ui" [name]="formItem.key"></da-text-input-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'textarea'">
+        <da-textarea-widget [ui]="formItem.ui" [name]="formItem.key"></da-textarea-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'checkbox'">
+        <da-checkbox-widget [ui]="formItem.ui" [name]="formItem.key"></da-checkbox-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'select'">
+        <da-select-widget [ui]="formItem.ui" [name]="formItem.key"></da-select-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'toggle'">
+        <da-toggle-widget [ui]="formItem.ui" [name]="formItem.key"></da-toggle-widget>
+      </ng-container>
+      <ng-container *ngIf="formItem.type === 'tagsInput'">
+        <da-tags-input-widget [ui]="formItem.ui" [name]="formItem.key"></da-tags-input-widget>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+  <ng-content></ng-content>
+  <d-form-operation>
+    <d-button
+      style="margin-right: 8px"
+      [showLoading]="dynamicForm.pending && showLoading"
+      dFormSubmit
+      dLoading
+      [dFormSubmitData]="formSubmitData"
+      *ngIf="showSubmitBtn"
+    >
+      {{ submitBtnContent }}
+    </d-button>
+    <d-button dFormReset bsStyle="common" *ngIf="showResetBtn">{{ resetBtnContent }}</d-button>
+  </d-form-operation>
+</form>

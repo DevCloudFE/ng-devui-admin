@@ -1,4 +1,4 @@
-<form dForm [layout]="'columns'" autocomplete="off">
+<form dForm [layout]="columnsLayout" autocomplete="off">
   <div class="grid">
     <da-layout-col [daGutter]="[0, 0]" [daSpan]="24">
       <da-row-item>
@@ -101,7 +101,7 @@
                   </div>
                 </d-form-control>
               </d-form-item>
-            </div> 
+            </div>
           </da-col-item>
           <da-col-item [daXs]="8" [daMs]="24">
             <div class="u-1-3">
@@ -120,9 +120,9 @@
         </da-layout-row>
       </da-row-item>
     </da-layout-col>
-  </div>    
+  </div>
   <d-form-operation>
-    <d-button bsStyle="stress" class="mr-element-spacing" circled="true" style="margin-right: 4px !important">Submit</d-button>
+    <d-button bsStyle="primary" class="mr-element-spacing" circled="true" style="margin-right: 4px !important">Submit</d-button>
     <d-button bsStyle="common" circled="true">Cancel</d-button>
   </d-form-operation>
 </form>

@@ -11,6 +11,7 @@ export default {
       basicForm: 'Basic Form',
       formLayout: 'Form Layout',
       advancedForm: 'Advanced Form',
+      dynamicForm: 'Dynamic Form'
     },
     list: {
       title: 'List',

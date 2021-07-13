@@ -14,3 +14,11 @@ export const DaBreakpointsMap = {
   'lg': 1760,
   'xl': 1920
 };
+export type DaMergedProperty = {
+  daSpan?: number,
+  daOffset?: number,
+  daAlign?: DaAlign,
+  daJustify?: DaJustify,
+  daAlignSelf?: DaAlignSelf,
+  daOrder?: number,
+}

@@ -34,6 +34,10 @@ export default function(values) {
           title: values['form']['advancedForm'],
           link: '/pages/form/advanced-form',
         },
+        {
+          title: values['form']['dynamicForm'],
+          link: '/pages/form/dynamic-form',
+        },
       ],
       link: '/pages/form',
       menuIcon: 'icon icon-modify',

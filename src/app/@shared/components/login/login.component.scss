@@ -83,6 +83,14 @@
         background-color: transparent;
         transition: all 0.2s ease-in-out;
 
+        &.devui-error:hover {
+          border-color: $devui-danger-line;
+        }
+
+        &.devui-error:focus {
+          box-shadow: none;
+        }
+
         &:hover {
           border-color: $devui-brand;
         }
@@ -116,6 +124,33 @@
 
       &:hover {
         background-color: $devui-brand-hover;
+      }
+    }
+
+    .da-other {
+      margin-top: 20px;
+      text-align: left;
+
+      i {
+        margin-left: 8px;
+        vertical-align: middle;
+
+        svg {
+          fill: $devui-text-weak;
+          transition: fill 0.2s ease-in-out;
+
+          &:hover {
+            fill: $devui-text;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      a {
+        float: right;
       }
     }
   }

@@ -1,14 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { DialogService, TableWidthConfig } from 'ng-devui';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { DialogService, FormLayout, TableWidthConfig } from 'ng-devui';
 import { Subscription } from 'rxjs';
 import { Item } from 'src/app/@core/data/listData';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
+import { FormConfig } from 'src/app/@shared/components/admin-form';
 
 @Component({
   selector: 'da-basic-list',
@@ -16,7 +11,6 @@ import { ListDataService } from 'src/app/@core/mock/list-data.service';
   styleUrls: ['./basic-list.component.scss'],
 })
 export class BasicListComponent implements OnInit {
-
   filterAreaShow = false;
 
   options = ['normal', 'borderless', 'bordered'];
@@ -25,10 +19,14 @@ export class BasicListComponent implements OnInit {
 
   layoutOptions = ['auto', 'fixed'];
 
-  searchForm = {
-    borderType: 'normal',
-    size: 'normal',
-    layout: 'auto'
+  searchForm: {
+    borderType: '' | 'borderless' | 'bordered';
+    size: 'sm' | 'md' | 'lg';
+    layout: 'auto' | 'fixed';
+  } = {
+    borderType: '',
+    size: 'md',
+    layout: 'auto',
   };
 
   tableWidthConfig: TableWidthConfig[] = [
@@ -68,8 +66,8 @@ export class BasicListComponent implements OnInit {
 
   basicDataSource: Item[] = [];
 
-  formConfig = {
-    layout: 'horizontal',
+  formConfig: FormConfig = {
+    layout: FormLayout.Horizontal,
     items: [
       {
         label: 'Id',
@@ -82,8 +80,8 @@ export class BasicListComponent implements OnInit {
         type: 'input',
         required: true,
         rule: {
-          validators: [{ required: true }]
-        }
+          validators: [{ required: true }],
+        },
       },
       {
         label: 'Priority',
@@ -94,7 +92,7 @@ export class BasicListComponent implements OnInit {
       {
         label: 'Iteration',
         prop: 'iteration',
-        type: 'input'
+        type: 'input',
       },
       {
         label: 'Assignee',
@@ -102,8 +100,8 @@ export class BasicListComponent implements OnInit {
         type: 'input',
         required: true,
         rule: {
-          validators: [{ required: true }]
-        }
+          validators: [{ required: true }],
+        },
       },
       {
         label: 'Status',
@@ -112,8 +110,8 @@ export class BasicListComponent implements OnInit {
         options: ['Stuck', 'Done', 'Working on it', ''],
         required: true,
         rule: {
-          validators: [{ required: true }]
-        }
+          validators: [{ required: true }],
+        },
       },
       {
         label: 'Timeline',
@@ -121,6 +119,7 @@ export class BasicListComponent implements OnInit {
         type: 'datePicker',
       },
     ],
+    labelSize: '',
   };
 
   formData = {};
@@ -140,11 +139,7 @@ export class BasicListComponent implements OnInit {
   @ViewChild('EditorTemplate', { static: true })
   EditorTemplate: TemplateRef<any>;
 
-  constructor(
-    private listDataService: ListDataService,
-    private dialogService: DialogService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private listDataService: ListDataService, private dialogService: DialogService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.getList();
@@ -155,13 +150,11 @@ export class BasicListComponent implements OnInit {
   }
 
   getList() {
-    this.busy = this.listDataService
-      .getListData(this.pager)
-      .subscribe((res) => {
-        const data = JSON.parse(JSON.stringify(res.pageList));
-        this.basicDataSource = data;
-        this.pager.total = res.total;
-      });
+    this.busy = this.listDataService.getListData(this.pager).subscribe((res) => {
+      const data = JSON.parse(JSON.stringify(res.pageList));
+      this.basicDataSource = data;
+      this.pager.total = res.total;
+    });
   }
 
   editRow(row, index) {
@@ -224,22 +217,21 @@ export class BasicListComponent implements OnInit {
 
   reset() {
     this.searchForm = {
-      borderType: 'normal',
-      size: 'normal',
-      layout: 'auto'
+      borderType: '',
+      size: 'md',
+      layout: 'auto',
     };
     this.pager.pageIndex = 1;
     this.getList();
   }
 
-  onSubmitted (e) {
+  onSubmitted(e) {
     this.editForm.modalInstance.hide();
     this.basicDataSource.splice(this.editRowIndex, 1, e);
   }
 
-  onCanceled () {
+  onCanceled() {
     this.editForm.modalInstance.hide();
     this.editRowIndex = -1;
   }
-
 }

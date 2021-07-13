@@ -8,7 +8,8 @@ import {
   TagsInputModule,
   InputNumberModule,
   DatepickerModule,
-  PaginationModule
+  PaginationModule,
+  ToastModule
 } from 'ng-devui';
 import { HorizontalFormComponent } from './form-layout/horizontal-form/horizontal-form.component';
 import { VerticalFormComponent } from './form-layout/vertical-form/vertical-form.component';
@@ -16,7 +17,9 @@ import { MultiColumnsFormComponent } from './form-layout/multi-columns-form/mult
 import { ModalFormComponent } from './form-layout/modal-form/modal-form.component';
 import { ModalFormContentComponent } from './form-layout/modal-form/modal-form-content/modal-form-content.component';
 import { AdvanceFormComponent } from './advance-form/advance-form.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { AdminFormModule } from 'src/app/@shared/components/admin-form/admin-form.module';
+import { DynamicFormsModule } from 'src/app/@shared/components/dynamic-forms/dynamic-forms.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { AdminFormModule } from 'src/app/@shared/components/admin-form/admin-for
     ModalFormComponent,
     AdvanceFormComponent,
     ModalFormContentComponent,
+    DynamicFormComponent
   ],
   imports: [
     SharedModule,
@@ -37,7 +41,9 @@ import { AdminFormModule } from 'src/app/@shared/components/admin-form/admin-for
     DatepickerModule,
     InputNumberModule,
     AdminFormModule,
-    PaginationModule
+    PaginationModule,
+    DynamicFormsModule,
+    ToastModule
   ],
 })
 export class FormModule {}

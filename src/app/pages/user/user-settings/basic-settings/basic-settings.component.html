@@ -1,7 +1,7 @@
 <div class="da-settings-layout">
   <da-layout-row [daGutter]="[24, 24]">
     <da-col-item [daSpan]="24" [daXs]="6" [daOrder]="2">
-      <form dForm [layout]="'vertical'"  autocomplete="off">
+      <form dForm [layout]="verticalLayout" autocomplete="off">
         <d-form-item>
           <d-form-label>昵称</d-form-label>
           <d-form-control>
@@ -23,13 +23,7 @@
         <d-form-item>
           <d-form-label>国家/地区</d-form-label>
           <d-form-control>
-            <d-select
-              [options]="Options"
-              name="initiator"
-              size="sm"
-              [filterKey]="'label'"
-              [(ngModel)]="formData.selectValue"
-            ></d-select>
+            <d-select [options]="Options" name="initiator" size="sm" [filterKey]="'label'" [(ngModel)]="formData.selectValue"></d-select>
           </d-form-control>
         </d-form-item>
         <d-form-item>
@@ -49,28 +43,18 @@
         <d-form-item>
           <d-form-label>电话号码</d-form-label>
           <d-form-control>
-            <input dTextInput name="phone"/>
+            <input dTextInput name="phone" />
           </d-form-control>
         </d-form-item>
         <d-form-operation>
-          <d-button
-            style="margin-right: 8px"
-            dFormSubmit
-            >更新基础信息</d-button
-          >
+          <d-button style="margin-right: 8px" dFormSubmit>更新基础信息</d-button>
         </d-form-operation>
       </form>
     </da-col-item>
     <da-col-item [daSpan]="24" [daXs]="18" [daOrder]="1" [daOrderXs]="3">
       <div class="da-settings-avatar">
         <div class="da-settings-img">
-          <d-avatar
-            [name]="'avatar'"
-            [imgSrc]="imgSrc"
-            [width]="120"
-            [height]="120"
-            [isRound]="false"
-          ></d-avatar>
+          <d-avatar [name]="'avatar'" [imgSrc]="imgSrc" [width]="120" [height]="120" [isRound]="false"></d-avatar>
         </div>
         <div class="da-settings-btn">
           <d-button>

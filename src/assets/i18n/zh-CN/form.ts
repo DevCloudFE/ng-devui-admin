@@ -6,6 +6,7 @@ export default {
       'basicForm': '基础表单',
       'formLayout': '表单布局',
       'advancedForm': '高级表单',
+      'dynamicForm': '动态表单'
     },
     'basicForm':{
       'title': '基础表单',
@@ -22,6 +23,10 @@ export default {
     'advancedForm': {
       'title': '高级表单',
       'description': '高级表单用于列表中编辑相关信息。'
+    },
+    'dynamicForm': {
+      'title': '动态表单',
+      'description': '根据业务对象模型的元数据（JSON）来创建动态表单，创建更加快速、且结构化方便维护，与正常表单具体使用差别请查看实际代码。'
     }
   }
 }

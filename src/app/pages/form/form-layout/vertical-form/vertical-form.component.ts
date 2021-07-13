@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DValidateRules } from 'ng-devui/form';
+import { DValidateRules, FormLayout } from 'ng-devui/form';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -9,6 +9,8 @@ import { delay } from 'rxjs/operators';
   styleUrls: ['../form-layout.component.scss'],
 })
 export class VerticalFormComponent {
+  verticalLayout: FormLayout = FormLayout.Vertical;
+
   existUsernames = ['Lily', 'Goffy', 'Nancy'];
 
   formData = {
@@ -28,35 +30,44 @@ export class VerticalFormComponent {
           pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/,
           message: {
             'zh-cn': '用户名仅允许输入数字与大小写字母',
-            'en-us': 'The user name cannot contain characters except uppercase, lowercase letters or numbers.'
+            'en-us': 'The user name cannot contain characters except uppercase, lowercase letters or numbers.',
           },
         },
       ],
-      asyncValidators: [{ sameName: this.checkName.bind(this), message: {
-        'zh-cn': '用户名重名',
-        'en-us': 'Duplicate name.'
-      } }],
+      asyncValidators: [
+        {
+          sameName: this.checkName.bind(this),
+          message: {
+            'zh-cn': '用户名重名',
+            'en-us': 'Duplicate name.',
+          },
+        },
+      ],
     },
     passwordRules: {
       validators: [{ required: true }, { minlength: 6 }, { maxlength: 15 }, { pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/ }],
       message: {
         'zh-cn': '密码为6-15位数字和字母',
-        'en-us': 'Enter a password that contains 6 to 15 digits and letters.'
-      }
+        'en-us': 'Enter a password that contains 6 to 15 digits and letters.',
+      },
     },
     confirmPasswordRules: [
       { required: true },
-      { sameToPassWord: this.sameToPassWord.bind(this), message: {
-        'zh-cn': '密码与确认密码不一致',
-        'en-us': 'Ensure that the two passwords are the same.' 
-        }
+      {
+        sameToPassWord: this.sameToPassWord.bind(this),
+        message: {
+          'zh-cn': '密码与确认密码不一致',
+          'en-us': 'Ensure that the two passwords are the same.',
+        },
       },
       { minlength: 6 },
       { maxlength: 15 },
-      { pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/, message: {
-        'zh-cn': '密码必须包含数字和字母',
-        'en-us': 'The password must contain only letters and digits.'
-        }
+      {
+        pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/,
+        message: {
+          'zh-cn': '密码必须包含数字和字母',
+          'en-us': 'The password must contain only letters and digits.',
+        },
       },
     ],
   };

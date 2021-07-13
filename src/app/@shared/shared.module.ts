@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import {
   LayoutModule,
@@ -28,6 +28,7 @@ import {
   TagsModule,
   SelectModule,
   LoadingModule,
+  ModalModule,
 } from 'ng-devui';
 import { I18nModule } from 'ng-devui/i18n';
 import { TranslateModule } from '@ngx-translate/core';
@@ -41,6 +42,8 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { HeaderLogoComponent } from './components/header/header-logo/header-logo.component';
 import { DaGridModule } from './layouts/da-grid';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HeaderNoticeComponent } from './components/header/header-operation/header-notice/header-notice.component';
 
 const DEVUI_MODULES = [
   LayoutModule,
@@ -63,13 +66,24 @@ const DEVUI_MODULES = [
   SelectModule,
   RadioModule,
   LoadingModule,
+  ModalModule,
 ];
 const COMPONENTS = [HeaderComponent, FooterComponent, NavbarComponent, PersonalizeComponent];
 @NgModule({
-  declarations: [LoginComponent, SideSettingsComponent, HeaderOperationComponent, HeaderLogoComponent, SideMenuComponent, ...COMPONENTS],
+  declarations: [
+    LoginComponent,
+    SideSettingsComponent,
+    HeaderOperationComponent,
+    HeaderLogoComponent,
+    SideMenuComponent,
+    HeaderNoticeComponent,
+    RegisterComponent,
+    ...COMPONENTS,
+  ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     TranslateModule,
     DCommonModule,

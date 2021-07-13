@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormLayout } from 'ng-devui';
 import { FormConfig } from './admin-form.type';
 
 @Component({
   selector: 'da-admin-form',
   templateUrl: './admin-form.component.html',
-  styleUrls: ['./admin-form.component.scss']
+  styleUrls: ['./admin-form.component.scss'],
 })
 export class AdminFormComponent implements OnInit {
-
   @Input() formConfig: FormConfig = {
-    layout: 'horizontal',
+    layout: FormLayout.Horizontal,
     labelSize: 'sm',
     items: [],
   };

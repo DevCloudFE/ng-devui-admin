@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DValidateRules } from 'ng-devui/form';
+import { DValidateRules, FormLayout } from 'ng-devui/form';
 
 @Component({
   selector: 'da-modal-form-content',
@@ -10,6 +10,8 @@ export class ModalFormContentComponent implements OnInit {
     emailAddress: '',
     password: ''
   };
+
+  layout = FormLayout.Horizontal;
 
   formRules: { [key: string]: DValidateRules } = {
     rule: { message: 'The form verification failed, please check.', messageShowType: 'text' },

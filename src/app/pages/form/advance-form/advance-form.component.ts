@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, EditableTip, TableWidthConfig } from 'ng-devui';
+import { DialogService, EditableTip, FormLayout, TableWidthConfig } from 'ng-devui';
 import { Subscription } from 'rxjs';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
+import { FormConfig } from 'src/app/@shared/components/admin-form';
 
 @Component({
   selector: 'da-advance-form',
@@ -23,9 +24,9 @@ export class AdvanceFormComponent implements OnInit {
 
   headerNewForm = false;
 
-  formConfig = {
-    layout: 'horizontal',
-    labelSize: '60',
+  formConfig: FormConfig = {
+    layout: FormLayout.Horizontal,
+    labelSize: 'sm',
     items: [
       {
         label: 'Id',
@@ -149,7 +150,6 @@ export class AdvanceFormComponent implements OnInit {
   };
 
   beforeEditEnd = (rowItem, field) => {
-    console.log('beforeEditEnd');
     if (rowItem && rowItem[field].length < 3) {
       return false;
     } else {

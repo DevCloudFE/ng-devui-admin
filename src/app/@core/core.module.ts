@@ -1,9 +1,4 @@
-import {
-  ModuleWithProviders,
-  NgModule,
-  Optional,
-  SkipSelf,
-} from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -22,6 +17,8 @@ import { WorkGroupData } from './data/work-group';
 import { WorkGroupService } from './mock/work-group.service';
 import { AuthGuardService } from './services/auth-guard-service.guard';
 import { CustomThemeService } from './services/custom-theme.service';
+import { NoticeData } from './data/noticeData';
+import { NoticeDataService } from './mock/notice-data.service';
 
 const DATA_SERVICES = [
   { provide: CourseData, useClass: CourseService },
@@ -29,6 +26,7 @@ const DATA_SERVICES = [
   { provide: ListData, useClass: ListDataService },
   { provide: WorkItemData, useClass: WorkItemService },
   { provide: WorkGroupData, useClass: WorkGroupService },
+  { provide: NoticeData, useClass: NoticeDataService },
 ];
 
 export const DEVUI_CORE_PROVIDERS = [

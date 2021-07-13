@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, HostBinding, Input, Renderer2, ElementRef, OnInit, OnChanges } from '@angular/core';
 import { setGridClass } from './layout-utils';
-import { DaAlignSelf } from './layout.types';
+import { DaAlignSelf, DaMergedProperty } from './layout.types';
 
 @Component({
   selector: 'da-col-item',
@@ -14,14 +14,14 @@ export class ColComponent implements OnInit, OnChanges {
   @HostBinding('class.da-col') daCol = true;
 
   @Input() daSpan: number;
-  @Input() daMs: number;
-  @Input() daMm: number;
-  @Input() daMl: number;
-  @Input() daXs: number;
-  @Input() daSm: number;
-  @Input() daMd: number;
-  @Input() daLg: number;
-  @Input() daXl: number;
+  @Input() daMs: number | DaMergedProperty;
+  @Input() daMm: number | DaMergedProperty;
+  @Input() daMl: number | DaMergedProperty;
+  @Input() daXs: number | DaMergedProperty;
+  @Input() daSm: number | DaMergedProperty;
+  @Input() daMd: number | DaMergedProperty;
+  @Input() daLg: number | DaMergedProperty;
+  @Input() daXl: number | DaMergedProperty;
 
   @Input() daOrder: number;
   @Input() daOrderMs: number;

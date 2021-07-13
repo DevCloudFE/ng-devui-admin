@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataTableComponent, DialogService, TableWidthConfig } from 'ng-devui';
+import { DataTableComponent, DialogService, EditableTip, TableWidthConfig } from 'ng-devui';
 import { Subscription } from 'rxjs';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
 
@@ -30,14 +30,17 @@ export class AdvanceListComponent implements OnInit {
         filterable: true,
         filterList: [
           {
+            id: 'Low',
             name: 'Low',
             value: 'Low',
           },
           {
+            id: 'Medium',
             name: 'Medium',
             value: 'Medium',
           },
           {
+            id: 'High',
             name: 'High',
             value: 'High',
           },
@@ -57,14 +60,17 @@ export class AdvanceListComponent implements OnInit {
         filterable: true,
         filterList: [
           {
+            id: 'Stuck',
             name: 'Stuck',
             value: 'Stuck',
           },
           {
+            id: 'Low',
             name: 'Low',
             value: 'Low',
           },
           {
+            id: 'Working on it',
             name: 'Working on it',
             value: 'Working on it',
           },
@@ -133,6 +139,8 @@ export class AdvanceListComponent implements OnInit {
     gender: 'All',
   };
 
+  editableTip = EditableTip.btn;
+
   busy: Subscription;
 
   constructor(
@@ -178,6 +186,22 @@ export class AdvanceListComponent implements OnInit {
       gender: 'all',
     };
     this.getList();
+  }
+
+  beforeEditStart = (rowItem, field) => {
+    return true;
+  };
+
+  beforeEditEnd = (rowItem, field) => {
+    if (rowItem && rowItem[field].length < 3) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  onEditEnd(rowItem, field) {
+    rowItem[field] = false;
   }
 
   onFirstFilterChange(e, column) {

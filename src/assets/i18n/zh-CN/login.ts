@@ -18,5 +18,8 @@ export default {
       emailContent:
         '请输入正确的用户名密码，用户名：admin@devui.com，密码：devuiadmin',
     },
+    other: '其它登录方式',
+    register: '注册账户',
+    callbackMessage: 'Github授权回调成功',
   },
 };

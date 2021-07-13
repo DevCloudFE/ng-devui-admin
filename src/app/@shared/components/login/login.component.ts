@@ -1,12 +1,15 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
+import { DValidateRules } from 'ng-devui';
+import { FormLayout } from 'ng-devui';
 import { I18nService } from 'ng-devui/i18n';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { PersonalizeService } from 'src/app/@core/services/personalize.service';
 import { LANGUAGES } from 'src/config/language-config';
+import { environment } from 'src/environments/environment';
 import { ThemeType } from '../../models/theme';
 
 @Component({
@@ -17,7 +20,9 @@ import { ThemeType } from '../../models/theme';
 export class LoginComponent implements OnInit {
   private destroy$ = new Subject();
 
-  tabActiveId = 'tab1';
+  horizontalLayout: FormLayout = FormLayout.Horizontal;
+
+  tabActiveId: string | number = 'tab1';
   showPassword = false;
 
   tabItems;
@@ -33,13 +38,35 @@ export class LoginComponent implements OnInit {
     userEmailPassword: 'devuiadmin',
   };
 
+  formRules: { [key: string]: DValidateRules } = {
+    usernameRules: {
+      validators: [
+        { required: true },
+        { minlength: 3 },
+        { maxlength: 20 },
+        {
+          pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/,
+          message: 'The user name cannot contain characters except uppercase and lowercase letters.',
+        },
+      ],
+    },
+    emailRules: {
+      validators: [{ required: true }, { email: true }],
+    },
+    passwordRules: {
+      validators: [{ required: true }, { minlength: 6 }, { maxlength: 15 }, { pattern: /^[a-zA-Z0-9\d@$!%*?&.]+(\s+[a-zA-Z0-9]+)*$/ }],
+      message: 'Enter a password that contains 6 to 15 digits and letters.',
+    },
+  };
+
   @HostListener('window:keydown.enter')
   onEnter() {
     this.onClick(this.tabActiveId);
   }
 
   constructor(
-    private route: Router,
+    private router: Router,
+    private route: ActivatedRoute,
     private authService: AuthService,
     private translate: TranslateService,
     private i18n: I18nService,
@@ -61,15 +88,29 @@ export class LoginComponent implements OnInit {
     });
     this.language = this.translate.currentLang;
     this.personalizeService.setRefTheme(ThemeType.Default);
+
+    // oauth认证回调
+    this.route.queryParams.pipe(map((param) => param.code)).subscribe((code) => {
+      if (code && code.length > 0) {
+        setTimeout(() => {
+          this.toastMessage = [
+            {
+              severity: 'success',
+              content: this.i18nValues['callbackMessage'],
+            },
+          ];
+        });
+      }
+    });
   }
 
-  onClick(tabId: string) {
+  onClick(tabId: string | number) {
     switch (tabId) {
       case 'tab1':
         this.authService.login(this.formData.userAccount, this.formData.userAccountPassword).subscribe(
           (res) => {
             this.authService.setSession(res);
-            this.route.navigate(['/']);
+            this.router.navigate(['/']);
           },
           (error) => {
             this.toastMessage = [
@@ -86,7 +127,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(this.formData.userEmail, this.formData.userEmailPassword).subscribe(
           (res) => {
             this.authService.setSession(res);
-            this.route.navigate(['/']);
+            this.router.navigate(['/']);
           },
           (error) => {
             this.toastMessage = [
@@ -128,5 +169,20 @@ export class LoginComponent implements OnInit {
     if (e.keyCode === 13) {
       this.onClick(tabId);
     }
+  }
+
+  handleAuth(type) {
+    console.log(type);
+    //github oauth配置
+    const config = {
+      oauth_uri: 'https://github.com/login/oauth/authorize',
+      redirect_uri: 'https://devui.design/admin/login',
+      client_id: 'ef3ce924fcf915c50910',
+    };
+    if (!environment.production) {
+      config.redirect_uri = 'http://localhost:8001/login';
+      config.client_id = 'ecf5e43d804e8e003196';
+    }
+    window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`;
   }
 }

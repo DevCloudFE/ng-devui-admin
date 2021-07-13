@@ -1,63 +1,39 @@
 <div class="da-operations">
-  <d-search
-    class="da-header-search"
-    [iconPosition]="'left'"
-    [noBorder]="true"
-    (searchFn)="onSearch($event)"
-  ></d-search>
+  <d-search class="da-header-search" [iconPosition]="'left'" [noBorder]="true" (searchFn)="onSearch($event)"></d-search>
   <a href="https://devui.design/admin-page/docs" target="_blank">
     <i class="icon icon-helping"></i>
   </a>
-  <d-badge [count]="5">
-    <i class="icon icon-notice"></i>
-  </d-badge>
-  <div
-    class="da-operations-user"
-    dDropDown
-    [trigger]="'hover'"
-    appendToBody
-    dDropDownToggle
-  >
+  <div class="da-operations-notice" dDropDown [trigger]="'click'" dDropDownToggle appendToBody [closeScope]="'blank'">
+    <d-badge [count]="noticeCount">
+      <i class="icon icon-notice"></i>
+    </d-badge>
+    <div class="da-notice-modal" dDropDownMenu role="menu">
+      <da-header-notice (countEvent)="handleNoticeCount($event)"></da-header-notice>
+    </div>
+  </div>
+
+  <div class="da-operations-user" dDropDown [trigger]="'hover'" appendToBody dDropDownToggle>
     <d-avatar [name]="user?.userName" [width]="22" [height]="22"></d-avatar>
     <span class="da-user-name">{{ user?.userName }}</span>
-    <ul
-      dDropDownMenu
-      class="devui-dropdown-menu devui-scrollbar"
-      role="menu"
-      style="min-width: 120px"
-    >
+    <ul dDropDownMenu class="devui-dropdown-menu devui-scrollbar" role="menu" style="min-width: 120px">
       <ng-container *ngIf="haveLoggedIn; else login">
         <li role="menuitem">
-          <a
-            class="devui-dropdown-item"
-            [routerLink]="['/pages', 'user', 'center']"
-            ><i class="icon icon-mine"></i
-            >{{ "header.userCenter" | translate }}</a
+          <a class="devui-dropdown-item" [routerLink]="['/pages', 'user', 'center']"
+            ><i class="icon icon-mine"></i>{{ 'header.userCenter' | translate }}</a
           >
         </li>
         <li role="menuitem">
-          <a
-            class="devui-dropdown-item"
-            [routerLink]="['/pages', 'user', 'settings']"
-            ><i class="icon icon-setting"></i
-            >{{ "header.userSettings" | translate }}</a
+          <a class="devui-dropdown-item" [routerLink]="['/pages', 'user', 'settings']"
+            ><i class="icon icon-setting"></i>{{ 'header.userSettings' | translate }}</a
           >
         </li>
         <li role="menuitem" (click)="handleUserOps('logout')">
-          <a class="devui-dropdown-item logout"
-            ><i class="icon icon-exit"></i>{{ "header.logout" | translate }}</a
-          >
+          <a class="devui-dropdown-item logout"><i class="icon icon-exit"></i>{{ 'header.logout' | translate }}</a>
         </li>
       </ng-container>
     </ul>
   </div>
-  <div
-    class="da-language-wrapper"
-    dDropDown
-    [trigger]="'hover'"
-    appendToBody
-    dDropDownToggle
-  >
+  <div class="da-language-wrapper" dDropDown [trigger]="'hover'" appendToBody dDropDownToggle>
     <!-- TODO: svg替换为图标 -->
     <svg width="16px" height="16px" viewBox="0 0 16 16">
       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -66,12 +42,7 @@
         ></path>
       </g>
     </svg>
-    <ul
-      dDropDownMenu
-      class="devui-dropdown-menu devui-scrollbar"
-      role="menu"
-      style="min-width: 120px"
-    >
+    <ul dDropDownMenu class="devui-dropdown-menu devui-scrollbar" role="menu" style="min-width: 120px">
       <li
         *ngFor="let item of languages"
         role="menuitem"
@@ -89,14 +60,9 @@
 
 <ng-template #login>
   <li role="menuitem">
-    <a class="devui-dropdown-item"
-      ><i class="icon icon-assign"></i>{{ "header.login" | translate }}</a
-    >
+    <a class="devui-dropdown-item"><i class="icon icon-assign"></i>{{ 'header.login' | translate }}</a>
   </li>
   <li role="menuitem">
-    <a class="devui-dropdown-item"
-      ><i class="icon icon-add-member"></i
-      >{{ "header.register" | translate }}</a
-    >
+    <a class="devui-dropdown-item"><i class="icon icon-add-member"></i>{{ 'header.register' | translate }}</a>
   </li>
 </ng-template>

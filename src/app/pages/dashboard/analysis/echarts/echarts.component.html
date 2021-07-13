@@ -11,7 +11,7 @@
         <da-col-item [daSpan]="24" [daXs]="12">
           <div class="da-table-wrapper">
             <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
-            <d-data-table [dataSource]="serviceSource" fixHeader="true" maxHeight="220px" scrollable="true" [type]="'striped'">
+            <d-data-table [dataSource]="serviceSource" [fixHeader]="true" maxHeight="220px" [scrollable]="true" [type]="'striped'">
               <thead dTableHead>
                 <tr dTableRow>
                   <th dHeadCell *ngFor="let colOption of dataTableServiceOption.columns">
@@ -46,7 +46,7 @@
         <da-col-item [daSpan]="24" [daXs]="8">
           <div class="da-table-wrapper">
             <!-- TODO: 在响应式下表格高度有问题，等组件库修复问题即可 -->
-            <d-data-table [dataSource]="pieSource" fixHeader="true" maxHeight="220px" scrollable="true" [type]="'striped'">
+            <d-data-table [dataSource]="pieSource" [fixHeader]="true" maxHeight="220px" [scrollable]="true" [type]="'striped'">
               <thead dTableHead>
                 <tr dTableRow>
                   <th dHeadCell *ngFor="let colOption of dataTablePieOption.columns">

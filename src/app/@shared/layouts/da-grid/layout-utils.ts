@@ -1,4 +1,4 @@
-import { DaBreakpoints } from './layout.types';
+import { DaBreakpoints, DaMergedProperty } from './layout.types';
 
 export function parseFlex(flex): string {
   if (typeof flex === 'number') {
@@ -13,72 +13,70 @@ export function parseFlex(flex): string {
 
 export function setGridClass(context, elementRef, renderer): void {
   const breakpoints = ['Ms', 'Mm', 'Ml', 'Xs', 'Sm', 'Md', 'Lg', 'Xl'];
-
+  const classPrefixMap = {
+    'daOffset': 'dl-offset-',
+    'daAlign': 'dl-align-items-',
+    'daJustify': 'dl-justify-content-',
+    'daAlignSelf': 'dl-align-self-',
+    'daOrder': 'dl-order-'
+  };
+  const tempClassMap = {};
   if (context.daSpan !== undefined) {
-    renderer.addClass(elementRef.nativeElement, context.daSpan === 0 ? `dl-d-none` : `dl-col-${context.daSpan}`);
+    const className = context.daSpan === 0 ? `dl-d-none` : `dl-col-${context.daSpan}`
+    tempClassMap[className] = true;
   }
   breakpoints.forEach(point => {
     const sizeName = 'da' + point;
     point = point.toLowerCase();
     if (context[sizeName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, context[sizeName] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${context[sizeName]}`);
+      if (typeof context[sizeName] === 'number') {
+        const className = context[sizeName] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${context[sizeName]}`;
+        tempClassMap[className] = true;
+      } else {
+        const mergedProperty = context[sizeName] as DaMergedProperty;
+        if (mergedProperty.hasOwnProperty('span')) {
+          const className = mergedProperty['span'] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${mergedProperty['span']}`;;
+          tempClassMap[className] = true;
+        }
+        for (const prefix in classPrefixMap) {
+          if (mergedProperty.hasOwnProperty(prefix.slice(2).toLowerCase())) {
+            const className = classPrefixMap[prefix] + mergedProperty[prefix.slice(2).toLowerCase()];
+            tempClassMap[className] = true;
+          }
+        }
+      }
     }
   });
 
-  if (context.daOffset !== undefined) {
-    renderer.addClass(elementRef.nativeElement, `dl-offset-${context.daOffset}`);
-  }
-  breakpoints.forEach(point => {
-    const offsetName = 'daOffset' + point;
-    point = point.toLowerCase();
-    if (context[offsetName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, `dl-offset-${point}-${context[offsetName]}`);
+  for (const prefix in classPrefixMap) {
+    if (context[prefix] !== undefined) {
+      const className = classPrefixMap[prefix] + context[prefix];
+      tempClassMap[className] = true;
     }
-  });
+    breakpoints.forEach(point => {
+      const name = prefix + point;
+      point = point.toLowerCase();
+      if (context[name] !== undefined) {
+        const className = classPrefixMap[prefix] + `${point}-${context[name]}`;
+        tempClassMap[className] = true;
+      }
+    });
+  }
 
-  if (context.daAlign !== undefined) {
-    renderer.addClass(elementRef.nativeElement, `dl-align-items-${context.daAlign}`);
-  }
-  breakpoints.forEach(point => {
-    const alignName = 'daAlign' + point;
-    point = point.toLowerCase();
-    if (context[alignName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, `dl-align-items-${point}-${context[alignName]}`);
+  if (context.classMap) {
+    for (const className in context.classMap) {
+      if (context.classMap.hasOwnProperty(className)) {
+        renderer.removeClass(elementRef.nativeElement, className);
+      }
     }
-  });
+  }
 
-  if (context.daJustify !== undefined) {
-    renderer.addClass(elementRef.nativeElement, `dl-justify-content-${context.daJustify}`);
-  }
-  breakpoints.forEach(point => {
-    const justifyName = 'daJustify' + point;
-    point = point.toLowerCase();
-    if (context[justifyName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, `dl-justify-content-${point}-${context.daJustify}`);
+  context.classMap = { ...tempClassMap };
+  for (const className in context.classMap) {
+    if (context.classMap.hasOwnProperty(className) && context.classMap[className]) {
+      renderer.addClass(elementRef.nativeElement, className);
     }
-  });
-
-  if (context.daAlignSelf !== undefined) {
-    renderer.addClass(elementRef.nativeElement, `dl-align-self-${context.daAlignSelf}`);
   }
-  breakpoints.forEach(point => {
-    const alignSelfName = 'daAlignSelf' + point;
-    point = point.toLowerCase();
-    if (context[alignSelfName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, `dl-align-self-${alignSelfName}-${context[alignSelfName]}`);
-    }
-  });
-
-  if (context.daOrder !== undefined) {
-    renderer.addClass(elementRef.nativeElement, `dl-order-${context.daOrder}`);
-  }
-  breakpoints.forEach(point => {
-    const orderName = 'daOrder' + point;
-    point = point.toLowerCase();
-    if (context[orderName] !== undefined) {
-      renderer.addClass(elementRef.nativeElement, `dl-order-${point}-${context[orderName]}`);
-    }
-  });
 }
 
 export function setScreenPointFlex(point, context, elementRef, renderer): void {

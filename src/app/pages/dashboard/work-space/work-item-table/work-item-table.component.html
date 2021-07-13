@@ -1,11 +1,5 @@
 <div class="da-work-item-table">
-  <d-data-table
-    [dataSource]="tableData"
-    [scrollable]="true"
-    [type]="'striped'"
-    fixHeader="true"
-    [maxHeight]="'500px'"
-  >
+  <d-data-table [dataSource]="tableData" [scrollable]="true" [type]="'striped'" [fixHeader]="true" [maxHeight]="'500px'">
     <thead dTableHead>
       <tr dTableRow>
         <th dHeadCell *ngFor="let colOption of tableOptions.columns">
@@ -17,11 +11,7 @@
       <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
         <tr dTableRow>
           <td dTableCell *ngFor="let colOption of tableOptions.columns">
-            {{
-              colOption.fieldType === "date"
-                ? (rowItem[colOption.field] | i18nDate: "short":false)
-                : rowItem[colOption.field]
-            }}
+            {{ colOption.fieldType === 'date' ? (rowItem[colOption.field] | i18nDate: 'short':false) : rowItem[colOption.field] }}
           </td>
         </tr>
       </ng-template>

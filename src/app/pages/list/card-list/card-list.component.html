@@ -2,21 +2,15 @@
   <div class="da-content-banner">
     <d-breadcrumb>
       <d-breadcrumb-item
-        ><a routerLink="/">{{
-          "list.breadcrumb.home" | translate
-        }}</a></d-breadcrumb-item
+        ><a routerLink="/">{{ 'list.breadcrumb.home' | translate }}</a></d-breadcrumb-item
       >
-      <d-breadcrumb-item>{{
-        "list.breadcrumb.formPage" | translate
-      }}</d-breadcrumb-item>
-      <d-breadcrumb-item>{{
-        "list.breadcrumb.cardList" | translate
-      }}</d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'list.breadcrumb.formPage' | translate }}</d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'list.breadcrumb.cardList' | translate }}</d-breadcrumb-item>
     </d-breadcrumb>
     <div class="da-content-banner-title">
-      {{ "list.cardList.title" | translate }}
+      {{ 'list.cardList.title' | translate }}
     </div>
-    <div>{{ "list.cardList.description" | translate }}</div>
+    <div>{{ 'list.cardList.description' | translate }}</div>
   </div>
 
   <div class="da-content-wrapper">
@@ -24,24 +18,13 @@
       <da-col-item [daSpan]="24" [daXs]="24">
         <div class="da-list-container">
           <div class="da-list-header">
-            <d-search
-              [placeholder]="'search'"
-              [(ngModel)]="keyword"
-              (searchFn)="getList()"
-            ></d-search>
+            <d-search [placeholder]="'search'" [(ngModel)]="keyword" (searchFn)="getList()"></d-search>
           </div>
 
           <div class="da-list-content" dLoading [loading]="busy">
             <d-card *ngFor="let item of cardList" class="card-item">
               <d-card-header>
-                <d-avatar
-                  dCardAvatar
-                  [name]="item.name"
-                  [imgSrc]="item.imgSrc"
-                  [round]="true"
-                  width="28"
-                  height="28"
-                ></d-avatar>
+                <d-avatar dCardAvatar [name]="item.name" [imgSrc]="item.imgSrc" [isRound]="true" [width]="28" [height]="28"></d-avatar>
                 <d-card-title>{{ item.title }}</d-card-title>
               </d-card-header>
               <d-card-content>
@@ -49,8 +32,7 @@
               </d-card-content>
               <d-card-actions [align]="'start'">
                 <div class="card-block" *ngFor="let action of item.actions">
-                  <i [class]="action.icon + ' card-icon'"></i
-                  ><span>{{ action.num }}</span>
+                  <i [class]="action.icon + ' card-icon'"></i><span>{{ action.num }}</span>
                 </div>
               </d-card-actions>
             </d-card>

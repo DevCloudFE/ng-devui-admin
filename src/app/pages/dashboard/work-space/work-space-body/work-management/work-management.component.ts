@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ILabelDataConfigs } from 'ng-devui/quadrant-diagram';
+import { ILabelDataConfigs, labelSize } from 'ng-devui/quadrant-diagram';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { debounceTime } from 'rxjs/operators';
 export class WorkManagementComponent implements OnInit, AfterViewInit, OnDestroy {
   resizeSub: any;
 
-  currentLableSize = 'large';
+  currentLableSize: labelSize = 'large';
 
   labelData: Array<ILabelDataConfigs> = [
     {

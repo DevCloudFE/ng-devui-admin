@@ -1,0 +1,113 @@
+<div class="da-header-notice">
+  <d-tabs [type]="'tabs'" [(activeTab)]="tabActiveID">
+    <d-tab id="notice" [title]="noticeTitle" tabId="notice">
+      <ng-template dTabContent>
+        <div class="da-notice-container">
+          <div class="da-notice-content" *ngIf="notifications.length; else noData">
+            <div
+              class="da-notice-item da-notice-container-item"
+              *ngFor="let notification of notifications"
+              (click)="handleNoticeClick('notice', notification.id)"
+              [ngClass]="{ 'da-notice-checked': notification.status }"
+            >
+              <div [class]="'da-notice-item-left da-notice-container-item-left ' + notification.type">
+                <i [class]="'icon icon-' + notification.icon"></i>
+              </div>
+              <div class="da-notice-item-right">
+                <div class="da-notice-item-title da-notice-container-item-title">
+                  {{ notification.title }}
+                </div>
+                <div class="da-notice-item-time da-notice-container-item-time">
+                  {{ notification.time }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="da-notice-clear" [ngStyle]="{ visibility: notifications.length ? 'visible' : 'hidden' }">
+            <d-button bsStyle="text-dark" bsPosition="left" [width]="'160px'" (btnClick)="handleClean('notice')">
+              {{ 'notice.clear' | translate }}
+            </d-button>
+            <span class="da-dividing-line"></span>
+            <d-button bsStyle="text-dark" bsPosition="right" [width]="'160px'">{{ 'notice.more' | translate }}</d-button>
+          </div>
+        </div>
+      </ng-template>
+    </d-tab>
+
+    <d-tab id="message" [title]="messageTitle" tabId="message">
+      <ng-template dTabContent>
+        <div class="da-notice-container">
+          <div class="da-notice-content" *ngIf="messages.length; else noData">
+            <div
+              class="da-message-item da-notice-container-item"
+              *ngFor="let message of messages"
+              (click)="handleNoticeClick('message', message.id)"
+              [ngClass]="{ 'da-notice-checked': message.status }"
+            >
+              <div class="da-message-item-left da-notice-container-item-left">
+                <d-avatar [name]="'DevUI'" [width]="30" [height]="30" [imgSrc]="message.image" [isRound]="false"></d-avatar>
+              </div>
+              <div class="da-message-item-right">
+                <div class="da-message-item-title da-notice-container-item-title">
+                  {{ message.title }}
+                </div>
+                <div class="da-message-item-content">
+                  {{ message.content }}
+                </div>
+                <div class="da-message-item-time da-notice-container-item-time">
+                  {{ message.time }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="da-notice-clear" [ngStyle]="{ visibility: messages.length ? 'visible' : 'hidden' }">
+            <d-button bsStyle="text-dark" bsPosition="left" [width]="'160px'" (btnClick)="handleClean('message')">
+              {{ 'notice.clear' | translate }}
+            </d-button>
+            <d-button bsStyle="text-dark" bsPosition="right" [width]="'160px'">{{ 'notice.more' | translate }}</d-button>
+          </div>
+        </div>
+      </ng-template>
+    </d-tab>
+
+    <d-tab id="todo" [title]="todoTitle" tabId="todo">
+      <ng-template dTabContent>
+        <div class="da-notice-container">
+          <div class="da-notice-content" *ngIf="todos.length; else noData">
+            <div
+              class="da-todo-item da-notice-container-item"
+              *ngFor="let todo of todos"
+              (click)="handleNoticeClick('todo', todo.id)"
+              [ngClass]="{ 'da-notice-checked': todo.status }"
+            >
+              <div class="da-todo-item-left">
+                <div class="da-todo-item-title da-notice-container-item-title">
+                  {{ todo.title }}
+                </div>
+                <div class="da-todo-item-memo da-notice-container-item-time">
+                  {{ todo.memo }}
+                </div>
+              </div>
+              <div class="da-todo-item-right">
+                <d-tag [tag]="todo.tagName" [labelStyle]="todo.tagType"></d-tag>
+              </div>
+            </div>
+          </div>
+          <div class="da-notice-clear" [ngStyle]="{ visibility: todos.length ? 'visible' : 'hidden' }">
+            <d-button bsStyle="text-dark" bsPosition="left" [width]="'160px'" (btnClick)="handleClean('todo')">
+              {{ 'notice.clear' | translate }}
+            </d-button>
+            <d-button bsStyle="text-dark" bsPosition="right" [width]="'160px'">{{ 'notice.more' | translate }}</d-button>
+          </div>
+        </div>
+      </ng-template>
+    </d-tab>
+  </d-tabs>
+</div>
+
+<ng-template #noData>
+  <div class="da-notice-no-data">
+    <i class="icon icon-desk-notice"></i>
+    <span>{{ 'notice.done' | translate }}</span>
+  </div>
+</ng-template>

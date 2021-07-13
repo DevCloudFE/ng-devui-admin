@@ -18,5 +18,8 @@ export default {
       emailContent:
         'Please input correct username and password, username: admin@devui.com, password: devuiadmin',
     },
+    other: 'Sign in with',
+    register: 'Sign up',
+    callbackMessage: 'Github authorization callback succeeded',
   },
 };

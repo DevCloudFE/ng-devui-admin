@@ -33,7 +33,7 @@
         <div class="da-content-title">所处的团队</div>
         <div class="da-work-group-wrapper">
           <div class="da-team" *ngFor="let item of workGroups">
-            <d-avatar [name]="item?.departmentTitle[0]" [width]="30" [height]="30" [imgSrc]="item?.imgSrc"></d-avatar>
+            <d-avatar [name]="item?.departmentTitle[0]" [width]="30" [height]="30" [imgSrc]="item?.logoSrc"></d-avatar>
             <div class="da-team-title">{{ item?.departmentTitle }}</div>
           </div>
         </div>

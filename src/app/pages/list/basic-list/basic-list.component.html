@@ -2,21 +2,15 @@
   <div class="da-content-banner">
     <d-breadcrumb>
       <d-breadcrumb-item
-        ><a routerLink="/">{{
-          "list.breadcrumb.home" | translate
-        }}</a></d-breadcrumb-item
+        ><a routerLink="/">{{ 'list.breadcrumb.home' | translate }}</a></d-breadcrumb-item
       >
-      <d-breadcrumb-item>{{
-        "list.breadcrumb.formPage" | translate
-      }}</d-breadcrumb-item>
-      <d-breadcrumb-item>{{
-        "list.breadcrumb.basicList" | translate
-      }}</d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'list.breadcrumb.formPage' | translate }}</d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'list.breadcrumb.basicList' | translate }}</d-breadcrumb-item>
     </d-breadcrumb>
     <div class="da-content-banner-title">
-      {{ "list.basicList.title" | translate }}
+      {{ 'list.basicList.title' | translate }}
     </div>
-    <div>{{ "list.basicList.description" | translate }}</div>
+    <div>{{ 'list.basicList.description' | translate }}</div>
   </div>
   <div class="da-content-wrapper">
     <da-layout-row [daGutter]="[24, 24]">
@@ -26,27 +20,15 @@
             <div class="da-header-left">
               <div class="da-header-item">
                 <div class="da-header-item-label">Border Type：</div>
-                <d-select
-                  [placeholder]="'change table style'"
-                  [options]="options"
-                  [(ngModel)]="searchForm.borderType"
-                ></d-select>
+                <d-select [placeholder]="'change table style'" [options]="options" [(ngModel)]="searchForm.borderType"></d-select>
               </div>
               <div class="da-header-item">
                 <div class="da-header-item-label">Size：</div>
-                <d-select
-                  [placeholder]="'change table size'"
-                  [options]="sizeOptions"
-                  [(ngModel)]="searchForm.size"
-                ></d-select>
+                <d-select [placeholder]="'change table size'" [options]="sizeOptions" [(ngModel)]="searchForm.size"></d-select>
               </div>
               <div class="da-header-item">
                 <div class="da-header-item-label">Layout：</div>
-                <d-select
-                  [placeholder]="'change table layout'"
-                  [options]="layoutOptions"
-                  [(ngModel)]="searchForm.layout"
-                ></d-select>
+                <d-select [placeholder]="'change table layout'" [options]="layoutOptions" [(ngModel)]="searchForm.layout"></d-select>
               </div>
             </div>
             <div class="header-right">
@@ -97,11 +79,7 @@
                 <d-cell>
                   <ng-template let-cellItem="cellItem">
                     <div class="over-flow-ellipsis">
-                      <d-avatar
-                        [name]="cellItem"
-                        [width]="24"
-                        [height]="24"
-                      ></d-avatar>
+                      <d-avatar [name]="cellItem" [width]="24" [height]="24"></d-avatar>
                       <span style="margin-left: 6px">{{ cellItem }}</span>
                     </div>
                   </ng-template>
@@ -110,9 +88,7 @@
               <d-column field="status" header="Status" [width]="'100px'">
                 <d-cell>
                   <ng-template let-cellItem="cellItem">
-                    <span [ngClass]="cellItem.split(' ')[0]">{{
-                      cellItem || "--"
-                    }}</span>
+                    <span [ngClass]="cellItem.split(' ')[0]">{{ cellItem || '--' }}</span>
                   </ng-template>
                 </d-cell>
               </d-column>
@@ -129,18 +105,8 @@
                 <d-cell>
                   <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
                     <div class="btn-group over-flow-ellipsis">
-                      <d-button
-                        icon="icon-edit"
-                        bsStyle="text-dark"
-                        title="edit"
-                        (click)="editRow(rowItem, rowIndex)"
-                      ></d-button>
-                      <d-button
-                        icon="icon-delete"
-                        bsStyle="text-dark"
-                        title="delete"
-                        (click)="deleteRow(rowIndex)"
-                      ></d-button>
+                      <d-button icon="icon-edit" bsStyle="text-dark" title="edit" (click)="editRow(rowItem, rowIndex)"></d-button>
+                      <d-button icon="icon-delete" bsStyle="text-dark" title="delete" (click)="deleteRow(rowIndex)"></d-button>
                     </div>
                   </ng-template>
                 </d-cell>
@@ -169,11 +135,6 @@
 </div>
 
 <ng-template #EditorTemplate>
-  <da-admin-form
-    [formConfig]="formConfig"
-    [formData]="formData"
-    (submitted)="onSubmitted($event)"
-    (canceled)="onCanceled($event)"
-  >
+  <da-admin-form [formConfig]="formConfig" [formData]="formData" (submitted)="onSubmitted($event)" (canceled)="onCanceled()">
   </da-admin-form>
 </ng-template>

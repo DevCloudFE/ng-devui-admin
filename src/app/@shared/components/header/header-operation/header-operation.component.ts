@@ -16,13 +16,9 @@ export class HeaderOperationComponent implements OnInit {
   languages = LANGUAGES;
   language;
   haveLoggedIn = false;
+  noticeCount: number;
 
-  constructor(
-    private route: Router,
-    private authService: AuthService,
-    private translate: TranslateService,
-    private i18n: I18nService
-  ) {}
+  constructor(private route: Router, private authService: AuthService, private translate: TranslateService, private i18n: I18nService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('userinfo')) {
@@ -60,5 +56,9 @@ export class HeaderOperationComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  handleNoticeCount(event) {
+    this.noticeCount = event;
   }
 }

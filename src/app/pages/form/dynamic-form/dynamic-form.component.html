@@ -1,0 +1,34 @@
+<div class="da-content-banner">
+  <d-breadcrumb>
+    <d-breadcrumb-item>
+      <a routerLink="/">{{ 'form.breadcrumb.home' | translate }}</a>
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{ 'form.breadcrumb.formPage' | translate }}
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      {{ 'form.breadcrumb.dynamicForm' | translate }}
+    </d-breadcrumb-item>
+  </d-breadcrumb>
+  <div class="da-content-banner-title">
+    {{ 'form.dynamicForm.title' | translate }}
+  </div>
+  <div>{{ 'form.dynamicForm.description' | translate }}</div>
+</div>
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <d-toast [value]="msgs"></d-toast>
+      <div class="da-dynamic-form">
+        <da-dynamic-forms
+          [showResetBtn]="false"
+          [formItems]="formItems"
+          class="forms" 
+          [layout]="verticalLayout"
+          (formSubmit)="submitProjectForm($event)"
+        >
+        </da-dynamic-forms>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

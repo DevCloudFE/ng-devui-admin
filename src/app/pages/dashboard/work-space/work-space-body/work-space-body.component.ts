@@ -23,7 +23,7 @@ export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy 
   riskWorkColunm = [];
   workGroups: WorkGroup[];
 
-  tabActiveId = 'tab1';
+  tabActiveId: string | number = 'tab1';
   tabItems;
 
   constructor(private workItemService: WorkItemService, private workGroupService: WorkGroupService) {}

@@ -10,7 +10,8 @@ export default {
       'title': '表单页',
       'basicForm':  '基础表单',
       'formLayout': '表单布局',
-      'advancedForm': '高级表单'
+      'advancedForm': '高级表单',
+      'dynamicForm': '动态表单'
     },
     'list': {
       'title': '列表页',

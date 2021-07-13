@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormLayout } from 'ng-devui';
 @Component({
   selector: 'da-horizontal-form',
   templateUrl: './horizontal-form.component.html',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorizontalFormComponent implements OnInit {
   multipleSelectConfig: any;
+  layout = FormLayout.Horizontal;
 
   labelList = [{
     id: 1,

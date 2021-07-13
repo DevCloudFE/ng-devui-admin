@@ -1,13 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { ConnectedPosition } from '@angular/cdk/overlay';
+import { AppendToBodyDirection } from 'ng-devui/utils';
 
 @Component({
   selector: 'da-navbar',
@@ -17,7 +11,7 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 export class NavbarComponent implements OnInit, AfterViewInit {
   @Input() data: any[];
 
-  _mode:  'left' | 'top' = 'top';
+  _mode: 'left' | 'top' = 'top';
   @Input() set mode(mode) {
     this._mode = mode;
     this.refreshDataAndView();
@@ -32,7 +26,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.refreshDataAndView();
   }
 
-  dropdownDirections = {
+  dropdownDirections: {
+    [key: string]: (AppendToBodyDirection | ConnectedPosition)[];
+  } = {
     left: [
       {
         originX: 'end',
@@ -44,7 +40,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     top: ['rightDown'],
   };
 
-  subMenuDirections = [
+  subMenuDirections: ConnectedPosition[] = [
     {
       originX: 'end',
       originY: 'top',
@@ -70,11 +66,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   currentUrl: string;
 
-  constructor(
-    private elementRef: ElementRef,
-    private router: Router,
-    private renderer: Renderer2
-  ) {}
+  constructor(private elementRef: ElementRef, private router: Router, private renderer: Renderer2) {}
 
   refreshDataAndView() {
     if (this.mode !== 'top') {
@@ -83,9 +75,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     const parentWidth = this.elementRef.nativeElement.offsetWidth;
 
-    const itemElements = this.elementRef.nativeElement.querySelectorAll(
-      '.da-nav-item'
-    );
+    const itemElements = this.elementRef.nativeElement.querySelectorAll('.da-nav-item');
     itemElements.forEach((element, i) => {
       if (!this.elementsState[i] && element.offsetLeft > 0) {
         this.elementsState[i] = {
@@ -97,25 +87,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       }
     });
 
-      this.packData = [];
-      this.packItemsActive = false;
-      itemElements.forEach((element, i) => {
-        if (
-          this.elementsState[i] &&
-          this.elementsState[i].width + this.elementsState[i].offsetLeft >
-            parentWidth - 40
-        ) {
-          this.packData.push(this.data[i]);
+    this.packData = [];
+    this.packItemsActive = false;
+    itemElements.forEach((element, i) => {
+      if (this.elementsState[i] && this.elementsState[i].width + this.elementsState[i].offsetLeft > parentWidth - 40) {
+        this.packData.push(this.data[i]);
 
-          if (this.currentUrl.indexOf(this.data[i].link) !== -1) {
-            this.packItemsActive = true;
-          }
-
-          this.renderer.addClass(element, 'da-menu-hidden');
-        } else {
-          this.renderer.removeClass(element, 'da-menu-hidden');
+        if (this.currentUrl.indexOf(this.data[i].link) !== -1) {
+          this.packItemsActive = true;
         }
-      });
+
+        this.renderer.addClass(element, 'da-menu-hidden');
+      } else {
+        this.renderer.removeClass(element, 'da-menu-hidden');
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -136,6 +122,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.refreshDataAndView(); // TODO: 解决时间周期问题
-    })
+    });
   }
 }

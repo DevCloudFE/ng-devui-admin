@@ -6,15 +6,9 @@ import { ListDataService } from './list-data.service';
 import { WorkItemService } from './work-item.service';
 import { WorkGroupService } from './work-group.service';
 import { EchartsService } from './echarts.service';
+import { NoticeDataService } from './notice-data.service';
 
-const SERVICES = [
-  CourseService,
-  GanttDataService,
-  ListDataService,
-  WorkItemService,
-  WorkGroupService,
-  EchartsService,
-];
+const SERVICES = [CourseService, GanttDataService, ListDataService, WorkItemService, WorkGroupService, EchartsService, NoticeDataService];
 
 @NgModule({
   imports: [CommonModule],
