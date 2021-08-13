@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostBinding,
-  Input,
-  OnDestroy,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DaLayoutService } from './da-layout.service';
@@ -33,14 +27,14 @@ export class DaLayoutHeaderComponent implements OnDestroy {
     return this?.config?.hidden ? 'none' : null;
   }
 
-  @Input() config: DaLayoutConfig['header']['firHeader'];
+  @Input() config: DaLayoutConfig['header'];
 
   constructor(private layoutService: DaLayoutService) {
     this.layoutService
       .getLayoutConfig()
       .pipe(takeUntil(this.destroy$))
       .subscribe((config: DaLayoutConfig) => {
-        this.config = config.header.firHeader;
+        this.config = config!.header!.firHeader;
       });
   }
 
@@ -73,14 +67,14 @@ export class DaLayoutSecHeaderComponent implements OnDestroy {
     return this?.config?.hidden ? 'none' : null;
   }
 
-  @Input() config: DaLayoutConfig['header']['secHeader'];
+  @Input() config: DaLayoutConfig['header'];
 
   constructor(private layoutService: DaLayoutService) {
     this.layoutService
       .getLayoutConfig()
       .pipe(takeUntil(this.destroy$))
       .subscribe((config: DaLayoutConfig) => {
-        this.config = config.header.secHeader;
+        this.config = config!.header!.secHeader;
       });
   }
 
@@ -224,12 +218,12 @@ export class DaLayoutComponent implements OnDestroy {
       return width + 'px';
     }
 
-    if (!this.config.sidebar.firSidebar.hidden) {
-      width += this.config.sidebar.firSidebar.width;
+    if (!this.config!.sidebar!.firSidebar!.hidden) {
+      width += this.config!.sidebar!.firSidebar!.width!;
     }
 
-    if (!this.config.sidebar.secSidebar.hidden) {
-      width += this.config.sidebar.secSidebar.width;
+    if (!this.config!.sidebar!.secSidebar!.hidden) {
+      width += this.config!.sidebar!.secSidebar!.width!;
     }
 
     return width + 'px';
@@ -238,16 +232,16 @@ export class DaLayoutComponent implements OnDestroy {
   getHeaderHeight(): string {
     let height = 0;
 
-    if (this.config.header.hidden) {
+    if (this.config!.header!.hidden) {
       return height + 'px';
     }
 
-    if (!this.config.header.firHeader.hidden) {
-      height += this.config.header.firHeader.height;
+    if (!this.config!.header!.firHeader!.hidden) {
+      height += this.config!.header!.firHeader!.height!;
     }
 
-    if (!this.config.header.secHeader.hidden) {
-      height += this.config.header.secHeader.height;
+    if (!this.config!.header!.secHeader!.hidden) {
+      height += this.config!.header!.secHeader!.height!;
     }
 
     return height + 'px';

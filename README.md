@@ -20,6 +20,7 @@ DevUI Admin is an enterprise-level mid- and back-end front-end/design solution. 
 - Preview: https://devui.design/admin/
 - Home Page: https://devui.design/admin-page/home
 - Document：https://devui.design/admin-page/docs/getting-started
+- Materials：https://devui.design/admin-materials/
 
 ## Features
 ![avatar](home-1.png)

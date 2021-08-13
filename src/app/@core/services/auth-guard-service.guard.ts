@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  i18nValues;
+  i18nValues: any;
 
   constructor(
     private router: Router,

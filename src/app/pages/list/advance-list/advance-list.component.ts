@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataTableComponent, DialogService, EditableTip, TableWidthConfig } from 'ng-devui';
+import { DataTableComponent, DialogService, EditableTip, FilterConfig, TableWidthConfig } from 'ng-devui';
 import { Subscription } from 'rxjs';
+import { Item } from 'src/app/@core/data/listData';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AdvanceListComponent implements OnInit {
   datatable: DataTableComponent;
   basicDataSource = [];
   originData = [];
-  deleteList = [];
+  deleteList: Item[] = [];
   dataTableOptions = {
     columns: [
       {
@@ -143,10 +144,7 @@ export class AdvanceListComponent implements OnInit {
 
   busy: Subscription;
 
-  constructor(
-    private listDataService: ListDataService,
-    private dialogService: DialogService
-  ) {}
+  constructor(private listDataService: ListDataService, private dialogService: DialogService) {}
 
   ngOnInit() {
     this.getList();
@@ -157,21 +155,17 @@ export class AdvanceListComponent implements OnInit {
   }
 
   getList(loadMore = false) {
-    this.busy = this.listDataService
-      .getOriginSource(this.pager)
-      .subscribe((res) => {
-        const data = JSON.parse(JSON.stringify(res.pageList));
-        this.pager.total = res.total;
-        this.originData = loadMore ? this.originData.concat(data) : data;
-        this.basicDataSource = this.originData.filter((i) => {
-          return i.title
-            .toUpperCase()
-            .includes(this.searchForm.keyword.toUpperCase());
-        });
+    this.busy = this.listDataService.getOriginSource(this.pager).subscribe((res) => {
+      const data = JSON.parse(JSON.stringify(res.pageList));
+      this.pager.total = res.total;
+      this.originData = loadMore ? this.originData.concat(data) : data;
+      this.basicDataSource = this.originData.filter((i: Item | unknown) => {
+        return (i as Item).title!.toUpperCase().includes(this.searchForm.keyword.toUpperCase());
       });
+    });
   }
 
-  onResize({ width }, field) {
+  onResize({ width }: { width: string }, field: string) {
     const index = this.tableWidthConfig.findIndex((config) => {
       return config.field === field;
     });
@@ -188,11 +182,11 @@ export class AdvanceListComponent implements OnInit {
     this.getList();
   }
 
-  beforeEditStart = (rowItem, field) => {
+  beforeEditStart = (rowItem: any, field: any) => {
     return true;
   };
 
-  beforeEditEnd = (rowItem, field) => {
+  beforeEditEnd = (rowItem: any, field: any) => {
     if (rowItem && rowItem[field].length < 3) {
       return false;
     } else {
@@ -200,18 +194,18 @@ export class AdvanceListComponent implements OnInit {
     }
   };
 
-  onEditEnd(rowItem, field) {
+  onEditEnd(rowItem: any, field: any) {
     rowItem[field] = false;
   }
 
-  onFirstFilterChange(e, column) {
+  onFirstFilterChange(e: FilterConfig[], column: any) {
     const keys = e.map((i) => i.name);
     this.basicDataSource = this.originData.filter((i) => {
       return keys.includes(i[column.field]);
     });
   }
 
-  onRowCheckChange(checked, rowIndex, nestedIndex, rowItem) {
+  onRowCheckChange(checked: boolean, rowIndex: number, nestedIndex: string, rowItem: any) {
     rowItem.$checked = checked;
     rowItem.$halfChecked = false;
     this.datatable.setRowCheckStatus({
@@ -260,10 +254,7 @@ export class AdvanceListComponent implements OnInit {
   }
 
   loadMore() {
-    if (
-      this.pager.pageIndex + 1 <=
-      Math.ceil(this.pager.total / this.pager.pageSize)
-    ) {
+    if (this.pager.pageIndex + 1 <= Math.ceil(this.pager.total / this.pager.pageSize)) {
       this.pager.pageIndex += 1;
       this.getList(true);
     }
@@ -273,15 +264,15 @@ export class AdvanceListComponent implements OnInit {
     let i = this.deleteList.length - 1;
     while (i >= 0) {
       const id = this.deleteList[i].id;
-      const index = this.basicDataSource.findIndex((i) => {
-        return i.id === id;
+      const index = this.basicDataSource.findIndex((i: Item | unknown) => {
+        return (i as Item).id === id;
       });
       this.basicDataSource.splice(index, 1);
       i--;
     }
   }
 
-  deleteRow(index) {
+  deleteRow(index: number) {
     const results = this.dialogService.open({
       id: 'delete-dialog',
       width: '346px',

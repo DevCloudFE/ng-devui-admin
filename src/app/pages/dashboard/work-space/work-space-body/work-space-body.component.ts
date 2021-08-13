@@ -16,15 +16,15 @@ export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy 
   workItemElement: any;
   workItemWidth: number;
   handlingWorkData: WorkItem[];
-  handlingWorkColunm = [];
+  handlingWorkColunm: string[] = [];
   tracingWorkData: WorkItem[];
-  tracingWorkColunm = [];
+  tracingWorkColunm: string[] = [];
   riskWorkData: WorkItem[];
-  riskWorkColunm = [];
+  riskWorkColunm: string[] = [];
   workGroups: WorkGroup[];
 
   tabActiveId: string | number = 'tab1';
-  tabItems;
+  tabItems: any[];
 
   constructor(private workItemService: WorkItemService, private workGroupService: WorkGroupService) {}
 
@@ -48,7 +48,9 @@ export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy 
     });
 
     this.workGroupService.getWorkGroups().subscribe((group) => {
-      this.workGroups = group;
+      if (group) {
+        this.workGroups = group;
+      }
     });
 
     this.tabItems = [
@@ -80,7 +82,7 @@ export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy 
     window.dispatchEvent(new Event('resize'));
   }
 
-  getContent(tabId) {
+  getContent(tabId: string | number) {
     switch (tabId) {
       case 'tab1':
         return {
@@ -98,7 +100,7 @@ export class WorkSpaceBodyComponent implements OnInit, AfterViewInit, OnDestroy 
           tableOptions: this.riskWorkColunm,
         };
       default:
-        break;
+        return;
     }
   }
 

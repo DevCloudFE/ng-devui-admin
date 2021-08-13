@@ -13,7 +13,7 @@
   </div>
 
   <div class="da-operations-user" dDropDown [trigger]="'hover'" appendToBody dDropDownToggle>
-    <d-avatar [name]="user?.userName" [width]="22" [height]="22"></d-avatar>
+    <d-avatar [name]="user.userName" [width]="22" [height]="22"></d-avatar>
     <span class="da-user-name">{{ user?.userName }}</span>
     <ul dDropDownMenu class="devui-dropdown-menu devui-scrollbar" role="menu" style="min-width: 120px">
       <ng-container *ngIf="haveLoggedIn; else login">

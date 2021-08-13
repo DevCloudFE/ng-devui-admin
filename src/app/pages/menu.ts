@@ -1,4 +1,4 @@
-export default function(values) {
+export default function (values: any) {
   return [
     {
       title: values['dashboard']['title'],

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+type TableOption = 'type' | 'description' | 'status';
+
 @Component({
   selector: 'da-work-item-table',
   templateUrl: './work-item-table.component.html',
@@ -12,13 +14,13 @@ export class WorkItemTableComponent implements OnInit {
     status: '状态',
   };
 
-  private _tableOptions;
+  private _tableOptions: any;
   @Input() get tableOptions() {
     return this._tableOptions;
   }
   set tableOptions(options: any) {
     let columns = [];
-    columns = options.map((option) => {
+    columns = options.map((option: TableOption) => {
       return {
         field: option,
         header: this.tableOptionMap[option],
@@ -27,7 +29,7 @@ export class WorkItemTableComponent implements OnInit {
     });
     this._tableOptions = { columns: columns };
   }
-  @Input() tableData;
+  @Input() tableData: any;
 
   constructor() {}
 

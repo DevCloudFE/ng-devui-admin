@@ -1,13 +1,13 @@
 <d-layout class="da-layout-wrapper">
   <d-aside
-      *ngIf="config?.sidebar?.fixed"
-      class="da-layout-aside-wrapper"
-      [ngStyle]="{
-        display: config.sidebar.hidden ? 'none' : null,
-        width: getSidebarWidth(),
-        flex: '0 0 ' + getSidebarWidth()
-      }"
-    ></d-aside>
+    *ngIf="config?.sidebar?.fixed"
+    class="da-layout-aside-wrapper"
+    [ngStyle]="{
+      display: config.sidebar.hidden ? 'none' : null,
+      width: getSidebarWidth(),
+      flex: '0 0 ' + getSidebarWidth()
+    }"
+  ></d-aside>
   <d-aside
     class="da-layout-aside-wrapper"
     [class.da-no-sec-sidebar]="config.sidebar?.secSidebar?.hidden"
@@ -27,7 +27,7 @@
       *ngIf="config?.header?.fixed"
       class="da-layout-header-wrapper"
       [ngStyle]="{
-        display: config.header.hidden ? 'none' : null,
+        display: config.header?.hidden ? 'none' : null,
         height: getHeaderHeight()
       }"
     ></d-header>
@@ -36,9 +36,9 @@
       [class.da-no-sec-header]="config.header?.secHeader?.hidden"
       [class.da-layout-header-fixed]="config?.header?.fixed"
       [ngStyle]="{
-        width: (config?.header?.fixed && config.mode === 'sidebarTop') ? 'calc(100% - ' + getSidebarWidth() + ')': null,
-        display: config.header.hidden ? 'none' : null,
-        zIndex: config.header.zIndex
+        width: config?.header?.fixed && config.mode === 'sidebarTop' ? 'calc(100% - ' + getSidebarWidth() + ')' : null,
+        display: config.header?.hidden ? 'none' : null,
+        zIndex: config.header?.zIndex
       }"
     >
       <ng-content select="da-layout-header"></ng-content>

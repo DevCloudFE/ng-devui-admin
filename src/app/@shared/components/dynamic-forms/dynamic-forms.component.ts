@@ -5,20 +5,19 @@ import { DynamicFormsService } from './dynamic-forms.service';
 @Component({
   selector: 'da-dynamic-forms',
   templateUrl: './dynamic-forms.component.html',
-  styleUrls: ['./dynamic-forms.component.scss']
+  styleUrls: ['./dynamic-forms.component.scss'],
 })
-
 export class DynamicFormsComponent implements OnInit {
   _formItems: any;
 
   @Input() set formItems(formItems: any) {
-    if(formItems) {
+    if (formItems) {
       this._formItems = this.formService.getFormItems(formItems);
     }
   }
 
   get formItems() {
-    return this._formItems; 
+    return this._formItems;
   }
 
   @Input() layout = FormLayout.Horizontal;
@@ -33,15 +32,11 @@ export class DynamicFormsComponent implements OnInit {
   @Input() resetBtnContent: string = 'Reset';
   @Output() formSubmit = new EventEmitter<any>();
 
+  constructor(private formService: DynamicFormsService) {}
 
-  constructor(private formService: DynamicFormsService) { 
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-
-  }
-
-  submitForm(event) {
+  submitForm(event: any) {
     this.formSubmit.emit(event);
   }
 }

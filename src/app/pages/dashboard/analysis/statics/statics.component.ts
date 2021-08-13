@@ -7,7 +7,7 @@ import { EchartsService } from 'src/app/@core/mock/echarts.service';
   styleUrls: ['./statics.component.scss'],
 })
 export class StaticsComponent implements OnInit {
-  histogramData;
+  histogramData: any;
 
   constructor(private echartsService: EchartsService) {}
 

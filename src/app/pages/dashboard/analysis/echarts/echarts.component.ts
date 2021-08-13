@@ -9,8 +9,8 @@ import { EchartsService } from 'src/app/@core/mock/echarts.service';
   styleUrls: ['./echarts.component.scss'],
 })
 export class EchartsComponent implements OnInit, AfterViewInit {
-  pieData;
-  serviceData;
+  pieData: any;
+  serviceData: any;
 
   dataTableServiceOption = {
     columns: [
@@ -42,8 +42,8 @@ export class EchartsComponent implements OnInit, AfterViewInit {
     ],
   };
 
-  serviceSource = [];
-  pieSource = [];
+  serviceSource: any = [];
+  pieSource: any = [];
 
   resizeSub: Subscription;
   pieChart: any;
@@ -76,7 +76,7 @@ export class EchartsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getPieChart(e) {
+  getPieChart(e: any) {
     this.pieChart = e;
   }
 

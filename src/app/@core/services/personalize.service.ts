@@ -5,13 +5,38 @@ import { ThemeType } from 'src/app/@shared/models/theme';
 import { LARGE_RADIUS, LARGE_SIZE, MEDIUM_RADIUS, MEDIUM_SIZE, NORMAL_RADIUS, NORMAL_SIZE } from 'src/config/custom-theme';
 import { CustomThemeService } from './custom-theme.service';
 
+export interface ThemeConfigItem {
+  name: string;
+  id: string;
+  data: {
+    'devui-border-radius'?: string;
+    'devui-border-radius-card'?: string;
+    'devui-font-size'?: string;
+    'devui-font-size-card-title'?: string;
+    'devui-font-size-page-title'?: string;
+    'devui-font-size-modal-title'?: string;
+    'devui-font-size-price'?: string;
+    'devui-font-size-data-overview'?: string;
+    'devui-font-size-icon'?: string;
+    'devui-font-size-sm'?: string;
+    'devui-font-size-md'?: string;
+    'devui-font-size-lg'?: string;
+  };
+}
+
+export interface ThemeConfig {
+  name: 'themes' | 'font' | 'radius';
+  icon: string;
+  items: ThemeConfigItem[];
+}
+
 @Injectable()
 export class PersonalizeService {
-  themes = [];
+  themes: ThemeConfigItem[] = [];
 
   private _themeChange = new ReplaySubject<any>(1); // 主题切换
 
-  configs = [
+  configs: ThemeConfig[] = [
     {
       name: 'themes',
       icon: 'icon-color',
@@ -68,15 +93,15 @@ export class PersonalizeService {
 
   constructor(private customThemeService: CustomThemeService) {}
   initTheme() {
-    if (window['devuiThemes']) {
+    if ((window as { [key: string]: any })['devuiThemes']) {
       //TODO 组件库开源版本这个色值错误
-      window['devuiThemes'].devuiDarkTheme.data['devui-placeholder'] = '#8A8A8A';
-      this.themes = Object.values(window['devuiThemes']);
+      (window as { [key: string]: any })['devuiThemes'].devuiDarkTheme.data['devui-placeholder'] = '#8A8A8A';
+      this.themes = Object.values((window as { [key: string]: any })['devuiThemes']);
       const { brand, isDark } = localStorage.getItem('user-custom-theme-config')
-        ? JSON.parse(localStorage.getItem('user-custom-theme-config'))
+        ? JSON.parse(localStorage.getItem('user-custom-theme-config')!)
         : this.defaultCustom;
       const themeData = this.getCustomThemeData(brand, isDark);
-      this.setTheme(window['devuiThemes']['customTheme'], themeData, isDark);
+      this.setTheme((window as { [key: string]: any })['devuiThemes']['customTheme'], themeData, isDark);
       this.configs[0].items = this.themes;
       // 主题设置
       const themeId = localStorage.getItem('theme') || this.themes[0].id;
@@ -88,9 +113,9 @@ export class PersonalizeService {
     }
   }
 
-  changeTheme(themeId, fId?, rId?) {
+  changeTheme(themeId: string, fId?: string, rId?: string) {
     let theme: Theme;
-    const themes = (this.configs[0].items as any).filter((i) => {
+    const themes = (this.configs[0].items as any).filter((i: ThemeConfigItem) => {
       return i.id === themeId;
     });
     const { radiusId, fontId, fontData, radiusData } = this.getSizeAndRadiusData(fId, rId);
@@ -102,13 +127,13 @@ export class PersonalizeService {
       theme = this.configs[0].items[0];
     }
     theme.data = Object.assign(theme.data, customData);
-    window['devuiThemeService'].applyTheme(theme);
+    (window as { [key: string]: any })['devuiThemeService'].applyTheme(theme);
     localStorage.setItem('theme', theme.id);
     localStorage.setItem('font', fontId);
     localStorage.setItem('radius', radiusId);
   }
 
-  getCustomThemeData(color, isDark) {
+  getCustomThemeData(color: string, isDark: boolean) {
     const themeData = this.customThemeService.genThemeData(
       [
         {
@@ -122,20 +147,20 @@ export class PersonalizeService {
     return themeData;
   }
 
-  setTheme(theme, themeData, isDark) {
+  setTheme(theme: any, themeData: any, isDark: boolean) {
     Object.assign(theme, {
       data: themeData,
       isDark,
     });
   }
 
-  getSizeAndRadiusData(fId?, rId?) {
+  getSizeAndRadiusData(fId?: string, rId?: string) {
     const fontId = fId || localStorage.getItem('font') || this.configs[1].items[0].id;
     const radiusId = rId || localStorage.getItem('radius') || this.configs[2].items[0].id;
-    const fonts = (this.configs[1].items as any).filter((font) => {
+    const fonts = (this.configs[1].items as any).filter((font: any) => {
       return font.id === fontId;
     });
-    const radiusList = (this.configs[2].items as any).filter((radius) => {
+    const radiusList = (this.configs[2].items as any).filter((radius: any) => {
       return radius.id === radiusId;
     });
     return {
@@ -146,25 +171,25 @@ export class PersonalizeService {
     };
   }
 
-  setCustomThemeData(themeData, color, isDark) {
+  setCustomThemeData(themeData: any, color: string, isDark: boolean) {
     const len = this.configs[0].items.length;
     const theme = this.configs[0].items[len - 1];
     const { fontData, radiusData } = this.getSizeAndRadiusData();
     Object.assign(themeData, fontData, radiusData);
     this.setTheme(theme, color, isDark);
     theme.data = Object.assign(theme.data, themeData);
-    window['devuiThemeService'].applyTheme(theme);
+    (window as { [key: string]: any })['devuiThemeService'].applyTheme(theme);
     localStorage.setItem('user-custom-theme-config', JSON.stringify({ brand: color, isDark }));
     localStorage.setItem('theme', ThemeType.Custom);
   }
 
   setUiTheme() {
-    const currentTheme = window['devuiCurrentTheme'] || ThemeType.Default;
+    const currentTheme = (window as { [key: string]: any })['devuiCurrentTheme'] || ThemeType.Default;
     this._themeChange.next(currentTheme);
   }
 
   getUiTheme() {
-    const themeService = window['devuiThemeService'];
+    const themeService = (window as { [key: string]: any })['devuiThemeService'];
     this.setUiTheme();
     if (!(themeService && themeService.eventBus)) {
       return;
@@ -176,11 +201,11 @@ export class PersonalizeService {
     return this._themeChange.asObservable();
   }
 
-  setRefTheme(themeId) {
-    const devuiThemes = Object.values(window['devuiThemes']);
-    const themes = devuiThemes.filter((i: Theme) => i.id === themeId);
+  setRefTheme(themeId: string) {
+    const devuiThemes = Object.values((window as { [key: string]: any })['devuiThemes']);
+    const themes = devuiThemes.filter((i: Theme | unknown) => (i as Theme).id === themeId);
     if (themes.length) {
-      window['devuiThemeService'].applyTheme(themes[0]);
+      (window as { [key: string]: any })['devuiThemeService'].applyTheme(themes[0]);
     }
   }
 }

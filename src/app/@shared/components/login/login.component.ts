@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   tabActiveId: string | number = 'tab1';
   showPassword = false;
 
-  tabItems;
-  language;
-  i18nValues;
-  toastMessage;
+  tabItems: any;
+  language: string;
+  i18nValues: any;
+  toastMessage: any;
   languages = LANGUAGES;
 
   formData = {
@@ -71,7 +71,9 @@ export class LoginComponent implements OnInit {
     private translate: TranslateService,
     private i18n: I18nService,
     private personalizeService: PersonalizeService
-  ) {}
+  ) {
+    this.language = this.translate.currentLang;
+  }
 
   ngOnInit(): void {
     this.translate
@@ -86,7 +88,6 @@ export class LoginComponent implements OnInit {
       this.i18nValues = this.translate.instant('loginPage');
       this.updateTabItems(this.i18nValues);
     });
-    this.language = this.translate.currentLang;
     this.personalizeService.setRefTheme(ThemeType.Default);
 
     // oauth认证回调
@@ -145,14 +146,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLanguageClick(language) {
+  onLanguageClick(language: string) {
     this.language = language;
     localStorage.setItem('lang', this.language);
     this.i18n.toggleLang(this.language);
     this.translate.use(this.language);
   }
 
-  updateTabItems(values) {
+  updateTabItems(values: any) {
     this.tabItems = [
       {
         id: 'tab1',
@@ -165,13 +166,13 @@ export class LoginComponent implements OnInit {
     ];
   }
 
-  onKeyUp(e, tabId) {
+  onKeyUp(e: KeyboardEvent, tabId: string | number) {
     if (e.keyCode === 13) {
       this.onClick(tabId);
     }
   }
 
-  handleAuth(type) {
+  handleAuth(type: string) {
     console.log(type);
     //github oauth配置
     const config = {

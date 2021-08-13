@@ -30,7 +30,7 @@ const DATA_SERVICES = [
 ];
 
 export const DEVUI_CORE_PROVIDERS = [
-  ...MockDataModule.forRoot().providers,
+  ...MockDataModule.forRoot().providers!,
   ...DATA_SERVICES,
   AuthService,
   PersonalizeService,

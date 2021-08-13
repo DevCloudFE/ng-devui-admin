@@ -1,11 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DaLayoutService } from '../../layouts/da-layout/da-layout.service';
-import {
-  LEFT_RIGHT_LAYOUT_CONFIG,
-  SIDEBAR_LAYOUT_CONFIG,
-  TOP_NAV_LAYOUT_CONFIG,
-} from '../../layouts/da-layout';
+import { DaLayoutConfig, LEFT_RIGHT_LAYOUT_CONFIG, SIDEBAR_LAYOUT_CONFIG, TOP_NAV_LAYOUT_CONFIG } from '../../layouts/da-layout';
 import { DaScreenMediaQueryService } from '../../layouts/da-grid';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -17,21 +13,21 @@ import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
   styleUrls: ['./side-settings.component.scss'],
 })
 export class SideSettingsComponent implements OnDestroy {
-  @Input() close;
+  @Input() close: any;
 
   private destroy$ = new Subject();
 
-  layoutConfig;
-  layout;
-  helpContent;
+  layoutConfig: DaLayoutConfig;
+  layout: string | null;
+  helpContent: string;
   msgs: Array<Object> = [];
 
-  i18nValues;
+  i18nValues: any;
 
-  sidebarNotice = {};
+  sidebarNotice: any = {};
 
   private change: number;
-  private compare;
+  private compare: { [key: string]: number };
 
   constructor(
     private clipboard: Clipboard,
@@ -81,12 +77,10 @@ export class SideSettingsComponent implements OnDestroy {
         this.updateI18nItems(res);
       });
 
-    this.translate.onLangChange
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((event: TranslationChangeEvent) => {
-        this.i18nValues = this.translate.instant('side-setting');
-        this.updateI18nItems(this.i18nValues);
-      });
+    this.translate.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: TranslationChangeEvent) => {
+      this.i18nValues = this.translate.instant('side-setting');
+      this.updateI18nItems(this.i18nValues);
+    });
   }
 
   handleLayoutClicked(layout: string) {
@@ -105,9 +99,6 @@ export class SideSettingsComponent implements OnDestroy {
     window.dispatchEvent(new Event('resize'));
   }
 
-  onToggleChange(event, key) {
-  }
-
   initLayoutConfig() {
     this.layoutService.getLayoutConfig().subscribe((layout) => {
       this.layoutConfig = layout;
@@ -116,14 +107,9 @@ export class SideSettingsComponent implements OnDestroy {
 
   onCopyClicked() {
     let isSucceeded = false;
-    const isSupported =
-      !!document.queryCommandSupported &&
-      !!document.queryCommandSupported('copy') &&
-      !!window;
+    const isSupported = !!document.queryCommandSupported && !!document.queryCommandSupported('copy') && !!window;
     if (isSupported) {
-      isSucceeded = this.clipboard.copy(
-        JSON.stringify(this.layoutConfig, null, 2)
-      );
+      isSucceeded = this.clipboard.copy(JSON.stringify(this.layoutConfig, null, 2));
       if (isSucceeded) {
         this.msgs = [
           {
@@ -141,24 +127,23 @@ export class SideSettingsComponent implements OnDestroy {
     window.dispatchEvent(new Event('resize'));
   }
 
-  sidebarShrink(isShrink) {
+  sidebarShrink(isShrink: boolean) {
     if (this.layoutConfig.sidebar.firSidebar) {
       this.layoutConfig.sidebar.firSidebar.width = isShrink ? 54 : 240;
     }
     this.layoutConfig.sidebar.shrink = isShrink;
   }
 
-  sidebarFold(isFold) {
+  sidebarFold(isFold: boolean) {
     if (this.layoutConfig.sidebar.firSidebar) {
       this.layoutConfig.sidebar.firSidebar.hidden = isFold;
     }
   }
 
-  updateI18nItems(values) {
+  updateI18nItems(values: any) {
     this.helpContent = values['helpContent'];
     this.sidebarNotice['canConfig'] = values['sidebar-notice']['can-config'];
-    this.sidebarNotice['cannotConfig'] =
-      values['sidebar-notice']['cannot-config'];
+    this.sidebarNotice['cannotConfig'] = values['sidebar-notice']['cannot-config'];
   }
 
   ngOnDestroy() {

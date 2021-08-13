@@ -3,18 +3,17 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 @Component({
   selector: 'da-server-error',
   templateUrl: './server-error.component.html',
-  styleUrls: ['../abnormal.component.scss']
+  styleUrls: ['../abnormal.component.scss'],
 })
 export class ServerErrorComponent implements OnInit, OnDestroy {
-
-  themeService;
+  themeService: any;
   darkMode = '';
-  isDark;
+  isDark: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.themeService = window['devuiThemeService'];
+    this.themeService = (window as { [key: string]: any })['devuiThemeService'];
     if (this.themeService) {
       this.themeChange();
     }
@@ -34,12 +33,11 @@ export class ServerErrorComponent implements OnInit, OnDestroy {
     } else {
       this.darkMode = '';
     }
-  }
+  };
 
   ngOnDestroy() {
     if (this.themeService && this.themeService.eventBus) {
       this.themeService.eventBus.remove('themeChanged', this.themeChange);
     }
   }
-
 }

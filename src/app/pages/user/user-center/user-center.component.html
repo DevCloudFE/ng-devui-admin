@@ -4,43 +4,24 @@
       <div class="da-about-me da-content-card">
         <div class="da-user-info da-floor" *ngIf="user?.name">
           <div class="da-info-top">
-            <d-avatar
-              [name]="'DevUI'"
-              [width]="104"
-              [height]="104"
-              [imgSrc]="user?.imgSrc"
-              [isRound]="false"
-            ></d-avatar>
+            <d-avatar [name]="'DevUI'" [width]="104" [height]="104" [imgSrc]="user.imgSrc!" [isRound]="false"></d-avatar>
             <div class="da-name">{{ user?.name }}</div>
           </div>
           <div class="da-info-detail">
-            <div class="da-detail-floor">
-              <i class="icon icon-member"></i>{{ user?.assign }}
-            </div>
-            <div class="da-detail-floor">
-              <i class="icon icon-management"></i>{{ user?.title }}
-            </div>
-            <div class="da-detail-floor">
-              <i class="icon icon-b-tree"></i>{{ user?.group }}
-            </div>
-            <div class="da-detail-floor">
-              <i class="icon icon-homepage"></i>{{ user?.address }}
-            </div>
+            <div class="da-detail-floor"><i class="icon icon-member"></i>{{ user?.assign }}</div>
+            <div class="da-detail-floor"><i class="icon icon-management"></i>{{ user?.title }}</div>
+            <div class="da-detail-floor"><i class="icon icon-b-tree"></i>{{ user?.group }}</div>
+            <div class="da-detail-floor"><i class="icon icon-homepage"></i>{{ user?.address }}</div>
           </div>
         </div>
         <div class="da-floor">
           <div class="da-floor-title">标签</div>
-          <d-tags [tags]="user?.tags"> </d-tags>
+          <d-tags [tags]="user.tags!"> </d-tags>
         </div>
         <div class="da-floor">
           <div class="da-floor-title">团队</div>
           <div class="da-team" *ngFor="let item of workGroups">
-            <d-avatar
-              [name]="item?.departmentTitle[0]"
-              [width]="30"
-              [height]="30"
-              [imgSrc]="item?.imgSrc"
-            ></d-avatar>
+            <d-avatar [name]="item.departmentTitle[0]" [width]="30" [height]="30" [imgSrc]="item.logoSrc"></d-avatar>
             <div class="da-team-title">{{ item?.departmentTitle }}</div>
           </div>
         </div>
@@ -48,17 +29,8 @@
     </da-col-item>
     <da-col-item [daSpan]="24" [daXs]="16">
       <div class="da-space" dLoading [loading]="spaceBusy" [backdrop]="true">
-        <d-tabs
-          [type]="'tabs'"
-          [(activeTab)]="activeTab"
-          (activeTabChange)="activeTabChange($event)"
-        >
-          <d-tab
-            [id]="tab.id"
-            [title]="tab.label"
-            [tabId]="tab.id"
-            *ngFor="let tab of tabs"
-          >
+        <d-tabs [type]="'tabs'" [(activeTab)]="activeTab" (activeTabChange)="activeTabChange($event)">
+          <d-tab [id]="tab.id" [title]="tab.label" [tabId]="tab.id" *ngFor="let tab of tabs">
             <ng-template dTabContent>
               <ng-template
                 *ngIf="tab.id === 'first'"
@@ -84,37 +56,21 @@
     <div class="da-desc mt-12">{{ item?.desc }}</div>
     <div class="da-sub-row mt-12">
       <d-avatar [name]="item?.author" [width]="26" [height]="26"></d-avatar>
-      <a class="da-is-link ml6" [routerLink]="item?.authorUrl">{{
-        item?.author
-      }}</a>
+      <a class="da-is-link ml6" [routerLink]="item?.authorUrl">{{ item?.author }}</a>
       <span class="da-gray-text"> 发布在 </span>
-      <a class="da-is-link" [routerLink]="item?.articleUrl">{{
-        item?.articlePlatform
-      }}</a>
+      <a class="da-is-link" [routerLink]="item?.articleUrl">{{ item?.articlePlatform }}</a>
     </div>
     <div class="da-actions mt-12">
-      <div
-        class="da-action"
-        (click)="actionHandler('starNum', item)"
-        [ngClass]="{ 'is-attached': item.starNumAttached }"
-      >
+      <div class="da-action" (click)="actionHandler('starNum', item)" [ngClass]="{ 'is-attached': item.starNumAttached }">
         <i class="icon icon-star-o"></i>
         <div class="gray-text">{{ item?.starNum }}</div>
       </div>
-      <div
-        class="da-action"
-        [ngClass]="{ 'is-attached': item.agreeAttached }"
-        (click)="actionHandler('agree', item)"
-      >
+      <div class="da-action" [ngClass]="{ 'is-attached': item.agreeAttached }" (click)="actionHandler('agree', item)">
         <i class="icon icon-like"></i>
         <div class="da-gray-text">{{ item?.agree }}</div>
       </div>
 
-      <div
-        class="da-action"
-        [ngClass]="{ 'is-attached': item.messageAttached }"
-        (click)="actionHandler('message', item)"
-      >
+      <div class="da-action" [ngClass]="{ 'is-attached': item.messageAttached }" (click)="actionHandler('message', item)">
         <i class="icon icon-message"></i>
         <div class="da-gray-text">{{ item?.message }}</div>
       </div>

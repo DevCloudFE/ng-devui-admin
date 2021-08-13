@@ -72,7 +72,7 @@ export class VerticalFormComponent {
     ],
   };
 
-  checkName(value) {
+  checkName(value: string) {
     let res = true;
     if (this.existUsernames.indexOf(value) !== -1) {
       res = false;
@@ -80,7 +80,7 @@ export class VerticalFormComponent {
     return of(res).pipe(delay(500));
   }
 
-  sameToPassWord(value) {
+  sameToPassWord(value: string) {
     return value === this.formData.password;
   }
 }

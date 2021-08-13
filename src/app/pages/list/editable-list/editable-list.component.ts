@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, EditableTip, FormLayout, TableWidthConfig } from 'ng-devui';
 import { Subscription } from 'rxjs';
+import { Item } from 'src/app/@core/data/listData';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
 import { FormConfig } from 'src/app/@shared/components/admin-form';
 
@@ -29,7 +30,7 @@ export class EditableListComponent implements OnInit {
     pageSize: 10,
   };
 
-  listData = [];
+  listData: any[] = [];
 
   headerNewForm = false;
 
@@ -142,7 +143,7 @@ export class EditableListComponent implements OnInit {
     this.getList();
   }
 
-  onEditEnd(rowItem, field) {
+  onEditEnd(rowItem: any, field: any) {
     rowItem[field] = false;
   }
 
@@ -155,11 +156,11 @@ export class EditableListComponent implements OnInit {
     });
   }
 
-  beforeEditStart = (rowItem, field) => {
+  beforeEditStart = (rowItem: any, field: any) => {
     return true;
   };
 
-  beforeEditEnd = (rowItem, field) => {
+  beforeEditEnd = (rowItem: any, field: any) => {
     if (rowItem && rowItem[field].length < 3) {
       return false;
     } else {
@@ -175,7 +176,7 @@ export class EditableListComponent implements OnInit {
     return new Date().getTime() + 'CNWO';
   }
 
-  quickRowAdded(e) {
+  quickRowAdded(e: any) {
     const newData = { ...e };
     this.listData.unshift(newData);
     this.headerNewForm = false;
@@ -185,33 +186,33 @@ export class EditableListComponent implements OnInit {
     this.headerNewForm = false;
   }
 
-  subRowAdded(index, item) {
+  subRowAdded(index: number) {
     this.listData[index].$expandConfig.expand = false;
     const newData = { ...this.defaultRowData };
     this.listData.splice(index + 1, 0, newData);
   }
 
-  subRowCancel(index) {
-    this.listData[index].$expandConfig.expand = false;
+  subRowCancel(index: number) {
+    (this.listData[index] as Item).$expandConfig.expand = false;
   }
 
-  toggleExpand(rowItem) {
+  toggleExpand(rowItem: any) {
     if (rowItem.$expandConfig) {
       rowItem.$expandConfig.expand = !rowItem.$expandConfig.expand;
     }
   }
 
-  onPageChange(e) {
+  onPageChange(e: number) {
     this.pager.pageIndex = e;
     this.getList();
   }
 
-  onSizeChange(e) {
+  onSizeChange(e: number) {
     this.pager.pageSize = e;
     this.getList();
   }
 
-  deleteRow(index) {
+  deleteRow(index: number) {
     const results = this.dialogService.open({
       id: 'delete-dialog',
       width: '346px',

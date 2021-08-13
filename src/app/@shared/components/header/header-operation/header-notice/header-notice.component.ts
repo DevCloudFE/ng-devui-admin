@@ -17,9 +17,9 @@ export class HeaderNoticeComponent implements OnInit {
 
   tabActiveID: string | number = 'notice';
 
-  tabTitles;
+  tabTitles: any;
 
-  i18nValues;
+  i18nValues: any;
 
   notifications: Notification[] = [];
   messages: Message[] = [];

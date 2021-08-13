@@ -10,7 +10,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import * as echarts from 'echarts';
 import { fromEvent } from 'rxjs';
@@ -54,8 +54,30 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
   linecolor: string;
   // 主题色色盘
   themeColorArray = [
-    '#5E7CE0', '#6CBFFF', '#50D4AB', '#A6DD82', '#FAC20A', '#FA9841', '#F66F6A', '#F3689A', '#A97AF8', '#207AB3', '#169E6C', '#7EBA50',
-    '#B58200', '#B54E04', '#344899', '#572DB3', '#FFD4E3', '#B8E0FF', '#ACF2DC', '#D8FCC0', '#FFE794', '#FFD0A6', '#D8C2FF', '#BECCFA',
+    '#5E7CE0',
+    '#6CBFFF',
+    '#50D4AB',
+    '#A6DD82',
+    '#FAC20A',
+    '#FA9841',
+    '#F66F6A',
+    '#F3689A',
+    '#A97AF8',
+    '#207AB3',
+    '#169E6C',
+    '#7EBA50',
+    '#B58200',
+    '#B54E04',
+    '#344899',
+    '#572DB3',
+    '#FFD4E3',
+    '#B8E0FF',
+    '#ACF2DC',
+    '#D8FCC0',
+    '#FFE794',
+    '#FFD0A6',
+    '#D8C2FF',
+    '#BECCFA',
   ];
   constructor(private elementRef: ElementRef) {}
 
@@ -151,10 +173,10 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
     };
   }
 
-  themeService;
+  themeService: any;
 
   ngOnInit() {
-    this.themeService = window['devuiThemeService'];
+    this.themeService = (window as { [key: string]: any })['devuiThemeService'];
   }
 
   ngAfterViewInit(): void {
@@ -195,7 +217,7 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
       this.updateChartData(this.options);
       this.chartReady.emit(this.echart);
     }
-  }
+  };
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.echart && changes['options']) {

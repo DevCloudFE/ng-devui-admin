@@ -1,6 +1,7 @@
-import { DaBreakpoints, DaMergedProperty } from './layout.types';
+import { ElementRef, Renderer2 } from '@angular/core';
+import { DaBreakpoint, DaBreakpoints, DaMergedProperty } from './layout.types';
 
-export function parseFlex(flex): string {
+export function parseFlex(flex: any): string {
   if (typeof flex === 'number') {
     return `${flex} ${flex} auto`;
   } else if (typeof flex === 'string') {
@@ -11,21 +12,21 @@ export function parseFlex(flex): string {
   return flex;
 }
 
-export function setGridClass(context, elementRef, renderer): void {
+export function setGridClass(context: any, elementRef: ElementRef, renderer: Renderer2): void {
   const breakpoints = ['Ms', 'Mm', 'Ml', 'Xs', 'Sm', 'Md', 'Lg', 'Xl'];
-  const classPrefixMap = {
-    'daOffset': 'dl-offset-',
-    'daAlign': 'dl-align-items-',
-    'daJustify': 'dl-justify-content-',
-    'daAlignSelf': 'dl-align-self-',
-    'daOrder': 'dl-order-'
+  const classPrefixMap: any = {
+    daOffset: 'dl-offset-',
+    daAlign: 'dl-align-items-',
+    daJustify: 'dl-justify-content-',
+    daAlignSelf: 'dl-align-self-',
+    daOrder: 'dl-order-',
   };
-  const tempClassMap = {};
+  const tempClassMap: any = {};
   if (context.daSpan !== undefined) {
-    const className = context.daSpan === 0 ? `dl-d-none` : `dl-col-${context.daSpan}`
+    const className = context.daSpan === 0 ? `dl-d-none` : `dl-col-${context.daSpan}`;
     tempClassMap[className] = true;
   }
-  breakpoints.forEach(point => {
+  breakpoints.forEach((point) => {
     const sizeName = 'da' + point;
     point = point.toLowerCase();
     if (context[sizeName] !== undefined) {
@@ -33,9 +34,9 @@ export function setGridClass(context, elementRef, renderer): void {
         const className = context[sizeName] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${context[sizeName]}`;
         tempClassMap[className] = true;
       } else {
-        const mergedProperty = context[sizeName] as DaMergedProperty;
+        const mergedProperty: any = context[sizeName] as DaMergedProperty;
         if (mergedProperty.hasOwnProperty('span')) {
-          const className = mergedProperty['span'] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${mergedProperty['span']}`;;
+          const className = mergedProperty['span'] === 0 ? `dl-d-${point}-none` : `dl-col-${point}-${mergedProperty['span']}`;
           tempClassMap[className] = true;
         }
         for (const prefix in classPrefixMap) {
@@ -53,7 +54,7 @@ export function setGridClass(context, elementRef, renderer): void {
       const className = classPrefixMap[prefix] + context[prefix];
       tempClassMap[className] = true;
     }
-    breakpoints.forEach(point => {
+    breakpoints.forEach((point) => {
       const name = prefix + point;
       point = point.toLowerCase();
       if (context[name] !== undefined) {
@@ -79,7 +80,7 @@ export function setGridClass(context, elementRef, renderer): void {
   }
 }
 
-export function setScreenPointFlex(point, context, elementRef, renderer): void {
+export function setScreenPointFlex(point: DaBreakpoint, context: any, elementRef: ElementRef, renderer: Renderer2): void {
   let flexName;
   let flex;
 
@@ -95,9 +96,14 @@ export function setScreenPointFlex(point, context, elementRef, renderer): void {
   renderer.setStyle(elementRef.nativeElement, 'flex', parseFlex(flex));
 }
 
-export function setScreenPointElementsSpaceAndGutter(items, point, dir, context, renderer): void {
+export function setScreenPointElementsSpaceAndGutter(
+  items: HTMLElement[],
+  point: DaBreakpoint,
+  dir: string,
+  context: any,
+  renderer: Renderer2
+): void {
   let spaceName, space, gutterName, gutter;
-
 
   for (const tempPoint of DaBreakpoints) {
     spaceName = 'daSpace' + firstLetterToUpperCase(tempPoint);
@@ -123,8 +129,8 @@ export function setScreenPointElementsSpaceAndGutter(items, point, dir, context,
   }
 
   for (let i = 0; i < items.length; i++) {
-      renderer.setStyle(items[i], 'padding-left', gutters[0] / 2 + 'px');
-      renderer.setStyle(items[i], 'padding-right', gutters[0] / 2 + 'px');
+    renderer.setStyle(items[i], 'padding-left', gutters[0] / 2 + 'px');
+    renderer.setStyle(items[i], 'padding-right', gutters[0] / 2 + 'px');
     if (gutters[1]) {
       renderer.setStyle(items[i], 'padding-top', gutters[1] / 2 + 'px');
       renderer.setStyle(items[i], 'padding-bottom', gutters[1] / 2 + 'px');
@@ -140,19 +146,20 @@ export function setScreenPointElementsSpaceAndGutter(items, point, dir, context,
   }
 }
 
-export function setScreenPointStyle(point, context, elementRef, renderer): void {
+export function setScreenPointStyle(point: DaBreakpoint, context: any, elementRef: ElementRef, renderer: Renderer2): void {
   let styleName;
   let style = context['daStyle'];
 
   for (const tempPoint of DaBreakpoints) {
     styleName = 'daStyle' + firstLetterToUpperCase(tempPoint);
-    style = context[styleName] !== undefined ? {...style, ...context[styleName]} : style;
+    style = context[styleName] !== undefined ? { ...style, ...context[styleName] } : style;
     if (tempPoint === point) {
       break;
     }
   }
 
-  for (const key of Object.keys(context.$currentDaStyle || {})) { // use Object.keys to fix tslint error.
+  for (const key of Object.keys(context.$currentDaStyle || {})) {
+    // use Object.keys to fix tslint error.
     renderer.removeStyle(elementRef.nativeElement, key);
   }
 

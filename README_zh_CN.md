@@ -19,6 +19,7 @@ DevUI Admin 是一个企业级中后台前端/设计解决方案，依据 DevUI 
 - 预览：https://devui.design/admin/
 - 首页：https://devui.design/admin-page/home
 - 文档：https://devui.design/admin-page/docs/getting-started
+- Admin 区块：https://devui.design/admin-materials/
 
 ## 特性
 

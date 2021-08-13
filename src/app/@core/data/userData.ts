@@ -1,8 +1,8 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 export interface Team {
   name?: string;
-  label?: string; 
+  label?: string;
 }
 
 export interface User {
@@ -12,10 +12,9 @@ export interface User {
   assign?: string;
   group?: string;
   address?: string;
-  tags?: string[];
+  tags?: any[];
   teams?: Team[];
 }
-
 
 export interface Article {
   id?: string;
@@ -38,7 +37,7 @@ export interface Project {
 }
 
 export abstract class UserData {
-  abstract getUser(): Observable<User[]>;
+  abstract getUser(): Observable<User>;
   abstract getArticles(): Observable<Article[]>;
   abstract getProjects(): Observable<Project[]>;
 }
