@@ -11,11 +11,11 @@
         <div #ganttBody class="da-gantt-body" [style.width]="ganttScaleWidth">
           <div class="da-gantt-item" *ngFor="let item of list">
             <d-gantt-bar
-              [startDate]="item?.startDate"
-              [endDate]="item?.endDate"
+              [startDate]="item.startDate!"
+              [endDate]="item.endDate!"
               [tipTemplateRef]="tipTemplate"
-              [id]="item?.id"
-              [progressRate]="item?.progressRate"
+              [id]="item.id!"
+              [progressRate]="item.progressRate!"
               (barMoveStartEvent)="onGanttBarMoveStart()"
               (barMovingEvent)="onGanttBarMoving($event)"
               (barResizeStartEvent)="onGanttBarResizeStart()"

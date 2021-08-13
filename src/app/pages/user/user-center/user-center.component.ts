@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/@core/data/userData';
+import { WorkGroup } from 'src/app/@core/data/work-group';
 import { UserDataService } from 'src/app/@core/mock/user-data.service';
 import { WorkGroupService } from 'src/app/@core/mock/work-group.service';
 
@@ -12,9 +13,9 @@ import { WorkGroupService } from 'src/app/@core/mock/work-group.service';
 export class UserCenterComponent implements OnInit {
   user: User = {};
 
-  busy: Subscription;
+  busy: Subscription = new Subscription();
 
-  spaceBusy: Subscription;
+  spaceBusy: Subscription = new Subscription();
 
   source = [
     { title: '个人页' },
@@ -41,7 +42,7 @@ export class UserCenterComponent implements OnInit {
 
   projects = [];
 
-  workGroups = [];
+  workGroups: WorkGroup[] = [];
 
   constructor(private userDataService: UserDataService, private workGroupService: WorkGroupService) {}
 
@@ -78,11 +79,11 @@ export class UserCenterComponent implements OnInit {
     });
   }
 
-  activeTabChange(e) {
+  activeTabChange(e: string | number) {
     this.getListData();
   }
 
-  actionHandler(key, item) {
+  actionHandler(key: string, item: any) {
     if (item[key + 'Attached']) {
       item[key] -= 1;
     } else {

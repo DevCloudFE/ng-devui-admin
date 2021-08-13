@@ -87,7 +87,7 @@ export class WorkManagementComponent implements OnInit, AfterViewInit, OnDestroy
       });
   }
 
-  dropEvent(item) {
+  dropEvent(item: any) {
     const droppedItem = this.list
       .map(function (e) {
         return e.title;

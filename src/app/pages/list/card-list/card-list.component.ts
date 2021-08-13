@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Card } from 'src/app/@core/data/listData';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class CardListComponent implements OnInit {
     },
   ];
 
-  cardList = [];
+  cardList: Card[] = [];
 
   pager = {
     total: 0,
@@ -42,22 +43,20 @@ export class CardListComponent implements OnInit {
   }
 
   getList() {
-    this.busy = this.listDataService
-      .getCardSource(this.pager)
-      .subscribe((res) => {
-        this.pager.total = res.total;
-        this.cardList = res.pageList.filter((i) => {
-          return i.name.toUpperCase().includes(this.keyword?.toUpperCase());
-        });
+    this.busy = this.listDataService.getCardSource(this.pager).subscribe((res) => {
+      this.pager.total = res.total;
+      this.cardList = res.pageList.filter((i: Card) => {
+        return i.name!.toUpperCase().includes(this.keyword?.toUpperCase());
       });
+    });
   }
 
-  onPageChange(e) {
+  onPageChange(e: number) {
     this.pager.pageIndex = e;
     this.getList();
   }
 
-  onSizeChange(e) {
+  onSizeChange(e: number) {
     this.pager.pageSize = e;
     this.getList();
   }

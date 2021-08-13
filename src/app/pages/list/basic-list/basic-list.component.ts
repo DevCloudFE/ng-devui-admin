@@ -124,7 +124,7 @@ export class BasicListComponent implements OnInit {
 
   formData = {};
 
-  editForm = null;
+  editForm: any = null;
 
   editRowIndex = -1;
 
@@ -157,7 +157,7 @@ export class BasicListComponent implements OnInit {
     });
   }
 
-  editRow(row, index) {
+  editRow(row: any, index: number) {
     this.editRowIndex = index;
     this.formData = row;
     this.editForm = this.dialogService.open({
@@ -173,7 +173,7 @@ export class BasicListComponent implements OnInit {
     });
   }
 
-  deleteRow(index) {
+  deleteRow(index: number) {
     const results = this.dialogService.open({
       id: 'delete-dialog',
       width: '346px',
@@ -205,12 +205,12 @@ export class BasicListComponent implements OnInit {
     });
   }
 
-  onPageChange(e) {
+  onPageChange(e: number) {
     this.pager.pageIndex = e;
     this.getList();
   }
 
-  onSizeChange(e) {
+  onSizeChange(e: number) {
     this.pager.pageSize = e;
     this.getList();
   }
@@ -225,13 +225,13 @@ export class BasicListComponent implements OnInit {
     this.getList();
   }
 
-  onSubmitted(e) {
-    this.editForm.modalInstance.hide();
+  onSubmitted(e: any) {
+    this.editForm!.modalInstance.hide();
     this.basicDataSource.splice(this.editRowIndex, 1, e);
   }
 
   onCanceled() {
-    this.editForm.modalInstance.hide();
+    this.editForm!.modalInstance.hide();
     this.editRowIndex = -1;
   }
 }

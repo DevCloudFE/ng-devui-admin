@@ -1,41 +1,41 @@
 export interface DaLayoutConfig {
-  id: string,
-  mode?: 'sidebarTop' | 'headerTop',
+  id: string;
+  mode?: 'sidebarTop' | 'headerTop';
   header?: {
-    fixed?: boolean,
-    hidden?: boolean,
-    zIndex?: number,
+    fixed?: boolean;
+    hidden?: boolean;
+    zIndex?: number;
     firHeader?: {
-      height?: number,
-      hidden?: boolean,
-      zIndex?: number
-    },
+      height?: number;
+      hidden?: boolean;
+      zIndex?: number;
+    };
     secHeader?: {
-      height?: number,
-      hidden?: boolean,
-      zIndex?: number
-    }
-    [key: string]: any,
-  },
+      height?: number;
+      hidden?: boolean;
+      zIndex?: number;
+    };
+    [key: string]: any;
+  };
   sidebar: {
-    fixed?: boolean,
-    hidden?: boolean,
-    zIndex?: number,
+    fixed?: boolean;
+    hidden?: boolean;
+    zIndex?: number;
     firSidebar?: {
-      width?: number,
-      hidden?: boolean,
-      zIndex?: number
-    },
+      width?: number;
+      hidden?: boolean;
+      zIndex?: number;
+    };
     secSidebar?: {
-      width?: number,
-      hidden?: boolean,
-      zIndex?: number
-    }
-    [key: string]: any,
-  }
+      width?: number;
+      hidden?: boolean;
+      zIndex?: number;
+    };
+    [key: string]: any;
+  };
   footer?: {
     height?: number;
     hidden?: boolean;
-  }
-  [key: string]: any,
+  };
+  [key: string]: any;
 }

@@ -6,28 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-settings.component.scss'],
 })
 export class UserSettingsComponent implements OnInit {
-
   menus = [
     {
       isActive: true,
-      title: '基本设置'
-    }, {
+      title: '基本设置',
+    },
+    {
       isActive: false,
-      title: '安全设置'
-    },{
+      title: '安全设置',
+    },
+    {
       isActive: false,
-      title: '消息通知'
-    }
+      title: '消息通知',
+    },
   ];
   constructor() {}
 
   ngOnInit(): void {}
 
-  itemClickFn(clickedItem) {
+  itemClickFn(clickedItem: any) {
     this.menus.forEach((item) => {
       item.isActive = false;
     });
     clickedItem.isActive = true;
   }
-
 }

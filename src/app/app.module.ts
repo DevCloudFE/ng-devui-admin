@@ -7,12 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './@core/core.module';
 import { SharedModule } from './@shared/shared.module';
-import { Observable, of } from 'rxjs'; 
+import { Observable, of } from 'rxjs';
 import { I18N } from '../config/language-config';
 
 class I18NLoader implements TranslateLoader {
-  getTranslation(lang: string): Observable<Object> {
-    return of(I18N[lang])
+  getTranslation(lang: 'zh-cn' | 'en-us'): Observable<Object> {
+    return of(I18N[lang]);
   }
 }
 
@@ -28,9 +28,9 @@ class I18NLoader implements TranslateLoader {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useClass: I18NLoader
-      }
-    })
+        useClass: I18NLoader,
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

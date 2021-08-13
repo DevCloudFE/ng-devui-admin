@@ -9,7 +9,7 @@ import { DFormData } from 'src/app/@shared/components/dynamic-forms/form-item.in
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss'],
 })
-export class DynamicFormComponent implements OnInit{
+export class DynamicFormComponent implements OnInit {
   projectFormData = {
     projectName: '',
     projectOwner: null,
@@ -33,32 +33,37 @@ export class DynamicFormComponent implements OnInit{
     { id: '6', label: 'Sat' },
   ];
 
-  labelList = [{
-    id: 1,
-    label: 'OpenSource'
-  },
-  {
-    id: 2,
-    label: 'Admin'
-  },
-  {
-    id: 3,
-    label: 'DevUI'
-  }];
+  labelList = [
+    {
+      id: 1,
+      label: 'OpenSource',
+    },
+    {
+      id: 2,
+      label: 'Admin',
+    },
+    {
+      id: 3,
+      label: 'DevUI',
+    },
+  ];
 
-  securityValue = [{
-    name: 'Public',
-  }, {
-     name: 'Only member visible'
-  }];
+  securityValue = [
+    {
+      name: 'Public',
+    },
+    {
+      name: 'Only member visible',
+    },
+  ];
 
   msgs: Array<Object> = [];
 
   ExecutorOptions = [
-    { 'id': '1', 'name': 'Executor1'},
-    { 'id': '2', 'name': 'Executor2'},
-    { 'id': '3', 'name': 'Executor3'},
-    { 'id': '4', 'name': 'Executor4'}
+    { id: '1', name: 'Executor1' },
+    { id: '2', name: 'Executor2' },
+    { id: '3', name: 'Executor3' },
+    { id: '4', name: 'Executor4' },
   ];
 
   OwnerOptions = [
@@ -91,20 +96,21 @@ export class DynamicFormComponent implements OnInit{
                 pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/,
                 message: {
                   'zh-cn': '仅允许输入数字与大小写字母',
-                  'en-us': 'The user name cannot contain characters except uppercase and lowercase letters.'
+                  'en-us': 'The user name cannot contain characters except uppercase and lowercase letters.',
                 },
-              }],
+              },
+            ],
             asyncValidators: [
               {
                 sameName: this.checkName.bind(this),
                 message: {
                   'zh-cn': '用户名重名',
-                  'en-us': 'Duplicate name.'
-                }
-              }
-            ]
-          }
-        }
+                  'en-us': 'Duplicate name.',
+                },
+              },
+            ],
+          },
+        },
       },
       projectOwner: {
         key: 'projectOwner',
@@ -114,16 +120,16 @@ export class DynamicFormComponent implements OnInit{
         hasHelp: true,
         helpTips: 'Owner of each project.',
         ui: {
-            values: this.projectFormData.projectOwner,
-            placeholder: 'Select Owner',
-            options: this.OwnerOptions,
-            multiple: true,
-            filterKey: 'name',
-            extraConfig: {
-              labelization: { enable: true, overflow: 'multiple-line' }
-            },
-            validateRules: [{ required: true }]
-        }
+          values: this.projectFormData.projectOwner,
+          placeholder: 'Select Owner',
+          options: this.OwnerOptions,
+          multiple: true,
+          filterKey: 'name',
+          extraConfig: {
+            labelization: { enable: true, overflow: 'multiple-line' },
+          },
+          validateRules: [{ required: true }],
+        },
       },
       projectExecutor: {
         key: 'projectExecutor',
@@ -138,22 +144,22 @@ export class DynamicFormComponent implements OnInit{
           options: this.ExecutorOptions,
           filterKey: 'name',
           extraConfig: {
-            labelization: { enable: true, overflow: 'multiple-line' }
+            labelization: { enable: true, overflow: 'multiple-line' },
           },
           allowClear: true,
-          validateRules: [{ required: true }]
-        }
+          validateRules: [{ required: true }],
+        },
       },
       relatedLabels: {
-        key: "Related Labels",
-        type: "tagsInput",
-        label: "Related Labels",
+        key: 'Related Labels',
+        type: 'tagsInput',
+        label: 'Related Labels',
         ui: {
           tags: this.projectFormData.projectLabels,
           suggestionList: this.labelList,
           placeholder: 'please add a tag',
-          displayProperty: 'label'
-        }
+          displayProperty: 'label',
+        },
       },
       public: {
         key: 'public',
@@ -162,8 +168,8 @@ export class DynamicFormComponent implements OnInit{
         helpTips: 'whether project is public.',
         label: 'Public',
         ui: {
-          checked: this.projectFormData.isPublic
-        }
+          checked: this.projectFormData.isPublic,
+        },
       },
       projectExerciseDate: {
         key: 'projectExerciseDate',
@@ -179,18 +185,18 @@ export class DynamicFormComponent implements OnInit{
           isShowTitle: true,
           validateRules: {
             validators: [{ required: true }],
-            asyncValidators: [{ canChoose: this.validateDate.bind(this) }]
-          }
-        }
-      }
+            asyncValidators: [{ canChoose: this.validateDate.bind(this) }],
+          },
+        },
+      },
     };
   }
 
-  getValue(value) {
+  getValue(value: any) {
     console.log(value);
   }
 
-  checkName(value) {
+  checkName(value: string) {
     let res = true;
     if (this.existProjectNames.indexOf(value) !== -1) {
       res = false;
@@ -198,7 +204,7 @@ export class DynamicFormComponent implements OnInit{
     return of(res).pipe(delay(500));
   }
 
-  validateDate(value): Observable<string | null> {
+  validateDate(value: any): Observable<any | null> {
     let message = null;
     for (const item of value) {
       if (item.id === '2') {
@@ -211,7 +217,7 @@ export class DynamicFormComponent implements OnInit{
     return of(message).pipe(delay(300));
   }
 
-  submitProjectForm({valid}) {
+  submitProjectForm({ valid }: any) {
     if (valid) {
       of(this.formItems)
         .pipe(

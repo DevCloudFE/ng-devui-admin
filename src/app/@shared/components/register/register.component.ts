@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
-import { DialogService, DValidateRules, FormLayout } from 'ng-devui';
+import { DialogService, DValidateRules, FormLayout, Message } from 'ng-devui';
 import { I18nService } from 'ng-devui/i18n';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -20,9 +20,9 @@ export class RegisterComponent implements OnInit {
   showPassword = false;
   showConfirmPassword = false;
 
-  language;
-  i18nValues;
-  toastMessage;
+  language: string;
+  i18nValues: any;
+  toastMessage: Message[];
   languages = LANGUAGES;
 
   formData = {
@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
     this.personalizeService.setRefTheme(ThemeType.Default);
   }
 
-  register(result) {
+  register(result: any) {
     if (result.valid) {
       const results = this.dialogService.open({
         id: 'register-result',
@@ -102,19 +102,19 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  goToLogin(dialogResult) {
+  goToLogin(dialogResult: any) {
     dialogResult.modalInstance.hide();
     this.route.navigate(['/login']);
   }
 
-  onLanguageClick(language) {
+  onLanguageClick(language: string) {
     this.language = language;
     localStorage.setItem('lang', this.language);
     this.i18n.toggleLang(this.language);
     this.translate.use(this.language);
   }
 
-  sameToPassWord(value) {
+  sameToPassWord(value: string) {
     return value === this.formData.password;
   }
 }

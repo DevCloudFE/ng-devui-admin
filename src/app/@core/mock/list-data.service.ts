@@ -298,8 +298,7 @@ export class ListDataService extends ListData {
     {
       name: 'React',
       title: 'React',
-      imgSrc:
-        'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
+      imgSrc: 'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -333,8 +332,7 @@ export class ListDataService extends ListData {
     {
       name: 'Webpack',
       title: 'Webpack',
-      imgSrc:
-        'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
+      imgSrc: 'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -383,8 +381,7 @@ export class ListDataService extends ListData {
     {
       name: 'React',
       title: 'React',
-      imgSrc:
-        'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
+      imgSrc: 'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -418,8 +415,7 @@ export class ListDataService extends ListData {
     {
       name: 'Webpack',
       title: 'Webpack',
-      imgSrc:
-        'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
+      imgSrc: 'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -468,8 +464,7 @@ export class ListDataService extends ListData {
     {
       name: 'React',
       title: 'React',
-      imgSrc:
-        'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
+      imgSrc: 'https://codingthesmartway.com/wp-content/uploads/2019/12/logo_react.png',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -503,8 +498,7 @@ export class ListDataService extends ListData {
     {
       name: 'Webpack',
       title: 'Webpack',
-      imgSrc:
-        'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
+      imgSrc: 'https://webpack.js.org/icon-square-small.85ba630cf0c5f29ae3e3.svg',
       content:
         'DevUI 是面向企业中后台产品的开源前端解决方案，其设计价值观基于"至简"、"沉浸"、"灵活"三种自然与人文相结合的理念，旨在为设计....',
       actions: [
@@ -520,11 +514,8 @@ export class ListDataService extends ListData {
     },
   ];
 
-  private pagerList(data, pager) {
-    return data.slice(
-      pager.pageSize * (pager.pageIndex - 1),
-      pager.pageSize * pager.pageIndex
-    );
+  private pagerList(data: Item[] | Card[], pager: ListPager) {
+    return data.slice(pager.pageSize! * (pager.pageIndex! - 1), pager.pageSize! * pager.pageIndex!);
   }
 
   getListData(pager: ListPager): Observable<any> {

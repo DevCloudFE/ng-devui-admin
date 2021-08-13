@@ -4,19 +4,19 @@ import { DaLayoutConfig } from './da-layout.type';
 import { DEFAULT_LAYOUT_CONFIG } from './default-layout.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DaLayoutService {
-  private _config: DaLayoutConfig = DEFAULT_LAYOUT_CONFIG
+  private _config: DaLayoutConfig = DEFAULT_LAYOUT_CONFIG;
   private layoutSubject = new ReplaySubject<DaLayoutConfig>(1);
 
   constructor() {
-    if (localStorage.getItem('da-layout')) {
-      this._config = JSON.parse(localStorage.getItem('da-layout'));
+    const layoutConfig = localStorage.getItem('da-layout');
+    if (layoutConfig) {
+      this._config = JSON.parse(layoutConfig);
     }
-    this.layoutSubject.next(this._config)
+    this.layoutSubject.next(this._config);
   }
-
 
   getLayoutConfig() {
     return this.layoutSubject.asObservable();

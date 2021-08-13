@@ -3,17 +3,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'da-forbidden',
   templateUrl: './forbidden.component.html',
-  styleUrls: ['../abnormal.component.scss']
+  styleUrls: ['../abnormal.component.scss'],
 })
 export class ForbiddenComponent implements OnInit, OnDestroy {
-  themeService;
+  themeService: any;
   darkMode = '';
-  isDark;
+  isDark: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.themeService = window['devuiThemeService'];
+    this.themeService = (window as { [key: string]: any })['devuiThemeService'];
     if (this.themeService) {
       this.themeChange();
     }
@@ -33,7 +33,7 @@ export class ForbiddenComponent implements OnInit, OnDestroy {
     } else {
       this.darkMode = '';
     }
-  }
+  };
 
   ngOnDestroy() {
     if (this.themeService && this.themeService.eventBus) {

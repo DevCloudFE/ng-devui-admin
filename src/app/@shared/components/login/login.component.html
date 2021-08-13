@@ -23,8 +23,9 @@
           </ng-template>
         </d-tab>
       </d-tabs>
-      <ng-template [ngTemplateOutlet]="tabActiveId === 'tab1' && loginWithPassword"></ng-template>
-      <ng-template [ngTemplateOutlet]="tabActiveId === 'tab2' && loginWithEmail"></ng-template>
+      <ng-container *ngIf="tabActiveId === 'tab1'; else loginWithEmail">
+        <ng-template [ngTemplateOutlet]="loginWithPassword"></ng-template>
+      </ng-container>
     </div>
     <div class="da-other">
       <span class="devui-form-span">{{ 'loginPage.other' | translate }}:</span>

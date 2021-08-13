@@ -14,9 +14,9 @@ export class AdminFormComponent implements OnInit {
     items: [],
   };
 
-  _formData = {};
+  _formData: any = {};
 
-  @Input() set formData(val) {
+  @Input() set formData(val: any) {
     this._formData = JSON.parse(JSON.stringify(val));
   }
 
@@ -28,7 +28,7 @@ export class AdminFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  submitPlanForm({ valid }) {
+  submitPlanForm({ valid }: { valid: boolean }) {
     if (valid) {
       this.submitted.emit(this._formData);
     }

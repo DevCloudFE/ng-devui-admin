@@ -7,7 +7,7 @@ import { EchartsService } from 'src/app/@core/mock/echarts.service';
   styleUrls: ['./analysis-line.component.scss'],
 })
 export class AnalysisLineComponent implements OnInit {
-  options;
+  options: any;
 
   constructor(private echartsService: EchartsService) {}
 

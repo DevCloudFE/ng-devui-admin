@@ -14,7 +14,7 @@ import { I18nService } from 'ng-devui/i18n';
 export class HeaderOperationComponent implements OnInit {
   user: User;
   languages = LANGUAGES;
-  language;
+  language: string;
   haveLoggedIn = false;
   noticeCount: number;
 
@@ -22,30 +22,30 @@ export class HeaderOperationComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('userinfo')) {
-      this.user = JSON.parse(localStorage.getItem('userinfo'));
+      this.user = JSON.parse(localStorage.getItem('userinfo')!);
       this.haveLoggedIn = true;
     } else {
       this.authService.login('Admin', 'Devui.admin').subscribe((res) => {
         this.authService.setSession(res);
-        this.user = JSON.parse(localStorage.getItem('userinfo'));
+        this.user = JSON.parse(localStorage.getItem('userinfo')!);
         this.haveLoggedIn = true;
       });
     }
     this.language = this.translate.currentLang;
   }
 
-  onSearch(event) {
+  onSearch(event: any) {
     console.log(event);
   }
 
-  onLanguageClick(language) {
+  onLanguageClick(language: string) {
     this.language = language;
     localStorage.setItem('lang', this.language);
     this.i18n.toggleLang(this.language);
     this.translate.use(this.language);
   }
 
-  handleUserOps(operation) {
+  handleUserOps(operation: string) {
     switch (operation) {
       case 'logout': {
         this.haveLoggedIn = false;
@@ -58,7 +58,7 @@ export class HeaderOperationComponent implements OnInit {
     }
   }
 
-  handleNoticeCount(event) {
+  handleNoticeCount(event: number) {
     this.noticeCount = event;
   }
 }

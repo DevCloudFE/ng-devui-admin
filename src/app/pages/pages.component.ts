@@ -23,12 +23,11 @@ export class PagesComponent implements OnInit {
 
   menu: any;
 
-  layoutConfig: DaLayoutConfig;
+  layoutConfig: DaLayoutConfig = { id: 'sidebar', sidebar: {} };
   isSidebarShrink: boolean = false;
   isSidebarFold: boolean = false;
 
-  sideDrawer: IDrawerOpenResult;
-  settingDrawer: IDrawerOpenResult;
+  settingDrawer: any;
 
   constructor(
     private drawerService: DrawerService,
@@ -76,26 +75,23 @@ export class PagesComponent implements OnInit {
         this.updateMenu(res);
       });
 
-    this.translate.onLangChange
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((event: TranslationChangeEvent) => {
-        const values = this.translate.instant('page');
-        this.updateMenu(values);
+    this.translate.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: TranslationChangeEvent) => {
+      const values = this.translate.instant('page');
+      this.updateMenu(values);
+    });
+    this.personalizeService.getUiTheme()!.subscribe((theme) => {
+      const currentTheme = Object.values((window as { [key: string]: any })['devuiThemes']).find((i: Theme | unknown) => {
+        return (i as Theme).id === theme;
       });
-      this.personalizeService.getUiTheme().subscribe(theme => {
-        const currentTheme = Object.values(window['devuiThemes']).find((i: Theme) => {
-          return i.id === theme;
-        }) 
-        if (currentTheme && (<any>currentTheme).isDark) {
-          this.render2.addClass(document.body, 'is-dark');
-        } else {
-          this.render2.removeClass(document.body, 'is-dark');
-        }
-      })
-
+      if (currentTheme && (<any>currentTheme).isDark) {
+        this.render2.addClass(document.body, 'is-dark');
+      } else {
+        this.render2.removeClass(document.body, 'is-dark');
+      }
+    });
   }
 
-  updateMenu(values) {
+  updateMenu(values: any) {
     this.menu = getMenu(values);
   }
 
@@ -142,19 +138,17 @@ export class PagesComponent implements OnInit {
     });
   }
 
-  sidebarShrink(isShrink) {
+  sidebarShrink(isShrink: boolean) {
     this.isSidebarShrink = isShrink;
 
     if (this.layoutConfig.sidebar.firSidebar) {
-      this.layoutConfig.sidebar.firSidebar.width = this.isSidebarShrink
-        ? 54
-        : 240;
+      this.layoutConfig.sidebar.firSidebar.width = this.isSidebarShrink ? 54 : 240;
     }
     this.layoutConfig.sidebar.shrink = this.isSidebarShrink;
     this.layoutService.updateLayoutConfig(this.layoutConfig);
   }
 
-  sidebarFold(isFold) {
+  sidebarFold(isFold: boolean) {
     this.isSidebarFold = isFold;
 
     if (this.layoutConfig.sidebar.firSidebar) {

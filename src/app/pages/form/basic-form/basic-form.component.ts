@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormLayout } from 'ng-devui';
+import { AbstractControlDirective } from '@angular/forms';
+import { DFormGroupRuleDirective, FormLayout } from 'ng-devui';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -48,15 +49,15 @@ export class BasicFormComponent {
     { id: '4', name: 'Executor4' },
   ];
 
-  getValue(value) {
+  getValue(value: object) {
     console.log(value);
   }
 
-  everyRange(range) {
-    return range.every((_) => !!_);
+  everyRange(range: any) {
+    return range.every((_: any) => !!_);
   }
 
-  checkName(value) {
+  checkName(value: string) {
     let res = true;
     if (this.existprojectNames.indexOf(value) !== -1) {
       res = false;
@@ -64,7 +65,7 @@ export class BasicFormComponent {
     return of(res).pipe(delay(500));
   }
 
-  validateDate(value): Observable<string | null> {
+  validateDate(value: any): Observable<any | null> {
     let message = null;
     for (const item of value) {
       if (item.id === '2') {
@@ -78,7 +79,7 @@ export class BasicFormComponent {
     return of(message).pipe(delay(300));
   }
 
-  submitProjectForm({ valid, directive, data, errors }) {
+  submitProjectForm({ valid, directive, data, errors }: any) {
     if (valid) {
       // do something
     } else {

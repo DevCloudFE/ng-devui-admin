@@ -17,14 +17,11 @@ export class AnalysisGanttComponent implements OnInit {
   ganttEndDate: Date;
   unit = GanttScaleUnit.day;
   ganttScaleWidth: string;
-  ganttSacleConfigHandler: Subscription;
+  ganttSacleConfigHandler: Subscription | null;
   originOffsetLeft = 0;
   scrollElement: HTMLElement;
 
-  constructor(
-    private ganttService: GanttService,
-    private ganttDataService: GanttDataService
-  ) {}
+  constructor(private ganttService: GanttService, private ganttDataService: GanttDataService) {}
 
   ngOnInit(): void {
     this.ganttDataService.getGantts().subscribe((res) => {
@@ -38,28 +35,18 @@ export class AnalysisGanttComponent implements OnInit {
       endDate: this.ganttEndDate,
       unit: this.unit,
     });
-    this.ganttScaleWidth =
-      this.ganttService.getDurationWidth(
-        this.ganttStartDate,
-        this.ganttEndDate
-      ) + 'px';
-    this.ganttSacleConfigHandler = this.ganttService.ganttScaleConfigChange.subscribe(
-      (config) => {
-        if (config.startDate) {
-          this.ganttStartDate = config.startDate;
-        }
-        if (config.endDate) {
-          this.ganttEndDate = config.endDate;
-        }
-        if (config.startDate || config.endDate) {
-          this.ganttScaleWidth =
-            this.ganttService.getDurationWidth(
-              this.ganttStartDate,
-              this.ganttEndDate
-            ) + 'px';
-        }
+    this.ganttScaleWidth = this.ganttService.getDurationWidth(this.ganttStartDate, this.ganttEndDate) + 'px';
+    this.ganttSacleConfigHandler = this.ganttService.ganttScaleConfigChange.subscribe((config) => {
+      if (config.startDate) {
+        this.ganttStartDate = config.startDate;
       }
-    );
+      if (config.endDate) {
+        this.ganttEndDate = config.endDate;
+      }
+      if (config.startDate || config.endDate) {
+        this.ganttScaleWidth = this.ganttService.getDurationWidth(this.ganttStartDate, this.ganttEndDate) + 'px';
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -84,10 +71,7 @@ export class AnalysisGanttComponent implements OnInit {
 
   adjustScrollView(info: GanttTaskInfo) {
     const moveOffset = info.moveOffset ? info.moveOffset : 0;
-    this.scrollElement.scrollTo(
-      this.originOffsetLeft + moveOffset,
-      this.scrollElement.scrollTop
-    );
+    this.scrollElement.scrollTo(this.originOffsetLeft + moveOffset, this.scrollElement.scrollTop);
   }
 
   onGanttBarMove(info: GanttTaskInfo) {

@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import {
-  CheckableRelation,
-  DataTableComponent,
-  TableWidthConfig,
-} from 'ng-devui/data-table';
+import { CheckableRelation, DataTableComponent, TableWidthConfig } from 'ng-devui/data-table';
 import { Subscription } from 'rxjs';
 import { Item } from 'src/app/@core/data/listData';
 import { ListDataService } from 'src/app/@core/mock/list-data.service';
@@ -15,12 +11,11 @@ import { ListDataService } from 'src/app/@core/mock/list-data.service';
   styleUrls: ['./tree-list.component.scss'],
 })
 export class TreeListComponent implements OnInit {
-  iconParentOpen: string;
-  iconParentClose: string;
+  iconParentOpen: string = '';
+  iconParentClose: string = '';
   basicDataSource: Array<Item> = [];
   checkableRelation: CheckableRelation = { downward: true, upward: true };
-  @ViewChild(DataTableComponent, { static: true })
-  datatable: DataTableComponent;
+  @ViewChild(DataTableComponent, { static: true }) datatable: DataTableComponent;
 
   tableWidthConfig: TableWidthConfig[] = [
     {
@@ -57,7 +52,7 @@ export class TreeListComponent implements OnInit {
     },
   ];
 
-  busy: Subscription;
+  busy: Subscription = new Subscription();
 
   source = [
     { title: '首页' },
@@ -82,11 +77,11 @@ export class TreeListComponent implements OnInit {
     this.getList();
   }
 
-  onChildTableToggle(status, rowItem) {
+  onChildTableToggle(status: boolean, rowItem: any) {
     this.datatable.setRowChildToggleStatus(rowItem, status);
   }
 
-  loadChildrenTable = (rowItem) => {
+  loadChildrenTable = (rowItem: any) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         if (rowItem.title === 'table node2') {
@@ -110,23 +105,21 @@ export class TreeListComponent implements OnInit {
     return new Promise((resolve) => {
       setTimeout(() => {
         this.basicDataSource[0].children[0].children[1].children[0].children = [];
-        this.basicDataSource[0].children[0].children[1].children[0].children.push(
-          {
-            id: '710000197203093702',
-            title: 'Hwgx Vkdg Kfap Tke Miyxg Hyelo',
-            priority: 'Low',
-            iteration: 'iteration',
-            assignee: 'Michael Walker',
-            status: 'Stuck',
-            timeline: '2018-08-04',
-          }
-        );
+        this.basicDataSource[0].children[0].children[1].children[0].children.push({
+          id: '710000197203093702',
+          title: 'Hwgx Vkdg Kfap Tke Miyxg Hyelo',
+          priority: 'Low',
+          iteration: 'iteration',
+          assignee: 'Michael Walker',
+          status: 'Stuck',
+          timeline: '2018-08-04',
+        });
         resolve(undefined);
       }, 500);
     });
   };
 
-  onRowCheckChange(checked, rowIndex, nestedIndex, rowItem) {
+  onRowCheckChange(checked: boolean, rowIndex: number, nestedIndex: string, rowItem: any) {
     rowItem.$checked = checked;
     rowItem.$halfChecked = false;
     this.datatable.setRowCheckStatus({
@@ -150,24 +143,22 @@ export class TreeListComponent implements OnInit {
   }
 
   getList() {
-    this.busy = this.listDataService
-      .getTreeSource(this.pager)
-      .subscribe((res) => {
-        const data = JSON.parse(JSON.stringify(res.pageList));
-        this.basicDataSource = data.filter((i) => {
-          return i.title.toUpperCase().includes(this.keyword.toUpperCase());
-        });
-        this.pager.total = res.total;
-        this.basicDataSource[0].$isChildTableOpen = true;
+    this.busy = this.listDataService.getTreeSource(this.pager).subscribe((res) => {
+      const data = JSON.parse(JSON.stringify(res.pageList));
+      this.basicDataSource = data.filter((i: any) => {
+        return i.title.toUpperCase().includes(this.keyword.toUpperCase());
       });
+      this.pager.total = res.total;
+      this.basicDataSource[0].$isChildTableOpen = true;
+    });
   }
 
-  onPageChange(e) {
+  onPageChange(e: number) {
     this.pager.pageIndex = e;
     this.getList();
   }
 
-  onSizeChange(e) {
+  onSizeChange(e: number) {
     this.pager.pageSize = e;
     this.getList();
   }
