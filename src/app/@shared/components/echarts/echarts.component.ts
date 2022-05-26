@@ -94,9 +94,7 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
         },
       },
       axisLabel: {
-        textStyle: {
-          color: this.textColor,
-        },
+        color: this.textColor,
       },
       splitLine: {
         lineStyle: {

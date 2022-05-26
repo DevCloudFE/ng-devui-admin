@@ -93,10 +93,8 @@ export class EchartsService {
         show: false,
       },
       axisLabel: {
-        textStyle: {
-          color: 'rgba(103, 103, 103, 1)',
-          fontSize: 14,
-        },
+        color: 'rgba(103, 103, 103, 1)',
+        fontSize: 14,
         interval: 10,
         rotate: 0,
       },
@@ -115,9 +113,7 @@ export class EchartsService {
         show: false,
       },
       axisLabel: {
-        textStyle: {
-          color: 'rgba(103, 103, 103, 1)',
-        },
+        color: 'rgba(103, 103, 103, 1)',
       },
       show: true,
       minInterval: 10,
@@ -137,11 +133,9 @@ export class EchartsService {
         },
 
         label: {
-          normal: {
-            show: false,
-            position: 'top',
-            color: 'rgba(255, 255, 255, 1)',
-          },
+          show: false,
+          position: 'top',
+          color: 'rgba(255, 255, 255, 1)',
         },
         areaStyle: {
           color: {
@@ -183,26 +177,24 @@ export class EchartsService {
           width: 3,
         },
         itemStyle: {
-          normal: {
-            opacity: 1,
-            color: {
-              x: 0,
-              y: 0,
-              x2: 0,
-              y2: 1,
-              type: 'linear',
-              global: false,
-              colorStops: [
-                {
-                  offset: 0,
-                  color: 'rgba(157, 245, 5, 1)',
-                },
-                {
-                  offset: 1,
-                  color: 'rgba(23, 240, 248, 0.84)',
-                },
-              ],
-            },
+          opacity: 1,
+          color: {
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            type: 'linear',
+            global: false,
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(157, 245, 5, 1)',
+              },
+              {
+                offset: 1,
+                color: 'rgba(23, 240, 248, 0.84)',
+              },
+            ],
           },
         },
         symbolSize: 0,
@@ -239,21 +231,15 @@ export class EchartsService {
         emphasis: {
           label: {
             show: true,
-            textStyle: {
-              fontSize: '20',
-            },
+            fontSize: '20',
           },
         },
         label: {
-          normal: {
-            show: false,
-            position: 'center',
-          },
+          show: false,
+          position: 'center',
         },
         labelLine: {
-          normal: {
-            show: false,
-          },
+          show: false,
         },
         data: [
           { value: 335, name: '可容忍' },
@@ -314,9 +300,7 @@ export class EchartsService {
         emphasis: { focus: 'series' },
         data: [0, 8, 3, 110, 183, 168, 94, 67, 52, 70, 67, 0, 0, 0],
         itemStyle: {
-          normal: {
-            color: ['#1DD1A1'],
-          },
+          color: '#1DD1A1',
         },
       },
       {
@@ -327,9 +311,7 @@ export class EchartsService {
         emphasis: { focus: 'series' },
         data: [0, 0, 0, 0, 0, 0, 0, 14, 58, 55, 69, 77, 60, 59],
         itemStyle: {
-          normal: {
-            color: ['#3F8FEC'],
-          },
+          color: '#3F8FEC',
         },
       },
       {
@@ -340,9 +322,7 @@ export class EchartsService {
         emphasis: { focus: 'series' },
         data: [0, 0, 0, 2, 7, 3, 12, 52, 6, 13, 24, 25, 12, 6],
         itemStyle: {
-          normal: {
-            color: ['#FECA57'],
-          },
+          color: '#FECA57',
         },
       },
       {
@@ -353,9 +333,7 @@ export class EchartsService {
         emphasis: { focus: 'series' },
         data: [7, 31, 41, 40, 44, 82, 64, 63, 33, 39, 36, 27, 9, 9],
         itemStyle: {
-          normal: {
-            color: ['#855CF8'],
-          },
+          color: '#855CF8',
         },
       },
       {
@@ -366,9 +344,7 @@ export class EchartsService {
         emphasis: { focus: 'series' },
         data: [7, 39, 44, 152, 234, 253, 170, 196, 149, 177, 196, 129, 81, 74],
         itemStyle: {
-          normal: {
-            color: ['#F79044'],
-          },
+          color: '#F79044',
         },
       },
     ],

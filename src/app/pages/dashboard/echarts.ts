@@ -88,10 +88,8 @@ export const echartServiceOption = {
       show: false,
     },
     axisLabel: {
-      textStyle: {
-        color: 'rgba(103, 103, 103, 1)',
-        fontSize: 14,
-      },
+      color: 'rgba(103, 103, 103, 1)',
+      fontSize: 14,
       interval: 10,
       rotate: 0,
     },
@@ -110,9 +108,7 @@ export const echartServiceOption = {
       show: false,
     },
     axisLabel: {
-      textStyle: {
-        color: 'rgba(103, 103, 103, 1)',
-      },
+      color: 'rgba(103, 103, 103, 1)',
     },
     show: true,
     minInterval: 10,
