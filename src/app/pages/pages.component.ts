@@ -19,7 +19,7 @@ import { Theme } from 'ng-devui/theme';
   styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent implements OnInit {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   menu: any;
 

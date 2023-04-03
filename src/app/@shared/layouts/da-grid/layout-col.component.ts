@@ -24,7 +24,7 @@ import { takeUntil } from 'rxjs/operators';
   preserveWhitespaces: false
 })
 export class LayoutColComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   @HostBinding('class.da-layout-col') daLayoutCol = true;
   @HostBinding('class.dl-d-flex') flex = true;

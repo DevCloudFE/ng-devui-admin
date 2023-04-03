@@ -14,18 +14,25 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "ES2022",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "@devui": ["node_modules/ng-devui"]
-    }
+      "@devui": [
+        "node_modules/ng-devui"
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictPropertyInitialization": false,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "skipLibCheck": true
   }
 }

@@ -15,7 +15,7 @@ import { ThemeType } from '../../models/theme';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   showPassword = false;
   showConfirmPassword = false;

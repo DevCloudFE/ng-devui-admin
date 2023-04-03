@@ -10,7 +10,7 @@ import { DaGridModule } from 'src/app/@shared/layouts/da-grid';  // 已在 share
 在全局样式表 style.css 中引入：
 
 ```
-@import '~ng-devui/devui-layout.css'; // 已在全局进行引用
+@import 'ng-devui/devui-layout.css'; // 已在全局进行引用
 ```
 
 页面中使用：
@@ -226,7 +226,7 @@ public getPoint(): ReplaySubject<{ currentPoint: DaBreakpoint, change: number, c
 import { DaScreenMediaQueryService } from 'src/app/@shared/layouts/da-grid';
 …………
 export class XXXComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   constructor(
     private screenQueryService: DaScreenMediaQueryService

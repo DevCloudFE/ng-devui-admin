@@ -15,7 +15,7 @@ import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';
 export class SideSettingsComponent implements OnDestroy {
   @Input() close: any;
 
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   layoutConfig: DaLayoutConfig;
   layout: string | null;

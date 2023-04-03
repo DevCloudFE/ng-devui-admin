@@ -13,7 +13,7 @@ import { NoticeDataService } from 'src/app/@core/mock/notice-data.service';
 export class HeaderNoticeComponent implements OnInit {
   @Output() countEvent = new EventEmitter<number>();
 
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   tabActiveID: string | number = 'notice';
 
