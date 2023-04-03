@@ -24,7 +24,7 @@ import { DaAlign, DaAlignSelf, DaJustify } from './layout.types';
 })
 
 export class LayoutRowComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   @HostBinding('class.da-layout-row') daLayoutRow = true;
   @HostBinding('class.dl-row') dlRow = true;

@@ -9,7 +9,7 @@ import { DaScreenMediaQueryService } from './screen-media-query.service';
 })
 
 export class DaStyleDirective implements OnInit, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   @Input() daStyle: Object;
   @Input() daStyleMs: Object;

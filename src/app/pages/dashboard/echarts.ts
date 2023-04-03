@@ -128,11 +128,9 @@ export const echartServiceOption = {
       },
 
       label: {
-        normal: {
-          show: false,
-          position: 'top',
-          color: 'rgba(255, 255, 255, 1)',
-        },
+        show: false,
+        position: 'top',
+        color: 'rgba(255, 255, 255, 1)',
       },
       areaStyle: {
         color: {
@@ -174,26 +172,24 @@ export const echartServiceOption = {
         width: 3,
       },
       itemStyle: {
-        normal: {
-          opacity: 1,
-          color: {
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            type: 'linear',
-            global: false,
-            colorStops: [
-              {
-                offset: 0,
-                color: 'rgba(157, 245, 5, 1)',
-              },
-              {
-                offset: 1,
-                color: 'rgba(23, 240, 248, 0.84)',
-              },
-            ],
-          },
+        opacity: 1,
+        color: {
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          type: 'linear',
+          global: false,
+          colorStops: [
+            {
+              offset: 0,
+              color: 'rgba(157, 245, 5, 1)',
+            },
+            {
+              offset: 1,
+              color: 'rgba(23, 240, 248, 0.84)',
+            },
+          ],
         },
       },
       symbolSize: 0,

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { EchartsService } from 'src/app/@core/mock/echarts.service';
+import { echartServiceOption } from '../../echarts';
 
 @Component({
   selector: 'da-echarts',
@@ -53,16 +54,14 @@ export class EchartsComponent implements OnInit, AfterViewInit {
   constructor(private echartsService: EchartsService) {}
 
   ngOnInit(): void {
-    this.echartsService.getServiceWaterLine().subscribe((option) => {
-      this.serviceData = option;
-      for (let i = 0; i < this.serviceData.xAxis.data.length; i++) {
-        let temp = {
-          time: this.serviceData.xAxis.data[i],
-          waterline: this.serviceData.series[0].data[i],
-        };
-        this.serviceSource.push(temp);
-      }
-    });
+    this.serviceData = echartServiceOption;
+    for (let i = 0; i < this.serviceData.xAxis.data.length; i++) {
+      let temp = {
+        time: this.serviceData.xAxis.data[i],
+        waterline: this.serviceData.series[0].data[i],
+      };
+      this.serviceSource.push(temp);
+    }
 
     this.echartsService.getPie().subscribe((option) => {
       this.pieData = option;

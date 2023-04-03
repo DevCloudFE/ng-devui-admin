@@ -9,7 +9,7 @@ import { DaGridModule } from 'src/app/@shared/layouts/da-grid'; // This module h
 Introduced in global stylesheet style.css:
 
 ```
-@import '~ng-devui/devui-layout.css';  // Globally referenced
+@import 'ng-devui/devui-layout.css';  // Globally referenced
 ```
 
 Used in the page:
@@ -224,7 +224,7 @@ public getPoint(): ReplaySubject<{currentPoint: DaBreakpoint, change: number, co
 import {DaScreenMediaQueryService} from'src/app/@shared/layouts/da-grid';
 ............
 export class XXXComponent implements OnInit, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   constructor(
   private screenQueryService: DaScreenMediaQueryService

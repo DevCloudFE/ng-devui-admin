@@ -9,7 +9,7 @@ import { DaScreenMediaQueryService } from './screen-media-query.service';
 })
 
 export class DaFlexDirective implements OnInit, OnDestroy {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   @Input() daFlex: number | string;
   @Input() daFlexMs: number | string;

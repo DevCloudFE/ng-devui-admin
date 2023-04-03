@@ -18,7 +18,7 @@ import { ThemeType } from '../../models/theme';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   horizontalLayout: FormLayout = FormLayout.Horizontal;
 

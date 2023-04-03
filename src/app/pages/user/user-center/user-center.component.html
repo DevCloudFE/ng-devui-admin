@@ -2,16 +2,16 @@
   <da-layout-row [daGutter]="[24, 24]">
     <da-col-item [daSpan]="24" [daXs]="8">
       <div class="da-about-me da-content-card">
-        <div class="da-user-info da-floor" *ngIf="user?.name">
+        <div class="da-user-info da-floor" *ngIf="user.name">
           <div class="da-info-top">
             <d-avatar [name]="'DevUI'" [width]="104" [height]="104" [imgSrc]="user.imgSrc!" [isRound]="false"></d-avatar>
-            <div class="da-name">{{ user?.name }}</div>
+            <div class="da-name">{{ user.name }}</div>
           </div>
           <div class="da-info-detail">
-            <div class="da-detail-floor"><i class="icon icon-member"></i>{{ user?.assign }}</div>
-            <div class="da-detail-floor"><i class="icon icon-management"></i>{{ user?.title }}</div>
-            <div class="da-detail-floor"><i class="icon icon-b-tree"></i>{{ user?.group }}</div>
-            <div class="da-detail-floor"><i class="icon icon-homepage"></i>{{ user?.address }}</div>
+            <div class="da-detail-floor"><i class="icon icon-member"></i>{{ user.assign }}</div>
+            <div class="da-detail-floor"><i class="icon icon-management"></i>{{ user.title }}</div>
+            <div class="da-detail-floor"><i class="icon icon-b-tree"></i>{{ user.group }}</div>
+            <div class="da-detail-floor"><i class="icon icon-homepage"></i>{{ user.address }}</div>
           </div>
         </div>
         <div class="da-floor">
