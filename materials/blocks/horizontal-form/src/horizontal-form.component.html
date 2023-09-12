@@ -1,0 +1,91 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24" [daXs]="24">
+    <div class="da-form">
+      <form dForm [layout]="horizontalLayout">
+        <d-form-item>
+          <d-form-label
+            [required]="true"
+            [hasHelp]="true"
+            [helpTips]="'This is the plan name.'"
+            autocomplete="off"
+            >Plan Name</d-form-label
+          >
+          <d-form-control>
+            <input dTextInput name="planName" />
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label [required]="true">Initiator</d-form-label>
+          <d-form-control>
+            <d-select
+              [options]="initiatorOptions"
+              name="initiator"
+              size="sm"
+              [filterKey]="'label'"
+              [(ngModel)]="formData.selectValue"
+            ></d-select>
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label [required]="true">Participant</d-form-label>
+          <d-form-control>
+            <d-select
+              name="multiSelect"
+              [options]="participantOptions"
+              size="sm"
+              [filterKey]="'label'"
+              [isSearch]="true"
+              [multiple]="true"
+              [extraConfig]="{
+                labelization: multipleSelectConfig.labelization
+              }"
+              [ngModel]="formData.multipleSelectValue"
+            ></d-select>
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label>Related Labels</d-form-label>
+          <d-form-control>
+            <d-tags-input
+              name="tag"
+              (click)="$event.stopPropagation()"
+              [displayProperty]="'label'"
+              [tags]="addedLabelList"
+              [placeholder]="'please add a tag'"
+              [suggestionList]="labelList"
+            >
+            </d-tags-input>
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label>Execution Cycle</d-form-label>
+          <d-form-control>
+            <d-radio-group
+              name="schedule"
+              [cssStyle]="'row'"
+              [values]="radioOptions"
+              [(ngModel)]="formData.radioValue"
+            >
+              <d-radio
+                *ngFor="let option of radioOptions"
+                [name]="'schedule'"
+                [value]="option.id"
+              >
+                {{ option.label }}
+              </d-radio>
+            </d-radio-group>
+          </d-form-control>
+        </d-form-item>
+        <d-form-operation>
+          <d-button
+            class="mr-element-spacing"
+            circled="true"
+            style="margin-right: 8px"
+            dFormSubmit
+            >Submit</d-button
+          >
+        </d-form-operation>
+      </form>
+    </div>
+  </da-col-item>
+</da-layout-row>

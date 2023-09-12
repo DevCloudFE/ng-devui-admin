@@ -18,6 +18,8 @@ import { WorkSpaceBodyComponent } from './work-space/work-space-body/work-space-
 import { WorkManagementComponent } from './work-space/work-space-body/work-management/work-management.component';
 import { WorkItemTableComponent } from './work-space/work-item-table/work-item-table.component';
 import { WorkOperationComponent } from './work-space/work-space-body/work-operation/work-operation.component';
+import { DashboardModule as DashboardContainerModule } from 'ng-devui/dashboard';
+import { AnalysisModule } from 'materials/blocks/analysis/src/analysis.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { WorkOperationComponent } from './work-space/work-space-body/work-operat
     EchartsModule,
     QuadrantDiagramModule,
     DragDropModule,
+    DashboardContainerModule,
+    AnalysisModule
   ],
   providers: [],
 })

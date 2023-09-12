@@ -1,0 +1,13 @@
+@import "src/app/@shared/styles/admin.scss";
+
+d-nav-sprite {
+  position: fixed;
+  top: 130px;
+  right: 20px;
+}
+
+@media screen and (max-width: 1660px) {
+  d-nav-sprite {
+    display: none;
+  }
+}

@@ -1,0 +1,12 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card">
+      <div class="da-content-title">需求类型统计图</div>
+      <d-echarts
+        [options]="histogramData"
+        height="20rem"
+        class="da-histogram"
+      ></d-echarts>
+    </div>
+  </da-col-item>
+</da-layout-row>

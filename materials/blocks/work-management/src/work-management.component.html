@@ -1,0 +1,36 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card da-work-space-quadrant">
+      <div class="da-content-title">工作安排</div>
+      <div class="da-work-management">
+        <div class="da-work-item-container">
+          <div class="header">待安排的工作</div>
+          <div class="card-block">
+            <ul class="list-group">
+              <li
+                dDraggable
+                *ngFor="let item of list"
+                [dragData]="{ item: item, parent: list }"
+                class="list-group-item over-flow-ellipsis"
+              >
+                {{ item.title }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="quadrant-container">
+          <d-quadrant-diagram
+            [labelData]="labelData"
+            [diagramId]="'basic-quadrant-diagram'"
+            (dropEvent)="dropEvent($event)"
+            [currentLabelSize]="currentLabelSize"
+            [view]="{
+              height: 480,
+              width: quadrantWidth
+            }"
+          ></d-quadrant-diagram>
+        </div>
+      </div>
+    </div>
+  </da-col-item>
+</da-layout-row>

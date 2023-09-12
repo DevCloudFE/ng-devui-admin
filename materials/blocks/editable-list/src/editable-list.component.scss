@@ -1,0 +1,76 @@
+@import "src/app/@shared/styles/common.scss";
+
+.da-list-wrap {
+  .da-list-container {
+    padding: 16px;
+    background-color: $devui-base-bg;
+    border-radius: $devui-border-radius-card;
+    box-shadow: $devui-shadow-length-base $devui-light-shadow;
+    min-width: 80%;
+
+    .da-list-header {
+      .da-header-item {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
+    .da-list-content {
+      margin-top: 12px;
+      min-height: 200px;
+    }
+
+    .da-list-footer {
+      text-align: right;
+      margin-top: 12px;
+    }
+  }
+
+  .Done {
+    color: $devui-success;
+    font-weight: 600;
+  }
+
+  .Working {
+    color: $devui-warning;
+    font-weight: 600;
+  }
+
+  .Stuck {
+    color: $devui-danger;
+    font-weight: 600;
+  }
+
+  .over-flow-ellipsis {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.input-block {
+  display: inline-flex;
+  width: 12%;
+  margin: 12px 12px 12px 0;
+}
+
+.tips-icon {
+  cursor: pointer;
+}
+
+:host::ng-deep {
+  .devui-form-item {
+    display: inline-flex !important;
+    width: 260px;
+    margin: 12px 24px 12px 0 !important;
+
+    .devui-form-label {
+      flex-basis: 100px !important;
+    }
+  }
+  .devui-form-operation {
+    display: inline-flex !important;
+    margin-left: 0 !important;
+  }
+}

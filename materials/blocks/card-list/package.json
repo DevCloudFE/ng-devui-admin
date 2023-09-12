@@ -1,0 +1,42 @@
+{
+  "name": "ng-devui-materials/card-list",
+  "version": "0.0.1",
+  "description": "这是一个对卡片列表的描述",
+  "description-en": "This is a description of card list",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "CardList",
+    "title": "卡片列表",
+    "title-en": "Card List",
+    "type": "list",
+    "category": [
+      "List",
+      "Display"
+    ],
+    "componentModules": [
+      "LoadingModule",
+      "CardModule",
+      "AvatarModule",
+      "PaginationModule"
+    ],
+    "selector": "da-card-list",
+    "views": [
+      {
+        "title": "",
+        "props": {},
+        "screenshot": "build/views/block_view1.png",
+        "html": "build/views/block_view1.html"
+      }
+    ],
+    "screenshot": "https://unpkg.com/@alifd/fusion-flow-form/screenshot.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-fusion/materials/tree/master/blocks/FlowForm"
+  }
+}

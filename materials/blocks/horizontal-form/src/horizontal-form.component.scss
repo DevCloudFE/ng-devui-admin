@@ -1,0 +1,40 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-form {
+  padding: 48px;
+  background-color: $devui-base-bg;
+  border-radius: $devui-border-radius-card;
+  box-shadow: $devui-shadow-length-base $devui-light-shadow;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 65%;
+}
+
+@media only screen and (max-width: 1023px) {
+  form {
+    max-width: 80%;
+  }
+}
+
+.single-checkbox {
+  display: block;
+  margin-right: 8px;
+}
+
+.single-checkbox:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.form-control-width {
+  width: 100%;
+}
+.u-1-3 {
+  width: 90%;
+}
+
+.devui-form-horizontal .devui-form-label {
+  flex: 0 0 120px;
+}

@@ -1,0 +1,57 @@
+<div class="da-list-wrap">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-list-container">
+        <div class="da-list-header">
+          <d-search
+            [placeholder]="'search'"
+            [(ngModel)]="keyword"
+            (searchFn)="getList()"
+          ></d-search>
+        </div>
+
+        <div class="da-list-content" dLoading [loading]="busy">
+          <d-card *ngFor="let item of cardList" class="card-item">
+            <d-card-header>
+              <d-avatar
+                dCardAvatar
+                [name]="item.name"
+                [imgSrc]="item.imgSrc"
+                [isRound]="true"
+                [width]="28"
+                [height]="28"
+              ></d-avatar>
+              <d-card-title>{{ item.title }}</d-card-title>
+            </d-card-header>
+            <d-card-content>
+              {{ item.content }}
+            </d-card-content>
+            <d-card-actions [align]="'start'">
+              <div class="card-block" *ngFor="let action of item.actions">
+                <i [class]="action.icon + ' card-icon'"></i
+                ><span>{{ action.num }}</span>
+              </div>
+            </d-card-actions>
+          </d-card>
+        </div>
+
+        <div class="da-list-footer">
+          <d-pagination
+            [size]="'sm'"
+            [total]="pager.total"
+            [(pageSize)]="pager.pageSize"
+            [(pageIndex)]="pager.pageIndex"
+            [canViewTotal]="true"
+            [canChangePageSize]="true"
+            [canJumpPage]="true"
+            [maxItems]="5"
+            [pageSizeOptions]="pageSizeOptions"
+            (pageIndexChange)="onPageChange($event)"
+            (pageSizeChange)="onSizeChange($event)"
+          >
+          </d-pagination>
+        </div>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

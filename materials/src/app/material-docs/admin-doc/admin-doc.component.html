@@ -1,0 +1,14 @@
+<section class="markdown api-container" #targetContainer>
+  <ng-container>
+    <div [innerHTML]="docs | safe: 'html'" dImagePreview></div>
+  </ng-container>
+</section>
+
+<d-nav-sprite
+  [title]="menu"
+  [target]="targetContainer"
+  [width]="240"
+  [scrollTarget]="scrollTarget"
+  [view]="{ top: 60, bottom: 0 }"
+  (afterNavInit)="afterNavInit($event)"
+></d-nav-sprite>

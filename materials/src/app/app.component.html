@@ -1,0 +1,23 @@
+<d-common-header
+  [showShadow]="true"
+  [showGitStar]="true"
+  [hasMaxWidth]="false"
+  [showSlideButton]="true"
+  [isFixed]="true"
+  [repoName]="'ng-devui-admin'"
+>
+  <d-header-logo [name]="'DevUI Admin'" [link]="'/admin-page/'"></d-header-logo>
+  <d-header-menu
+  ></d-header-menu>
+  <d-header-theme-switch
+  ></d-header-theme-switch>
+  <d-header-language-switch
+    (languageEvent)="toggleLanguage($event)"
+  ></d-header-language-switch>
+</d-common-header>
+
+<div class="devui-content-layout">
+  <router-outlet></router-outlet>
+</div>
+
+<d-sidebar [navData]="menu"></d-sidebar>

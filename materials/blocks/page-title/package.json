@@ -1,0 +1,23 @@
+{
+  "name": "ng-devui-materials/page-title",
+  "version": "0.0.1",
+  "description": "页面头部",
+  "description-en": "Page Title",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "PageTitle",
+    "title": "页面头部",
+    "title-en": "Page Title",
+    "type": "others",
+    "category": [
+      "Title"
+    ],
+    "componentModules": [],
+    "selector": "da-page-title"
+  }
+}

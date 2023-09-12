@@ -1,0 +1,72 @@
+<div class="da-overview-wrapper">
+  <div class="da-overview-introduce">
+    <h1>
+      {{
+        currentLang === "zh-cn" ? '区块总览' : 'Blocks Overview'
+      }}
+      <span class="da-overview-total-components">
+        {{ blocksCount }}
+      </span>
+    </h1>
+    <p class="da-overview-introduce-description">
+      {{
+        currentLang === "zh-cn" ? 'DevUI Admin提供了丰富的区块供用户快速搭建项目。' : 'DevUI Admin provides various blocks for users to quickly build projects.'
+      }}
+    </p>
+    <d-search 
+      [size]="'lg'"
+      [isKeyupSearch]="true" 
+      [placeholder]="currentLang === 'zh-cn' ? '请输入你想要查找的区块' : 'Please enter the block'" 
+      (searchFn)="searchBlocks($event)"
+    ></d-search>
+    <div class="da-overview-filters">
+      <div class="da-overview-filters-title">{{ currentLang === 'zh-cn' ? '过滤器：' : 'Filters: '}}</div>
+      <d-tag
+        *ngFor="let filter of filterList"
+        class="da-overview-filters-item"
+        [mode]="'checkable'"
+        [tag]="filter.title"
+        [checked]="filter.checked"
+        (checkedChange)="searchFilter(filter.id)"
+      ></d-tag>
+    </div>
+  </div>
+  <img *ngIf="searchedBlocks.length === 0" class="da-overview-no-data-img" src="/assets/no-data.svg" alt="no-data" />
+  <ul class="da-overview-components" *ngIf="searchedBlocks.length > 0">
+    <ng-container *ngFor="let blockItems of searchedBlocks">
+      <li class="da-overview-components-list">
+        <div class="da-overview-component-title">
+          <h2>
+            {{  currentLang === "zh-cn" ? blockItems.type : blockItems.typeEn }}
+          </h2>
+          <span class="da-overview-component-count">
+            {{ blockItems.children.length }}
+          </span>
+        </div>
+        <div class="da-overview-component-wrapper">
+          <d-card  
+            *ngFor="let block of blockItems.children"
+            class="card-container"
+            (click)="openUrl(block.name)"
+          >
+            <div class="da-overview-card-wrapper">
+               <!-- TODO: 图片hover后以大图显示 -->
+              <div class="da-overview-card-icon">
+                <img [src]="block.screenshot" alt="截图" />
+              </div>
+              <p class="da-overview-card-title">
+                {{ currentLang === "zh-cn" ? block.title : block.titleEn }}
+              </p>
+              <p *ngIf="block.description" class="da-overview-card-description" [title]="block.description">
+                {{
+                  currentLang === "zh-cn" ? block.description : block.descriptionEn
+                }}
+              </p>
+            </div>
+          </d-card>
+          <div class="da-component-placeholder" *ngFor="let placeHolder of flexPlaceHolders"></div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card">
+      <div class="da-content-title">用户实时分布图</div>
+      <div class="da-user-distribute">
+        <div class="da-distribute-item">
+          <p class="da-distribute-item-title">实时用户数目</p>
+          <p class="da-distribute-item-content">{{ liveUsers }} 人</p>
+        </div>
+        <div class="da-distribute-item">
+          <p class="da-distribute-item-title">累计用户数</p>
+          <p class="da-distribute-item-content">{{ totalUsers }} 人</p>
+        </div>
+        <div class="da-distribute-item">
+          <p class="da-distribute-item-title">当前活跃省份</p>
+          <p class="da-distribute-item-content">{{ liveProvince }}</p>
+        </div>
+      </div>
+      <d-echarts [options]="mapOptions" [height]="'700px'"></d-echarts>
+    </div>
+  </da-col-item>
+</da-layout-row>

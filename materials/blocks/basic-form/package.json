@@ -1,0 +1,28 @@
+{
+  "name": "ng-devui-materials/basic-form",
+  "version": "0.0.1",
+  "description": "基础表单",
+  "description-en": "Basic Form",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "BasicForm",
+    "title": "基础表单",
+    "title-en": "Basic Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Validate"
+    ],
+    "componentModules": [
+      "DatepickerModule",
+      "CheckBoxModule",
+      "SelectModule"
+    ],
+    "selector": "da-basic-form"
+  }
+}

@@ -1,0 +1,26 @@
+@import 'ng-devui/styles-var/devui-var.scss';
+.header-logo {
+  align-self: flex-start;
+  a {
+    font-weight: 600;
+    color: $devui-text;
+    font-size: $devui-font-size;
+    svg {
+      vertical-align: middle;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  .text {
+    font-size: $devui-font-size;
+    text-align: center;
+  }
+}
+
+.header-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}

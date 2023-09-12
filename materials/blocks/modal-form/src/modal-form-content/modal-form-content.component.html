@@ -1,0 +1,40 @@
+<da-layout-row [daGutter]="[0, 0]">
+  <da-col-item [daStyle]="{ width: '500px' }">
+    <form
+      dForm
+      [dValidateRules]="formRules.rule"
+      [layout]="horizontalLayout"
+      [labelAlign]="'end'"
+      #userForm="dValidateRules"
+      style="margin: 20px auto"
+    >
+      <d-form-item>
+        <d-form-label [required]="true">Email</d-form-label>
+        <d-form-control>
+          <input
+            dTextInput
+            autocomplete="off"
+            name="emailAdress"
+            placeholder="Please enter your email address"
+            [(ngModel)]="formData.emailAddress"
+            [dValidateRules]="formRules.emailAddressRules"
+          />
+        </d-form-control>
+      </d-form-item>
+      <d-form-item>
+        <d-form-label [required]="true">Password</d-form-label>
+        <d-form-control>
+          <input
+            dTextInput
+            dValidateSyncKey="password"
+            type="password"
+            name="password"
+            [(ngModel)]="formData.password"
+            placeholder="Enter password"
+            [dValidateRules]="formRules.passwordRules"
+          />
+        </d-form-control>
+      </d-form-item>
+    </form>
+  </da-col-item>
+</da-layout-row>

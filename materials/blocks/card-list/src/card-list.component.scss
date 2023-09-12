@@ -1,0 +1,113 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-list-wrap {
+  .da-list-container {
+    padding: 16px;
+    background-color: $devui-base-bg;
+    border-radius: $devui-border-radius-card;
+    box-shadow: $devui-shadow-length-base $devui-light-shadow;
+    min-width: 80%;
+
+    .da-list-header {
+      .da-header-item {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
+    .da-list-content {
+      margin-top: 12px;
+      min-height: 200px;
+    }
+
+    .da-list-footer {
+      text-align: right;
+      margin-top: 12px;
+    }
+  }
+
+  .Done {
+    color: $devui-success;
+    font-weight: 600;
+  }
+
+  .Working {
+    color: $devui-warning;
+    font-weight: 600;
+  }
+
+  .Stuck {
+    color: $devui-danger;
+    font-weight: 600;
+  }
+
+  .over-flow-ellipsis {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.da-list-header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 16px;
+}
+
+.da-list-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  min-height: 200px;
+
+  .card-item {
+    margin-right: 16px;
+    margin-bottom: 16px;
+    width: calc(25% - 16px);
+    background-color: $devui-base-bg;
+    cursor: pointer;
+
+    .card-icon {
+      cursor: pointer;
+      font-size: $devui-font-size-icon;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .card-icon + span {
+      vertical-align: middle;
+    }
+
+    .card-block {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      box-shadow: $devui-shadow-length-hover $devui-light-shadow;
+    }
+  }
+}
+
+.da-list-container {
+  .da-list-footer {
+    margin-top: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .da-list-content {
+    .card-item {
+      width: calc(50% - 16px);
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .da-list-content {
+    .card-item {
+      width: calc(100% - 16px);
+    }
+  }
+}

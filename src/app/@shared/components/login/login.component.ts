@@ -9,7 +9,6 @@ import { map, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/@core/services/auth.service';
 import { PersonalizeService } from 'src/app/@core/services/personalize.service';
 import { LANGUAGES } from 'src/config/language-config';
-import { environment } from 'src/environments/environment';
 import { ThemeType } from '../../models/theme';
 
 @Component({
@@ -180,10 +179,6 @@ export class LoginComponent implements OnInit {
       redirect_uri: 'https://devui.design/admin/login',
       client_id: 'ef3ce924fcf915c50910',
     };
-    if (!environment.production) {
-      config.redirect_uri = 'http://localhost:8001/login';
-      config.client_id = 'ecf5e43d804e8e003196';
-    }
     window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`;
   }
 }

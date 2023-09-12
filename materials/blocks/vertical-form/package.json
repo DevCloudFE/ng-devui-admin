@@ -1,0 +1,24 @@
+{
+  "name": "ng-devui-materials/vertical-form",
+  "version": "0.0.1",
+  "description": "垂直排列展示的表单",
+  "description-en": "Vertical display of the form",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "VerticalForm",
+    "title": "垂直表单",
+    "title-en": "Vertical Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Validate"
+    ],
+    "componentModules": [],
+    "selector": "da-vertical-form"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "ng-devui-materials/user-center",
+  "version": "0.0.1",
+  "description": "这是一个对个人中心的描述",
+  "description-en": "This is a description of user Center",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "UserCenter",
+    "title": "个人中心",
+    "title-en": "User Center",
+    "type": "others",
+    "category": [
+      "User",
+      "Display"
+    ],
+    "componentModules": [
+      "TagsModule",
+      "LoadingModule",
+      "CardModule",
+      "AvatarModule",
+      "RouterModule",
+      "TabsModule"
+    ],
+    "selector": "da-user-center",
+    "views": [
+      {
+        "title": "",
+        "props": {},
+        "screenshot": "build/views/block_view1.png",
+        "html": "build/views/block_view1.html"
+      }
+    ],
+    "screenshot": "https://unpkg.com/@alifd/fusion-flow-form/screenshot.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-fusion/materials/tree/master/blocks/FlowForm"
+  }
+}

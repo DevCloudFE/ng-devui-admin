@@ -1,0 +1,30 @@
+{
+  "name": "ng-devui-materials/multi-columns-form",
+  "version": "0.0.1",
+  "description": "多列表单",
+  "description-en": "Multi-Columns Form",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "MultiColumnsForm",
+    "title": "多列表单",
+    "title-en": "Multi-Columns Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Multi-columns",
+      "Validate"
+    ],
+    "componentModules": [
+      "CheckBoxModule",
+      "SelectModule",
+      "TagsInputModule",
+      "CheckBoxModule"
+    ],
+    "selector": "da-multi-columns-form"
+  }
+}

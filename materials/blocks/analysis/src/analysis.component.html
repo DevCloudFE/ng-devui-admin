@@ -1,0 +1,271 @@
+<d-dashboard #dashboard="dDashboard" class="dashboard" cellHeight="120px">
+  <d-dashboard-widget class="dark-card" [x]="0" [y]="0" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <p style="color: #ced1db; font-weight: bold; font-size: 16px">性能评分</p>
+    <div>
+      <div class="grade-number">{{ grade }}</div>
+      <div style="width: 300px; display: inline-block">
+      </div>
+    </div>
+    <d-echarts height="85%" width="70%" [options]="radarOptions"></d-echarts>
+    <div class="radar-descript">
+      <span style="font-size: 40px">“</span><br />
+      <span class="radar-descript-title">成功率</span>
+      <span>低于电商场景的通用指标SLA水平，建议从失败请求的业务日志中分析</span><br />
+      <span style="margin-top: 8px" class="radar-descript-title">异常数</span>
+      <span>建议分析微服务的调用关系，是否存在性能瓶颈</span><br />
+      <span style="font-size: 40px; float: right; margin-top: 20px">”</span>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="4" [y]="0" [width]="2" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          用户数量
+        </div>
+        <div class="indicator-content-item trend-number">
+          95%
+        </div>
+      </div>
+      <div class="indicator-charts">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleBarOptions"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="4" [y]="2" [width]="2" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          慢速接口占比
+        </div>
+        <div class="indicator-content-item trend-number">
+          95%
+        </div>
+      </div>
+      <div class="indicator-charts">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleLineOptions"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="6" [y]="0" [width]="3" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          增长趋势
+        </div>
+        <div class="indicator-content-item trend-number">
+          95%
+        </div>
+      </div>
+      <div class="indicator-charts"  style="flex: 2;">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleLineOptions2"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="6" [y]="2" [width]="3" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          季度变化
+        </div>
+        <div class="indicator-content-item trend-number">
+          95%
+        </div>
+      </div>
+      <div class="indicator-charts" style="flex: 2;">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleBarOptions2"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="9" [y]="0" [width]="3" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          全年趋势
+        </div>
+        <div class="indicator-content-item trend-number">
+          95%
+        </div>
+      </div>
+      <div class="indicator-charts" style="flex: 2;">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleLineOptions2"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+  <d-dashboard-widget [x]="9" [y]="2" [width]="3" [height]="2" (widgetResize)="onResize()">
+    <div class="indicator-card">
+      <div class="indicator-content">
+        <div class="indicator-content-item">
+          <ng-template [ngTemplateOutlet]="chartSvg"></ng-template>
+        </div>
+        <div class="indicator-content-item">
+          年度变化
+        </div>
+        <div class="indicator-content-item trend-number">
+          70%
+        </div>
+      </div>
+      <div class="indicator-charts" style="flex: 2;">
+        <p style="color: #babbc0">this week <span style="color: #66cb9f">+263</span></p>
+        <d-echarts height="120px" width="100%" [options]="simpleBarOptions2"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+  <d-dashboard-widget [x]="0" [y]="4" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">告警统计</div>
+      <div class="card-subtitle">华南华北大区外数据正在建设中</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="barOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+  <d-dashboard-widget [x]="4" [y]="4" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">地域数据</div>
+      <div class="card-subtitle">各地域响应数据统计</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="pieOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="8" [y]="4" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">CPU负载</div>
+      <div class="card-subtitle">各地域响应数据统计</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="gaugeOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="0" [y]="8" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">问题统计</div>
+      <div class="card-subtitle">各类型问题统计</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="horizontalOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="4" [y]="8" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">本周变化</div>
+      <div class="card-subtitle">各类型问题统计</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="lineOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+
+  <d-dashboard-widget [x]="8" [y]="8" [width]="4" [height]="4" (widgetResize)="onResize()">
+    <div class="chart-card">
+      <div class="card-title">未来趋势</div>
+      <div class="card-subtitle">各类型问题统计</div>
+      <div class="card-content">
+        <d-echarts height="100%" width="100%" [options]="trendLineOption"></d-echarts>
+      </div>
+    </div>
+  </d-dashboard-widget>
+</d-dashboard>
+
+<ng-template #chartSvg>
+  <svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>用户数量(UV)</title>
+    <defs>
+      <linearGradient x1="0%" y1="17.2335601%" x2="79.0455666%" y2="72.9606973%" id="linearGradient-1">
+        <stop stop-color="#FFD240" offset="0%"></stop>
+        <stop stop-color="#FA9841" offset="100%"></stop>
+      </linearGradient>
+      <linearGradient x1="50%" y1="19.2345794%" x2="77.0508104%" y2="71.7407152%" id="linearGradient-2">
+        <stop stop-color="#FF854A" offset="0%"></stop>
+        <stop stop-color="#FA8E5A" stop-opacity="0" offset="100%"></stop>
+      </linearGradient>
+      <filter x="-81.6%" y="-60.0%" width="263.1%" height="220.0%" filterUnits="objectBoundingBox" id="filter-3">
+        <feGaussianBlur stdDeviation="3.2" in="SourceGraphic"></feGaussianBlur>
+      </filter>
+      <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+        <stop stop-color="#FFFFFF" offset="0%"></stop>
+        <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+      </linearGradient>
+      <path
+        d="M23.3194685,22 C25.5882337,22 27.478256,23.7390716 27.6666667,26 L27.8796616,28.5559394 C27.9408146,29.2897754 27.3954973,29.9342413 26.6616612,29.9953943 C26.6248319,29.9984635 26.5878909,30 26.5509339,30 L17.4490661,30 C16.7126864,30 16.1157327,29.4030463 16.1157327,28.6666667 C16.1157327,28.6297097 16.1172693,28.5927687 16.1203384,28.5559394 L16.3333333,26 C16.521744,23.7390716 18.4117663,22 20.6805315,22 L23.3194685,22 Z M22,14 C24.209139,14 26,15.790861 26,18 C26,20.209139 24.209139,22 22,22 C19.790861,22 18,20.209139 18,18 C18,15.790861 19.790861,14 22,14 Z"
+        id="path-5"></path>
+      <filter x="-36.8%" y="-27.1%" width="173.6%" height="154.2%" filterUnits="objectBoundingBox" id="filter-6">
+        <feGaussianBlur stdDeviation="3.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+        <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+        <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1"
+          result="shadowInnerInner1"></feComposite>
+        <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.801981466 0" type="matrix"
+          in="shadowInnerInner1"></feColorMatrix>
+      </filter>
+      <path
+        d="M23.3194685,22 C23.5835058,22 23.8424134,22.0235542 24.094106,22.0687441 L24.3570597,22.3333333 L23.3330144,23.3573107 L23.3333333,26.6666667 C23.3333333,27.4030463 22.7363797,28 22,28 C21.2636203,28 20.6666667,27.4030463 20.6666667,26.6666667 L20.6660144,23.3563107 L19.6430144,22.3333333 L19.9068928,22.0685649 C20.1582716,22.023492 20.4168434,22 20.6805315,22 L23.3194685,22 Z"
+        id="path-7"></path>
+      <filter x="-74.2%" y="-41.7%" width="248.5%" height="216.7%" filterUnits="objectBoundingBox" id="filter-8">
+        <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+        <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+        <feColorMatrix values="0 0 0 0 0.980392157   0 0 0 0 0.596078431   0 0 0 0 0.254901961  0 0 0 0.19630955 0"
+          type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+      </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="小卡片" transform="translate(-75.000000, -788.000000)">
+        <g id="编组-5备份-4" transform="translate(51.000000, 764.000000)">
+          <g id="编组" transform="translate(0.000000, 0.000000)">
+            <g id="用户数量(UV)" transform="translate(24.000000, 24.000000)">
+              <path
+                d="M28,56 C43.463973,56 56,43.463973 56,28 C56,12.536027 43.463973,0 28,0 C12.536027,0 0,12.536027 0,28 C0,43.463973 12.536027,56 28,56 Z"
+                id="Ellipse-1" fill="#FFF3DC"></path>
+              <g id="UV" transform="translate(12.000000, 12.000000)">
+                <rect id="矩形" opacity="0.200000003" x="0" y="0" width="32" height="32"></rect>
+                <path
+                  d="M30,12 L30,25.7333333 C30,26.6169889 29.2836556,27.3333333 28.4,27.3333333 L3.6,27.3333333 C2.7163444,27.3333333 2,26.6169889 2,25.7333333 L2,12 L30,12 Z M10,18 L5.33333333,18 C4.9651435,18 4.66666667,18.2984768 4.66666667,18.6666667 C4.66666667,19.0348565 4.9651435,19.3333333 5.33333333,19.3333333 L5.33333333,19.3333333 L10,19.3333333 C10.3681898,19.3333333 10.6666667,19.0348565 10.6666667,18.6666667 C10.6666667,18.2984768 10.3681898,18 10,18 L10,18 Z M10,14.6666667 L5.33333333,14.6666667 C4.9651435,14.6666667 4.66666667,14.9651435 4.66666667,15.3333333 C4.66666667,15.7015232 4.9651435,16 5.33333333,16 L5.33333333,16 L10,16 C10.3681898,16 10.6666667,15.7015232 10.6666667,15.3333333 C10.6666667,14.9651435 10.3681898,14.6666667 10,14.6666667 L10,14.6666667 Z M28.4,4.66666667 C29.2836556,4.66666667 30,5.38301107 30,6.26666667 L30,10.6666667 L2,10.6666667 L2,6.26666667 C2,5.38301107 2.7163444,4.66666667 3.6,4.66666667 L28.4,4.66666667 Z M5,6.66666667 C4.44771525,6.66666667 4,7.11438192 4,7.66666667 C4,8.21895142 4.44771525,8.66666667 5,8.66666667 C5.55228475,8.66666667 6,8.21895142 6,7.66666667 C6,7.11438192 5.55228475,6.66666667 5,6.66666667 Z M9,6.66666667 C8.44771525,6.66666667 8,7.11438192 8,7.66666667 C8,8.21895142 8.44771525,8.66666667 9,8.66666667 C9.55228475,8.66666667 10,8.21895142 10,7.66666667 C10,7.11438192 9.55228475,6.66666667 9,6.66666667 Z M13,6.66666667 C12.4477153,6.66666667 12,7.11438192 12,7.66666667 C12,8.21895142 12.4477153,8.66666667 13,8.66666667 C13.5522847,8.66666667 14,8.21895142 14,7.66666667 C14,7.11438192 13.5522847,6.66666667 13,6.66666667 Z"
+                  id="形状结合" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                <path
+                  d="M20.6528018,20.6666667 C22.9215671,20.6666667 24.8115893,22.4057383 25,24.6666667 L25.2129949,27.222606 C25.2741479,27.9564421 24.7288306,28.600908 23.9949946,28.662061 C23.9581653,28.6651301 23.9212242,28.6666667 23.8842673,28.6666667 L14.7823994,28.6666667 C14.0460197,28.6666667 13.4490661,28.069713 13.4490661,27.3333333 C13.4490661,27.2963764 13.4506026,27.2594353 13.4536717,27.222606 L13.6666667,24.6666667 C13.8550774,22.4057383 15.7450996,20.6666667 18.0138649,20.6666667 L20.6528018,20.6666667 Z M19.3333333,12.6666667 C21.5424723,12.6666667 23.3333333,14.4575277 23.3333333,16.6666667 C23.3333333,18.8758057 21.5424723,20.6666667 19.3333333,20.6666667 C17.1241943,20.6666667 15.3333333,18.8758057 15.3333333,16.6666667 C15.3333333,14.4575277 17.1241943,12.6666667 19.3333333,12.6666667 Z"
+                  id="形状结合" fill="url(#linearGradient-2)" filter="url(#filter-3)"></path>
+                <g id="形状结合" fill-rule="nonzero">
+                  <use fill-opacity="0.3" fill="#FFBE80" xlink:href="#path-5"></use>
+                  <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                  <use stroke="url(#linearGradient-4)" stroke-width="0.666666667" xlink:href="#path-5"></use>
+                </g>
+                <g id="形状结合">
+                  <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                  <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</ng-template>

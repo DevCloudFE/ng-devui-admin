@@ -1,0 +1,37 @@
+@import './app/@shared/styles/custom-theme.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: $devui-base-bg;
+}
+
+.devui-dropdown-menu {
+  .devui-dropdown-item {
+    font-size: $devui-font-size;
+    color: $devui-text;
+
+    .icon {
+      font-size: $devui-font-size;
+      margin-right: 8px;
+    }
+
+    .da-language-prefix {
+      margin-right: 8px;
+    }
+  }
+
+  .da-active-lang .devui-dropdown-item {
+    color: $devui-list-item-active-text !important;
+    background-color: $devui-list-item-active-bg !important;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .modal-dialog {
+    max-width: 400px !important;
+  }
+}

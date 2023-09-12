@@ -1,0 +1,27 @@
+{
+  "name": "ng-devui-materials/work-management",
+  "version": "0.0.1",
+  "description": "工作管理视图",
+  "description-en": "Work Management",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "WorkManagement",
+    "title": "工作管理视图",
+    "title-en": "Work Management",
+    "type": "others",
+    "category": [
+      "Quadrant Diagram",
+      "Display"
+    ],
+    "componentModules": [
+      "QuadrantDiagramModule",
+      "DragDropModule"
+    ],
+    "selector": "da-work-management"
+  }
+}

@@ -1,0 +1,14 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24">
+    <div class="da-content-card">
+      <div class="da-content-title">占用率</div>
+      <div class="da-echart-wrapper">
+        <d-echarts
+          [options]="monitorOptions"
+          height="100%"
+          (chartReady)="getOccupationChart($event)"
+        ></d-echarts>
+      </div>
+    </div>
+  </da-col-item>
+</da-layout-row>

@@ -1,0 +1,24 @@
+{
+  "name": "ng-devui-materials/line-chart",
+  "version": "0.0.1",
+  "description": "折线图",
+  "description-en": "Line Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "LineChart",
+    "title": "折线图",
+    "title-en": "Line Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [],
+    "selector": "da-line-chart"
+  }
+}

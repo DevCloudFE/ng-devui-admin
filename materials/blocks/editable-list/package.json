@@ -1,0 +1,47 @@
+{
+  "name": "ng-devui-materials/editable-list",
+  "version": "0.0.1",
+  "description": "这是一个对编辑列表的描述",
+  "description-en": "This is a description of editable list",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "EditableList",
+    "title": "编辑列表",
+    "title-en": "Editable List",
+    "type": "list",
+    "category": [
+      "List",
+      "Display"
+    ],
+    "componentModules": [
+      "DataTableModule",
+      "AdminFormModule",
+      "TagsModule",
+      "LoadingModule",
+      "CardModule",
+      "AvatarModule",
+      "PaginationModule",
+      "SelectModule",
+      "DatepickerModule"
+    ],
+    "selector": "da-editable-list",
+    "views": [
+      {
+        "title": "",
+        "props": {},
+        "screenshot": "build/views/block_view1.png",
+        "html": "build/views/block_view1.html"
+      }
+    ],
+    "screenshot": "https://unpkg.com/@alifd/fusion-flow-form/screenshot.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-fusion/materials/tree/master/blocks/FlowForm"
+  }
+}

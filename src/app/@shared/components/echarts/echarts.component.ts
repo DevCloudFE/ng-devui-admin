@@ -15,9 +15,7 @@ import {
 import * as echarts from 'echarts';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-
-const DEFAULT_TEXT_COLOR = '#252b3a';
-const DEFAULT_LINE_COLOR = '#adb0b8';
+import { DEVUI_ECHART_THEME } from './echarts.theme';
 
 @Component({
   selector: 'd-echarts',
@@ -26,7 +24,9 @@ const DEFAULT_LINE_COLOR = '#adb0b8';
   exportAs: 'echarts',
   preserveWhitespaces: false,
 })
-export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class EchartsComponent
+  implements AfterViewInit, OnChanges, OnDestroy, OnInit
+{
   echart: any;
   @Input() options: any;
   @Input() notMerge: boolean;
@@ -50,131 +50,16 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
     return this.height;
   }
   resizeSub: any;
-  textColor = DEFAULT_TEXT_COLOR;
-  linecolor: string;
-  // 主题色色盘
-  themeColorArray = [
-    '#5E7CE0',
-    '#6CBFFF',
-    '#50D4AB',
-    '#A6DD82',
-    '#FAC20A',
-    '#FA9841',
-    '#F66F6A',
-    '#F3689A',
-    '#A97AF8',
-    '#207AB3',
-    '#169E6C',
-    '#7EBA50',
-    '#B58200',
-    '#B54E04',
-    '#344899',
-    '#572DB3',
-    '#FFD4E3',
-    '#B8E0FF',
-    '#ACF2DC',
-    '#D8FCC0',
-    '#FFE794',
-    '#FFD0A6',
-    '#D8C2FF',
-    '#BECCFA',
-  ];
   constructor(private elementRef: ElementRef) {}
 
-  get axisCommon() {
-    return {
-      axisLine: {
-        lineStyle: {
-          color: this.textColor,
-        },
-      },
-      axisTick: {
-        lineStyle: {
-          color: this.textColor,
-        },
-      },
-      axisLabel: {
-        color: this.textColor,
-      },
-      splitLine: {
-        lineStyle: {
-          type: 'dashed',
-          color: this.linecolor,
-        },
-      },
-      splitArea: {
-        areaStyle: {
-          color: this.textColor,
-        },
-      },
-    };
-  }
+  darkTheme = DEVUI_ECHART_THEME.defaultDarkTheme;
 
-  get darkTheme() {
-    return {
-      // color: ['#dd6b66', '#759aa0', '#e69d87', '#8dc1a9', '#ea7e53', '#eedd78', '#73a373', '#73b9bc', '#7289ab', '#91ca8c', '#f49f42'],
-      color: this.themeColorArray,
-      title: {
-        textStyle: {
-          color: this.textColor,
-        },
-      },
-      legend: {
-        textStyle: {
-          color: this.textColor,
-        },
-      },
-      tooltip: {
-        axisPointer: {
-          lineStyle: {
-            color: this.textColor,
-          },
-          crossStyle: {
-            color: this.textColor,
-          },
-        },
-      },
-      timeAxis: this.axisCommon,
-      logAxis: this.axisCommon,
-      valueAxis: this.axisCommon,
-      categoryAxis: this.axisCommon,
-    };
-  }
-
-  get lightTheme() {
-    return {
-      color: this.themeColorArray,
-      title: {
-        textStyle: {
-          color: this.textColor,
-        },
-      },
-      legend: {
-        textStyle: {
-          color: this.textColor,
-        },
-      },
-      tooltip: {
-        axisPointer: {
-          lineStyle: {
-            color: this.textColor,
-          },
-          crossStyle: {
-            color: this.textColor,
-          },
-        },
-      },
-      timeAxis: this.axisCommon,
-      logAxis: this.axisCommon,
-      valueAxis: this.axisCommon,
-      categoryAxis: this.axisCommon,
-    };
-  }
+  lightTheme = DEVUI_ECHART_THEME.defaultLightTheme;
 
   themeService: any;
 
   ngOnInit() {
-    this.themeService = (window as { [key: string]: any })['devuiThemeService'];
+    this.themeService = (window as any)['devuiThemeService'];
   }
 
   ngAfterViewInit(): void {
@@ -182,7 +67,10 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
       this.themeService.eventBus.add('themeChanged', this.themeChange);
     }
     this.initTheme();
-    this.echart = (<any>echarts).init(this.elementRef.nativeElement, this.theme);
+    this.echart = (<any>echarts).init(
+      this.elementRef.nativeElement,
+      this.theme
+    );
     this.updateChartData(this.options);
     this.chartReady.emit(this.echart);
     // 根据浏览器大小变化自动调整echarts
@@ -204,14 +92,15 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
   }
 
   themeChange = () => {
-    if (this.themeService.currentTheme.data) {
-      this.textColor = this.themeService.currentTheme.data['devui-text'] || DEFAULT_TEXT_COLOR;
-      this.linecolor = this.themeService.currentTheme.data['devui-line'] || DEFAULT_LINE_COLOR;
-    }
-    this.theme = this.themeService.currentTheme.isDark ? this.darkTheme : this.lightTheme;
+    this.theme = this.themeService.currentTheme.isDark
+      ? this.darkTheme
+      : this.lightTheme;
     if (this.echart) {
       this.echart.dispose();
-      this.echart = (<any>echarts).init(this.elementRef.nativeElement, this.theme);
+      this.echart = (<any>echarts).init(
+        this.elementRef.nativeElement,
+        this.theme
+      );      
       this.updateChartData(this.options);
       this.chartReady.emit(this.echart);
     }
@@ -241,7 +130,11 @@ export class EchartsComponent implements AfterViewInit, OnChanges, OnDestroy, On
 
   updateChartData(options: any) {
     if (options) {
-      this.echart.setOption(options, this.notMerge || false, this.lazyUpdate || false);
+      this.echart.setOption(
+        options,
+        this.notMerge || false,
+        this.lazyUpdate || false
+      );
     }
   }
 }

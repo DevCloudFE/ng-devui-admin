@@ -1,0 +1,47 @@
+<form dForm [layout]="formConfig.layout" [labelSize]="formConfig.labelSize" (dSubmit)="submitPlanForm($event)">
+  <d-form-item *ngFor="let item of formConfig.items">
+    <d-form-label [required]="item.required">{{ item.label }}：</d-form-label>
+    <d-form-control [extraInfo]="item.extraInfo">
+      <input
+        dTextInput
+        [name]="item.prop"
+        [(ngModel)]="_formData[item.prop]"
+        *ngIf="item.type === 'input'"
+        [dValidateRules]="item.rule"
+        [dValidateRules]="item.required ? item.rule : {}"
+      />
+      <d-select
+        *ngIf="item.type === 'select'"
+        [appendToBody]="true"
+        [options]="item.options"
+        [name]="item.prop"
+        [(ngModel)]="_formData[item.prop]"
+        [dValidateRules]="item.required ? item.rule : []"
+      ></d-select>
+      <div class="devui-input-group devui-dropdown-origin" *ngIf="item.type === 'datePicker'">
+        <input
+          class="devui-input devui-form-control"
+          placeholder="y/MM/dd"
+          (click)="datePicker1.toggle()"
+          [name]="item.prop"
+          [(ngModel)]="_formData[item.prop]"
+          autocomplete="off"
+          dDatepicker
+          appendToBody
+          #datePicker1="datepicker"
+          [dValidateRules]="item.required ? item.rule : []"
+        />
+        <div class="devui-input-group-addon close-icon-wrapper" (click)="datePicker1.clearAll()">
+          <i class="icon icon-close"></i>
+        </div>
+        <div class="devui-input-group-addon" (click)="datePicker1.toggle()">
+          <i class="icon icon-calendar"></i>
+        </div>
+      </div>
+    </d-form-control>
+  </d-form-item>
+  <d-form-operation class="da-form-operation">
+    <d-button style="margin-right: 5px" dFormSubmit [dFormSubmitData]="'submit-button'">Confirm</d-button>
+    <d-button bsStyle="common" (click)="cancel()">Cancel</d-button>
+  </d-form-operation>
+</form>
