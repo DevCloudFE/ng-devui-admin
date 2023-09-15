@@ -1,0 +1,58 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24" [daXs]="24">
+    <div class="da-form">
+      <form dForm ngForm [dValidateRules]="formRules.rule" [layout]="verticalLayout" #userForm="dValidateRules">
+        <d-form-item>
+          <d-form-label [required]="true">Username</d-form-label>
+          <d-form-control>
+            <input
+              dTextInput
+              autocomplete="off"
+              name="username"
+              placeholder="Enter a user name you like"
+              [(ngModel)]="formData.userName"
+              [dValidateRules]="formRules.usernameRules"
+              autocomplete="off"
+            />
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label [required]="true">Password</d-form-label>
+          <d-form-control>
+            <input
+              dTextInput
+              dValidateSyncKey="password"
+              type="password"
+              name="password"
+              [(ngModel)]="formData.password"
+              placeholder="Enter a password of 6 to 15 characters"
+              [dValidateRules]="formRules.passwordRules"
+            />
+          </d-form-control>
+        </d-form-item>
+        <d-form-item>
+          <d-form-label [required]="true">Confirm Password</d-form-label>
+          <d-form-control>
+            <input
+              dTextInput
+              dValidateSyncKey="password"
+              type="password"
+              name="confirmPassword"
+              [(ngModel)]="formData.confirmPassword"
+              placeholder="Confirm and enter"
+              [dValidateRules]="formRules.confirmPasswordRules"
+            />
+          </d-form-control>
+        </d-form-item>
+        <d-form-operation>
+          <d-button class="mr-element-spacing" [title]="userForm.errorMessage || ''" circled="true" style="margin-right: 8px" dFormSubmit
+            >Registry</d-button
+          >
+          <d-button bsStyle="common" circled="true" dFormReset>Reset</d-button>
+        </d-form-operation>
+      </form>
+    </div>
+  </da-col-item>
+</da-layout-row>
+
+

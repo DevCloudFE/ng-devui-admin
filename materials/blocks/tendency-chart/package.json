@@ -1,0 +1,26 @@
+{
+  "name": "ng-devui-materials/tendency-chart",
+  "version": "0.0.1",
+  "description": "趋势图",
+  "description-en": "Tendency Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "TendencyChart",
+    "title": "趋势图",
+    "title-en": "Tendency Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [
+      "DataTableModule"
+    ],
+    "selector": "da-tendency-chart"
+  }
+}

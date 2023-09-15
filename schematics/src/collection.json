@@ -1,0 +1,25 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "factory": "./ng-add/index",
+      "description": "Add DevUI admin",
+      "schema": "./ng-add/schema.json"
+    },
+    "views": {
+      "factory": "./views/index",
+      "description": "Add a new page with DevUI blocks",
+      "schema": "./views/schema.json"
+    },
+    "blocks": {
+      "factory": "./blocks/index",
+      "description": "Add a DevUI admin block",
+      "schema": "./blocks/schema.json"
+    },
+    "plugin": {
+      "factory": "./plugin/index",
+      "description": "Plugin for other schematics",
+      "schema": "./plugin/schema.json"
+    }
+  }
+}

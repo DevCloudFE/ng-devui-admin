@@ -1,0 +1,33 @@
+<div class="da-content-banner">
+  <d-breadcrumb>
+    <d-breadcrumb-item
+      ><a routerLink="/">
+        <% if (i18n) { %>{{ 'startUsing.breadcrumb.home' | translate }}<% } else { if(defaultLanguage === 'zh-cn') { %>首页<% } else { %>Home<% } } %>
+      </a></d-breadcrumb-item
+    >
+    <d-breadcrumb-item>
+      <% if (i18n) { %>{{ 'startUsing.breadcrumb.start' | translate }}<% } else { if(defaultLanguage === 'zh-cn') { %>开始使用<% } else { %>Getting Started<% } } %>
+    </d-breadcrumb-item>
+    <d-breadcrumb-item>
+      <% if (i18n) { %>{{ 'startUsing.breadcrumb.example' | translate }}<% } else { if(defaultLanguage === 'zh-cn') { %>示例页<% } else { %>Sample Page<% } } %>
+    </d-breadcrumb-item>
+  </d-breadcrumb>
+  <div class="da-content-banner-title">
+    <% if (i18n) { %>{{ 'startUsing.examplePage.name' | translate }}<% } else { if(defaultLanguage === 'zh-cn') { %>示例页<% } else { %>Sample Page<% } } %>
+  </div>
+  <div>
+    <% if (i18n) { %>{{ 'startUsing.examplePage.description' | translate }}<% } else { if(defaultLanguage === 'zh-cn') { %>该页面仅展示了一个示例页面。<% } else { %>This is just a sample page for you to build your own Admin.<% } } %>
+  </div>
+</div>
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-content-card">
+        <p>
+          <% if (i18n) { %>{{ 'startUsing.examplePage.content' | translate }} <a href="https://devui.design/admin-page/docs" target="_blank">{{ 'startUsing.docLink' | translate }}</a><% } else { if(defaultLanguage === 'zh-cn') { %>恭喜你，你已经成功搭建了一个 DevUI Admin 项目。更多的使用信息请参考：<a href="https://devui.design/admin-page/docs" target="_blank">DevUI Admin 官方文档</a><% } else { %>Congradulations. You have build DevUI Admin successfully. For
+          more information, you can visit: <a href="https://devui.design/admin-page/docs" target="_blank">DevUI Admin Official Document</a><% } } %>
+        </p>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>

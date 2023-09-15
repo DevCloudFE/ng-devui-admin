@@ -1,0 +1,187 @@
+<da-layout-row [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24" [daXs]="24">
+    <div class="da-basic-form">
+      <form
+        dForm
+        ngForm
+        [dValidateRules]="{
+          message: 'The form verification failed, please check.'
+        }"
+        [layout]="verticalLayout"
+        #projectForm="dValidateRules"
+        (dSubmit)="submitProjectForm($event)"
+        autocomplete="off"
+      >
+        <d-form-item>
+          <d-form-label
+            [required]="true"
+            [hasHelp]="true"
+            [helpTips]="'This is the project name.'"
+            >Project Name</d-form-label
+          >
+          <d-form-control>
+            <input
+              dTextInput
+              autocomplete="off"
+              name="projectName"
+              placeholder="Name"
+              [(ngModel)]="projectFormData.projectName"
+              [dValidateRules]="{
+                validators: [{ required: true }],
+                asyncValidators: [
+                  {
+                    sameName: this.checkName.bind(this),
+                    message: 'Duplicate name.'
+                  }
+                ]
+              }"
+            />
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item>
+          <d-form-label
+            [required]="true"
+            [hasHelp]="true"
+            [helpTips]="'Owner of each project.'"
+            >Owner</d-form-label
+          >
+          <d-form-control>
+            <d-select
+              [options]="OwnerOptions"
+              [(ngModel)]="projectFormData.projectOwner"
+              [multiple]="true"
+              [extraConfig]="{
+                labelization: { enable: true, overflow: 'multiple-line' }
+              }"
+              [name]="'projectOwner'"
+              [placeholder]="'Select Owner'"
+              [filterKey]="'name'"
+              [allowClear]="true"
+              [dValidateRules]="[{ required: true }]"
+            ></d-select>
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item>
+          <d-form-label
+            [required]="true"
+            [hasHelp]="true"
+            [helpTips]="'Executor of each project.'"
+            >Executor</d-form-label
+          >
+          <d-form-control>
+            <d-select
+              [options]="ExecutorOptions"
+              [(ngModel)]="projectFormData.projectExecutor"
+              [name]="'projectExecutor'"
+              [placeholder]="'Select Executor'"
+              [filterKey]="'name'"
+              [allowClear]="true"
+              [dValidateRules]="[{ required: true }]"
+            ></d-select>
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item>
+          <d-form-label [required]="true">Project Cycle</d-form-label>
+          <d-form-control>
+            <div class="devui-input-group devui-dropdown-origin">
+              <input
+                class="devui-input devui-form-control"
+                placeholder="y/MM/dd  -  y/MM/dd"
+                name="dp"
+                [(ngModel)]="projectFormData.projectCycleTime"
+                (click)="dateRangePicker.toggle()"
+                autocomplete="off"
+                dDateRangePicker
+                #dateRangePicker="dateRangePicker"
+                (selectedRangeChange)="getValue($event)"
+                [hideOnRangeSelected]="true"
+                [dValidateRules]="[{ required: true }]"
+              />
+              <div
+                *ngIf="everyRange(projectFormData.projectCycleTime)"
+                class="devui-input-group-addon close-icon-wrapper"
+                (click)="dateRangePicker.clearAll()"
+              >
+                <i class="icon icon-close"></i>
+              </div>
+              <div
+                class="devui-input-group-addon"
+                (click)="dateRangePicker.toggle()"
+              >
+                <i class="icon icon-calendar"></i>
+              </div>
+            </div>
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item>
+          <d-form-label>Description</d-form-label>
+          <d-form-control>
+            <textarea
+              dTextarea
+              resize="vertical"
+              autocomplete="off"
+              name="projectDescription"
+              placeholder="Description"
+              [(ngModel)]="projectFormData.projectDescription"
+              [dValidateRules]="[{ maxlength: 256 }]"
+            ></textarea>
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item [dHasFeedback]="true">
+          <d-form-label
+            [required]="true"
+            [hasHelp]="true"
+            [helpTips]="'whether project is disclosure.'"
+            >Disclosure</d-form-label
+          >
+          <d-form-control>
+            <d-radio-group
+              [name]="'city'"
+              [values]="securityValue"
+              [cssStyle]="'row'"
+              [(ngModel)]="projectFormData.projectSecurity"
+            >
+            </d-radio-group>
+          </d-form-control>
+        </d-form-item>
+
+        <d-form-item [dHasFeedback]="true">
+          <d-form-label [required]="true">Execution Time</d-form-label>
+          <d-form-control>
+            <d-checkbox-group
+              [options]="checkboxOptions"
+              [(ngModel)]="projectFormData.projectExerciseDate"
+              [name]="'projectExerciseDate'"
+              [direction]="'row'"
+              [filterKey]="'label'"
+              [isShowTitle]="true"
+              [dValidateRules]="{
+                validators: [{ required: true }],
+                asyncValidators: [{ canChoose: validateDate }]
+              }"
+            ></d-checkbox-group>
+          </d-form-control>
+        </d-form-item>
+        <d-form-operation>
+          <d-button
+            dLoading
+            class="mr-element-spacing"
+            [title]="projectForm.errorMessage || ''"
+            circled="true"
+            style="margin-right: 8px"
+            [showLoading]="projectForm.pending"
+            dFormSubmit
+            [dFormSubmitData]="'submit-button'"
+          >
+            Submit
+          </d-button>
+        </d-form-operation>
+      </form>
+    </div>
+  </da-col-item>
+</da-layout-row>

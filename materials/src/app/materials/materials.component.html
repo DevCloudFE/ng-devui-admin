@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <div class="demo-container">
+    <h1>{{ currentLang === "zh-cn" ? blockData.title : blockData.titleEn }}</h1>
+    <h3>{{ blockData.npmRepo }}</h3>
+    <div class="block-info">
+      <div class="basic-info">
+        <div class="description">
+          {{ "materialInfo.author" | translate }}：
+          <d-avatar [name]="blockData.creator" [height]="24" [width]="24"></d-avatar>
+          <div class="user-name">{{ blockData.creator }}</div>
+        </div>
+        <div class="block-tags">
+          <d-tag
+            *ngFor="let tag of blockData.tags"
+            [tag]="tag"
+          ></d-tag>
+        </div>
+      </div>
+      <div class="block-usage">
+        <h3>{{ "materialInfo.usage" | translate }}</h3>
+        <div class="block-usage-cli">
+          ng g ng-devui-admin:blocks --block-name {{ blockData.blockName }}
+        </div>
+      </div>
+    </div>
+
+    <d-tabs [type]="'tabs'" [(activeTab)]="tab1activeID">
+      <d-tab id="tab1" [title]="previewTitle" tabId="tab1">
+        <ng-template dTabContent>
+          <router-outlet></router-outlet>
+        </ng-template>
+      </d-tab>
+    </d-tabs>
+</div>

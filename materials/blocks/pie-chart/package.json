@@ -1,0 +1,26 @@
+{
+  "name": "ng-devui-materials/pie-chart",
+  "version": "0.0.1",
+  "description": "饼图",
+  "description-en": "Pie Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "PieChart",
+    "title": "饼图",
+    "title-en": "Pie Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [
+      "DataTableModule"
+    ],
+    "selector": "da-pie-chart"
+  }
+}

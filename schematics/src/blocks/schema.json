@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsDevUIBlocks",
+  "title": "DevUI Blocks Schema",
+  "type": "object",
+  "properties": {
+    "blockName": {
+      "type": "string",
+      "description": "Input the block name",
+      "default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What block would you like to use (https://devui.design/admin-materials/):"
+    },
+    "importWay": {
+      "type": "string",
+      "description": "The way to add blocks",
+      "default": "by-module",
+      "x-prompt": {
+        "message": "How would you like to add blocks: ",
+        "type": "list",
+        "items": [
+          {
+            "value": "by-module",
+            "label": "Insert Module (We will add block module then import it)"
+          },
+          {
+            "value": "by-code",
+            "label": "Insert Source Code (We will insert the source code to your page)"
+          }
+        ]
+      }
+    },
+    "dirPath": {
+      "type": "string",
+      "$default": {
+        "$source": "workingDirectory"
+      },
+      "description": "page to insert block",
+      "format": "path"
+    }
+  }
+}

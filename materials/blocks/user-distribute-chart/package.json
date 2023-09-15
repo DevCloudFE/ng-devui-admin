@@ -1,0 +1,25 @@
+{
+  "name": "ng-devui-materials/user-distribute-chart",
+  "version": "0.0.1",
+  "description": "用户分布图",
+  "description-en": "User Distribute Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "UserDistributeChart",
+    "title": "用户分布图",
+    "title-en": "User Distribute Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display",
+      "Map"
+    ],
+    "componentModules": [],
+    "selector": "da-user-distribute-chart"
+  }
+}

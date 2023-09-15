@@ -1,0 +1,192 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "../../../../devui-commons/src/devui-commons.scss";
+
+::ng-deep .markdown {
+  color: $devui-text;
+  font-size: $devui-font-size-page-title;
+  line-height: 1.8;
+  padding-top: 4px;
+  padding-bottom: 20px;
+
+  a {
+    color: $devui-link;
+
+    &:hover {
+      color: $devui-link-active;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 4px;
+
+    & > li > ul {
+      list-style: circle;
+    }
+  }
+
+  .highlight {
+    line-height: 1.5;
+    position: relative;
+  }
+
+  code[class*="language-"],
+  pre[class*="language-"],
+  pre code {
+    border: none;
+    background-color: $devui-area;
+    white-space: pre;
+    font-family: "Menlo", "DejaVu Sans Mono", "Liberation Mono", "Consolas",
+      "Ubuntu Mono", "Courier New", "andale mono", "lucida console", monospace;
+    line-height: 1.6;
+    font-size: 13px;
+  }
+
+  pre {
+    display: block;
+    margin: 12px 0 20px 0;
+    line-height: 1.42857143;
+    color: $devui-text;
+    word-break: break-all;
+    word-wrap: break-word;
+    // border: 1px solid $devui-dividing-line;
+    border-radius: 2px;
+  }
+
+  .hljs {
+    background: $devui-area;
+    color: $devui-text;
+    font-size: $devui-font-size;
+  }
+
+  pre code {
+    display: block;
+    color: $devui-text;
+    background: $devui-base-bg;
+    line-height: 1.5;
+    padding: 10px 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+  p img {
+    max-width: 100%;
+    margin: 32px 0;
+    box-shadow: $devui-shadow-length-connected-overlay $devui-light-shadow;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: Consolas, Menlo, Courier, monospace;
+  }
+
+  section {
+    margin-bottom: 0 !important;
+  }
+
+  .markdown.api-container {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+
+    table {
+      font-size: $devui-font-size;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a code {
+      text-decoration: underline;
+    }
+
+    pre code {
+      font-size: $devui-font-size;
+      padding: 0.5em;
+      background-color: $devui-area;
+    }
+  }
+
+  .markdown table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid $devui-line;
+    width: 100%;
+    margin: 8px 0 16px;
+
+    th,
+    td {
+      border: 1px solid $devui-dividing-line;
+      padding: 8px 16px;
+      text-align: left;
+    }
+
+    th {
+      background: $devui-area;
+      white-space: nowrap;
+      color: $devui-text;
+      font-weight: 600;
+    }
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $devui-text;
+    margin: 1.6em 0 0.6em;
+    clear: both;
+    font-weight: 550;
+  }
+
+  code {
+    padding: 2px 4px;
+    // font-size: 90%;
+    color: #c7254e;
+    background-color: $devui-area;
+    border-radius: 1px;
+    border: none;
+  }
+
+  .readme {
+    h1 {
+      // font-size: 30px;
+      @include font-title();
+
+      padding: 20px 0;
+    }
+
+    h2 {
+      // font-size: 24px;
+      @include font-title($devui-font-size-card-title);
+
+      padding: 40px 0 15px;
+    }
+
+    h3 {
+      // font-size: 18px;
+      @include font-title($devui-font-size-card-title);
+
+      padding: 30px 0 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      // font-weight: 300;
+      margin: 0;
+    }
+
+    pre code {
+      padding: 0.5em;
+    }
+  }
+}

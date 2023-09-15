@@ -1,0 +1,24 @@
+{
+  "name": "ng-devui-materials/statics-chart",
+  "version": "0.0.1",
+  "description": "统计图表",
+  "description-en": "Statics Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "StaticsChart",
+    "title": "统计图表",
+    "title-en": "Statics Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [],
+    "selector": "da-statics-chart"
+  }
+}

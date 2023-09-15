@@ -1,0 +1,46 @@
+{
+  "name": "ng-devui-materials/advance-list",
+  "version": "0.0.1",
+  "description": "这是一个对高级列表的描述",
+  "description-en": "This is a description of advance list",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "AdvanceList",
+    "title": "高级列表",
+    "title-en": "Advance List",
+    "type": "list",
+    "category": [
+      "List",
+      "Display"
+    ],
+    "componentModules": [
+      "DatepickerModule",
+      "FormModule",
+      "DataTableModule",
+      "LoadingModule",
+      "SelectModule",
+      "TagsModule",
+      "CheckBoxModule",
+      "TooltipModule"
+    ],
+    "selector": "da-advance-list",
+    "views": [
+      {
+        "title": "",
+        "props": {},
+        "screenshot": "build/views/block_view1.png",
+        "html": "build/views/block_view1.html"
+      }
+    ],
+    "screenshot": "https://unpkg.com/@alifd/fusion-flow-form/screenshot.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaba-fusion/materials/tree/master/blocks/FlowForm"
+  }
+}

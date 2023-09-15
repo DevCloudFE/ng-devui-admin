@@ -1,0 +1,180 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-user-center {
+  .da-about-me {
+    padding: 12px 24px;
+    background-color: $devui-base-bg;
+    border-radius: $devui-border-radius-card;
+    box-shadow: $devui-shadow-length-base $devui-light-shadow;
+
+    .da-user-info {
+      min-height: 300px;
+    }
+
+    .da-info-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .da-name {
+        font-weight: 500;
+        font-size: $devui-font-size-price;
+        line-height: 28px;
+      }
+    }
+
+    .da-info-detail {
+      margin-top: 20px;
+      padding-left: 50px;
+
+      .icon {
+        font-size: $devui-font-size-page-title;
+        margin-right: 6px;
+      }
+
+      .da-detail-floor {
+        display: flex;
+        margin-bottom: 12px;
+        font-size: $devui-font-size-card-title;
+      }
+    }
+  }
+
+  .da-floor {
+    padding: 20px 0;
+    border-bottom: 1px solid $devui-dividing-line;
+
+    .da-floor-title {
+      font-size: $devui-font-size-page-title;
+      margin-bottom: 10px;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .da-team {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    width: 30%;
+
+    .da-team-title {
+      margin-left: 12px;
+    }
+  }
+
+  .da-space {
+    flex: 2;
+    padding: 12px 0;
+    background-color: $devui-base-bg;
+    border-radius: $devui-border-radius-card;
+    box-shadow: $devui-shadow-length-base $devui-light-shadow;
+  }
+
+  .da-articles {
+    margin-bottom: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $devui-dividing-line;
+
+    .da-title {
+      color: $devui-text;
+      font-size: $devui-font-size-page-title;
+      font-weight: 600;
+    }
+
+    .da-action {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 12px;
+      cursor: pointer;
+      font-size: $devui-font-size;
+
+      &.is-attached {
+        color: $devui-icon-fill-active !important;
+      }
+
+      .icon {
+        font-size: $devui-font-size-page-title;
+        cursor: pointer;
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .da-projects {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .da-card-container {
+      width: calc(50% - 16px);
+      display: inline-block;
+      margin-right: 16px;
+      margin-bottom: 16px;
+    }
+
+    .da-card-icon {
+      font-size: $devui-font-size-icon;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .da-card-icon + span {
+      vertical-align: middle;
+    }
+
+    .da-card-block {
+      margin-right: 16px;
+    }
+
+    d-card {
+      cursor: pointer;
+      &:hover {
+        box-shadow: $devui-shadow-length-hover $devui-light-shadow;
+      }
+    }
+  }
+}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+:host::ng-deep {
+  .devui-tab-content {
+    padding: 12px 24px;
+  }
+
+  .devui-nav-tabs {
+    padding: 0 16px;
+  }
+}
+
+a:focus,
+a:hover {
+  color: $devui-link !important;
+}
+
+.ml6 {
+  margin-left: 6px;
+}
+
+.da-is-link {
+  cursor: pointer;
+  color: $devui-link;
+}
+
+.da-gray-text {
+  color: $devui-aide-text;
+}
+
+@media only screen and (max-width: 1024px) {
+  .da-projects .da-card-container {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+}

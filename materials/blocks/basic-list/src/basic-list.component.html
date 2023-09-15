@@ -1,0 +1,162 @@
+<div class="da-list-wrap">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24">
+      <div class="da-list-container">
+        <div class="da-list-header">
+          <div class="da-header-left">
+            <div class="da-header-item">
+              <div class="da-header-item-label">Border Type：</div>
+              <d-select
+                [placeholder]="'change table style'"
+                [options]="options"
+                [(ngModel)]="searchForm.borderType"
+              ></d-select>
+            </div>
+            <div class="da-header-item">
+              <div class="da-header-item-label">Size：</div>
+              <d-select
+                [placeholder]="'change table size'"
+                [options]="sizeOptions"
+                [(ngModel)]="searchForm.size"
+              ></d-select>
+            </div>
+            <div class="da-header-item">
+              <div class="da-header-item-label">Layout：</div>
+              <d-select
+                [placeholder]="'change table layout'"
+                [options]="layoutOptions"
+                [(ngModel)]="searchForm.layout"
+              ></d-select>
+            </div>
+          </div>
+          <div class="header-right">
+            <d-button (click)="reset()">Reset</d-button>
+          </div>
+        </div>
+        <div class="list-content" dLoading [loading]="busy">
+          <d-data-table
+            #datatable
+            [dataSource]="basicDataSource"
+            [borderType]="searchForm.borderType"
+            [size]="searchForm.size"
+            [tableLayout]="searchForm.layout"
+            [scrollable]="true"
+          >
+            <d-column field="id" header="Id" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  {{ cellItem }}
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="title" header="Title" [width]="'300px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  <span
+                    [title]="cellItem"
+                    class="over-flow-ellipsis"
+                    [style.width]="'300px'"
+                  >
+                    <d-tag [tag]="'Epic'" [labelStyle]="'epic'"></d-tag>
+                    {{ cellItem }}
+                  </span>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="priority" header="Priority" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  <d-tag [tag]="cellItem" [labelStyle]="cellItem"></d-tag>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="iteration" header="Iteration" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  {{ cellItem }}
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="assignee" header="Assignee" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  <div class="over-flow-ellipsis">
+                    <d-avatar
+                      [name]="cellItem"
+                      [width]="24"
+                      [height]="24"
+                    ></d-avatar>
+                    <span style="margin-left: 6px">{{ cellItem }}</span>
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="status" header="Status" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  <span [ngClass]="cellItem.split(' ')[0]">{{
+                    cellItem || "--"
+                  }}</span>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="timeline" header="Timeline" [width]="'100px'">
+              <d-cell>
+                <ng-template let-cellItem="cellItem">
+                  <div class="over-flow-ellipsis">
+                    {{ cellItem }}
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+            <d-column field="Actions" header="Actions" [width]="'100px'">
+              <d-cell>
+                <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                  <div class="btn-group over-flow-ellipsis">
+                    <d-button
+                      icon="icon-edit"
+                      bsStyle="text-dark"
+                      title="edit"
+                      (click)="editRow(rowItem, rowIndex)"
+                    ></d-button>
+                    <d-button
+                      icon="icon-delete"
+                      bsStyle="text-dark"
+                      title="delete"
+                      (click)="deleteRow(rowIndex)"
+                    ></d-button>
+                  </div>
+                </ng-template>
+              </d-cell>
+            </d-column>
+          </d-data-table>
+        </div>
+        <div class="da-list-footer">
+          <d-pagination
+            [size]="'sm'"
+            [total]="pager.total"
+            [(pageSize)]="pager.pageSize"
+            [(pageIndex)]="pager.pageIndex"
+            [canViewTotal]="true"
+            [canChangePageSize]="true"
+            [canJumpPage]="true"
+            [maxItems]="5"
+            (pageIndexChange)="onPageChange($event)"
+            (pageSizeChange)="onSizeChange($event)"
+          >
+          </d-pagination>
+        </div>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>
+
+<ng-template #EditorTemplate>
+  <da-admin-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    (submitted)="onSubmitted($event)"
+    (canceled)="onCanceled()"
+  >
+  </da-admin-form>
+</ng-template>

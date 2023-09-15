@@ -1,0 +1,24 @@
+{
+  "name": "ng-devui-materials/occupancy-chart",
+  "version": "0.0.1",
+  "description": "占用率图表",
+  "description-en": "Occupancy Chart",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "OccupancyChart",
+    "title": "占用率图表",
+    "title-en": "Occupancy Chart",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [],
+    "selector": "da-occupancy-chart"
+  }
+}

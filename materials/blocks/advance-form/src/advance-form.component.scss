@@ -1,0 +1,45 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-advance-form {
+  padding: 24px;
+  background-color: $devui-base-bg;
+  border-radius: $devui-border-radius-card;
+  box-shadow: $devui-shadow-length-base $devui-light-shadow;
+  min-width: 80%;
+
+  .da-advace-form-content {
+    margin-top: 12px;
+    min-height: 200px;
+  }
+}
+
+form {
+  margin: 0 auto;
+  width: 50%;
+}
+
+d-pagination {
+  margin-top: 12px;
+  text-align: right;
+}
+
+.tips-icon {
+  cursor: pointer;
+}
+
+:host::ng-deep {
+  .devui-form-item {
+    display: inline-flex !important;
+    width: 260px;
+    margin: 12px 24px 12px 0 !important;
+
+    .devui-form-label {
+      flex-basis: 100px !important;
+    }
+  }
+  .devui-form-operation {
+    display: inline-flex !important;
+    margin-left: 0 !important;
+  }
+}

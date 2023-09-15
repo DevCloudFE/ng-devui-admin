@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsDevUIAdmin",
+  "title": "DevUI Admin Options Schema",
+  "type": "object",
+  "properties": {
+    "defaultLanguage": {
+      "type": "string",
+      "description": "Choose the default language",
+      "default": "zh-cn",
+      "x-prompt": {
+        "message": "Please choose the default language you want to use: ",
+        "type": "list",
+        "items": [
+          {
+            "value": "zh-cn",
+            "label": "简体中文 (zh-ch)"
+          },
+          {
+            "value": "en-us",
+            "label": "English (en-us)"
+          }
+        ]
+      }
+    },
+    "eslintFile": {
+      "type": "boolean",
+      "default": true,
+      "description": "Generate lint files for the project",
+      "x-prompt": "Would you like to add lint files for your project? (default: Y)"
+    },
+    "mock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Generate mock data",
+      "x-prompt": "Would you like to add mock module? (default: Y)"
+    },
+    "i18n": {
+      "type": "boolean",
+      "default": true,
+      "description": "Config i18n for the project",
+      "x-prompt": "Would you like to add i18n? (default: Y)"
+    }
+  },
+  "required": []
+}

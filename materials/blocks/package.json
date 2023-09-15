@@ -1,0 +1,14 @@
+{
+  "name": "ng-devui-materials",
+  "version": "15.1.0",
+  "description": "Materials of DevUI Admin",
+  "homepage": "https://devui.design/admin-materials/",
+  "keywords": [
+    "materials",
+    "devui design",
+    "ng-devui-admin",
+    "ng-devui"
+  ],
+  "author": "",
+  "license": "MIT"
+}

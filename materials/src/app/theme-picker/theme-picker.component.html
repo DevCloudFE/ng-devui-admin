@@ -1,0 +1,20 @@
+<div dDropDown appendToBody [appendToBodyDirections]="['leftDown', 'leftUp', 'rightDown', 'rightUp']" [closeScope]="'blank'">
+  <div dDropDownToggle class="theme-toggle">
+    {{ 'mainNav.themePicker.theme' | translate }}
+    <div class="theme-block">
+      <span class="brand-color"></span>
+      <span class="background-color"></span>
+    </div>
+  </div>
+  <div dDropDownMenu class="theme-menu">
+    <section>
+      <div class="title">{{ 'mainNav.themePicker.mode' | translate }}</div>
+      <div class="content">
+        <d-radio-group class="theme-select-radio" [(ngModel)]="themeMode" (change)="themesChange()" [ngModelOptions]="{ standalone: true }">
+          <d-radio [value]="'light'"> {{ 'mainNav.themePicker.light' | translate }}</d-radio>
+          <d-radio [value]="'dark'" > {{ 'mainNav.themePicker.dark' | translate }}</d-radio>
+        </d-radio-group>
+      </div>
+    </section>
+  </div>
+</div>

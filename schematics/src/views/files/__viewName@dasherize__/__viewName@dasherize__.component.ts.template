@@ -1,0 +1,12 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-<%= dasherize(viewName) %>',
+  templateUrl: './<%= dasherize(viewName) %>.component.html',
+  styleUrls: ['./<%= dasherize(viewName) %>.component.<%= dasherize(style) %>'],
+})
+export class <%= classify(viewName) %>Component implements OnInit {
+  constructor() {}
+
+  ngOnInit(): void {}
+}

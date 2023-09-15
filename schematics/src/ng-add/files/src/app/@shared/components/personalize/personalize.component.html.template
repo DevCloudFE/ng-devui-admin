@@ -1,0 +1,66 @@
+<div class="da-personalize-config">
+  <div class="da-personalize-title">
+    <div class="da-title"><% if (i18n) { %>{{ "personalize.title" | translate }}<% } else { if (defaultLanguage === 'zh-cn') { %>
+    个性化<% } else { %>Personalize<% } } %></div>
+  </div>
+  <da-layout-row [daGutter]="[12, 12]">
+    <da-col-item *ngFor="let item of configs" [daSpan]="24" [daMl]="8">
+      <div class="item">
+        <div class="da-item-title">
+          <div class="da-icon-content">
+            <i class="icon" [ngClass]="item.icon"></i>
+          </div>
+          <span class="da-item-title-text">
+            <% if (i18n) { %>{{ "personalize." + item.name | translate }}<% } else { if (defaultLanguage === 'zh-cn') { %>
+            {{ item.cnName }}<% } else { %>{{ item.name }}<% } } %>
+          </span>
+        </div>
+        <d-radio-group
+          [name]="'theme'"
+          [(ngModel)]="currentValue[item.name]"
+          (change)="onChange(item.name, $event)"
+        >
+          <d-radio
+            [name]="item.name"
+            *ngFor="let value of item.items"
+            [value]="value.id"
+          >
+            <span
+              class="da-inline over-flow-ellipsis"
+              [title]="<% if (i18n) { %>('personalize.' + value.id) | translate<% } else { if (defaultLanguage === 'zh-cn') { %>value.cnName<% } else { %>value.id<% } } %>"
+            >
+              <% if (i18n) { %>{{ "personalize." + value.id | translate }}<% } else { if (defaultLanguage === 'zh-cn') { %>{{ value.cnName }}<% } else { %>{{ value.id }}<% } } %>
+            </span>
+          </d-radio>
+        </d-radio-group>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+  <da-layout-row class="da-color-picker" [daGutter]="[12, 12]">
+    <da-layout-col  class="themes" *ngFor="let theme of themeColors" [daSpan]="24" [daMl]="12">
+      <div class="da-theme-name">
+        <i class="icon {{ theme.icon }}"></i>{{ theme?.name }}
+      </div>
+      <da-layout-row class="da-theme-colors">
+        <div
+          class="da-color-avatar"
+          [ngClass]="{
+            'is-active': customColor === color && customDark === theme.isDark
+          }"
+          *ngFor="let color of theme.colors"
+          [style.backgroundColor]="color"
+          (click)="selectColor(color, theme)"
+        >
+          <i
+            class="icon icon-right"
+            *ngIf="
+              customColor === color &&
+              customDark === theme.isDark &&
+              currentTheme === themeType.Custom
+            "
+          ></i>
+        </div>
+      </da-layout-row>
+    </da-layout-col>
+  </da-layout-row>
+</div>

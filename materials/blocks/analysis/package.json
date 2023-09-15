@@ -1,0 +1,28 @@
+{
+  "name": "ng-devui-materials/analysis",
+  "version": "0.0.1",
+  "description": "图表分析页",
+  "description-en": "analysis page",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular",
+    "Charts"
+  ],
+  "blockConfig": {
+    "name": "Analysis",
+    "title": "图表分析页",
+    "title-en": "Analysis Page",
+    "type": "chart",
+    "category": [
+      "Charts",
+      "Display"
+    ],
+    "componentModules": [
+      "DatatableModule",
+      "DevuiChartsModule"
+    ],
+    "selector": "da-analysis"
+  }
+}

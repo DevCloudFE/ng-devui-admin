@@ -1,0 +1,151 @@
+@import 'ng-devui/styles-var/devui-var.scss';
+
+.da-overview-wrapper {
+  padding: 20px 0;
+
+  .da-overview-introduce {
+    h1 {
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      font-size: $devui-font-size-data-overview;
+
+      .da-overview-total-components {
+        display: inline-block;
+        margin-left: 8px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        font-size: $devui-font-size;
+        color: $devui-disabled-text;
+        border: 1px solid $devui-disabled-line;
+        border-radius: $devui-border-radius;
+        background-color: $devui-disabled-bg;
+      }
+    }
+
+    .da-overview-introduce-description {
+      margin: 28px 0;
+    }
+
+    d-search {
+      width: 100%;
+    }
+
+    .da-overview-filters {
+      margin-top: 18px;
+      display: flex;
+
+      .da-overview-filters-title {
+        margin-right: 8px;
+        font-size: $devui-font-size-card-title;
+        font-weight: $devui-font-title-weight;
+      }
+
+      .da-overview-filters-item {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .da-overview-components {
+    .da-overview-components-list {
+      padding: 20px 0;
+
+      .da-overview-component-title {
+        margin: 12px 0;
+
+        h2 {
+          display: inline-block;
+          margin: 0 8px 0 0;
+          font-size: $devui-font-size-page-title;
+        }
+
+        .da-overview-component-count {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          text-align: center;
+          font-size: $devui-font-size;
+          color: $devui-disabled-text;
+          border: 1px solid $devui-disabled-line;
+          border-radius: $devui-border-radius;
+          background-color: $devui-disabled-bg;
+        }
+      }
+    }
+  }
+
+  .da-overview-component-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .da-component-placeholder {
+      width: 320px;
+      height: 0;
+    }
+
+    d-card {
+      width: 320px;
+      height: 230px;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: box-shadow $devui-animation-duration-slow $devui-animation-ease-in-out-smooth,
+        transform $devui-animation-duration-slow $devui-animation-ease-in-out-smooth;
+
+      &:hover {
+        box-shadow: $devui-shadow-length-hover $devui-light-shadow;
+        transform: translateY(-5px);
+      }
+
+      .da-overview-card-wrapper {
+        text-align: center;
+        position: relative;
+
+        .da-overview-card-icon {
+          padding-bottom: 12px;
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            display: block;
+            max-width: 100%;
+          }
+        }
+
+        .da-overview-card-title {
+          font-size: $devui-font-size-card-title;
+          line-height: $devui-line-height-base;
+          color: $devui-text-weak;
+          font-weight: $devui-font-title-weight;
+          margin-bottom: 10px;
+        }
+
+        .da-overview-card-description {
+          color: $devui-aide-text;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  .da-overview-no-data-img {
+    display: block;
+    transform: translate(-50%, 100%);
+    margin: 20px 0;
+    margin-left: 50%;
+  }
+}
+
+:host ::ng-deep d-tag {
+  .devui-tag-item {
+    cursor: pointer;
+  }
+}

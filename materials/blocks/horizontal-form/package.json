@@ -1,0 +1,27 @@
+{
+  "name": "ng-devui-materials/horizontal-form",
+  "version": "0.0.1",
+  "description": "横向表单",
+  "description-en": "Horizontal Form",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "HorizontalForm",
+    "title": "横向表单",
+    "title-en": "Horizontal Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Validate"
+    ],
+    "componentModules": [
+      "TagsInputModule",
+      "SelectModule"
+    ],
+    "selector": "da-horizontal-form"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "ng-devui-materials/advance-form",
+  "version": "0.0.1",
+  "description": "高级表单用于列表中编辑相关信息",
+  "description-en": "Advanced forms are used to edit related information in the list",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "AdvanceForm",
+    "title": "高级表单",
+    "title-en": "Advance Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Validate"
+    ],
+    "componentModules": [
+      "DataTableModule",
+      "LoadingModule",
+      "SelectModule",
+      "TagsModule",
+      "AvatarModule",
+      "PaginationModule",
+      "TextInputModule",
+      "DatepickerModule"
+    ],
+    "selector": "da-advance-form"
+  }
+}

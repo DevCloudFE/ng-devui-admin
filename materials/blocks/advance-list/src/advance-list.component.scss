@@ -1,0 +1,90 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-list-wrap {
+  .da-list-container {
+    padding: 16px;
+    background-color: $devui-base-bg;
+    border-radius: $devui-border-radius-card;
+    box-shadow: $devui-shadow-length-base $devui-light-shadow;
+    min-width: 80%;
+
+    .da-list-header {
+      .da-header-item {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
+    .da-list-content {
+      margin-top: 12px;
+      min-height: 200px;
+    }
+
+    .da-list-footer {
+      text-align: right;
+      margin-top: 12px;
+    }
+  }
+
+  .Done {
+    color: $devui-success;
+    font-weight: 600;
+  }
+
+  .Working {
+    color: $devui-warning;
+    font-weight: 600;
+  }
+
+  .Stuck {
+    color: $devui-danger;
+    font-weight: 600;
+  }
+
+  .over-flow-ellipsis {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.da-common-search {
+  display: flex;
+  justify-content: space-between;
+
+  .da-inline {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 12px;
+
+    a,
+    i {
+      cursor: pointer;
+      font-size: 12px;
+      color: $devui-brand;
+    }
+
+    i {
+      margin-left: 6px;
+    }
+  }
+}
+
+.advance-searches {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 12px;
+  margin-top: 12px;
+  background-color: $devui-area;
+  padding: 10px 12px;
+
+  .devui-form-item {
+    width: 50%;
+  }
+}
+
+:host ::ng-deep .devui-tag-item {
+  cursor: pointer !important;
+}

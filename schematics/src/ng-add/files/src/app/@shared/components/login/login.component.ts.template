@@ -1,0 +1,206 @@
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+<% if(i18n) { %>import { TranslateService, TranslationChangeEvent } from '@ngx-translate/core';<% } %>
+import { I18nService } from 'ng-devui/i18n';
+import { Subject } from 'rxjs';
+import { DValidateRules } from 'ng-devui';
+<% if(i18n) { %>import { takeUntil } from 'rxjs/operators';<% } %>
+import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/@core/services/auth.service';
+import { PersonalizeService } from 'src/app/@core/services/personalize.service';
+import { ThemeType } from '../../models/theme';
+import { FormLayout } from 'ng-devui/form';
+<% if(i18n) { %>import { LANGUAGES } from 'src/config/language-config';<% } %>
+
+@Component({
+  selector: 'da-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  private destroy$: Subject<void> = new Subject<void>();
+
+  tabActiveId: string | number = 'tab1';
+  showPassword = false;
+  horizontalLayout: FormLayout = FormLayout.Horizontal;
+
+  toastMessage: any;
+  <% if(i18n) { %>languages = LANGUAGES;
+  language: string;<% } %>
+
+  tabItems: any<% if(!i18n) { %> = [
+    {
+      id: 'tab1',
+      title: <% if(defaultLanguage === 'zh-cn') { %>'账号密码登录'<% } else { %> 'Account Login' <% } %>
+    },
+    {
+      id: 'tab2',
+      title: <% if(defaultLanguage === 'zh-cn') { %>'邮箱登录'<% } else { %> 'Email Login' <% } %>
+    }
+  ]<% } %>;
+
+  <% if(i18n) { %>i18nValues: any;<% } %>
+
+  formData = {
+    userAccount: 'Admin',
+    userAccountPassword: '******',
+    userEmail: 'admin@devui.com',
+    userEmailPassword: '******'
+  };
+
+  formRules: { [key: string]: DValidateRules } = {
+    usernameRules: {
+      validators: [
+        { required: true },
+        { minlength: 3 },
+        { maxlength: 20 },
+        {
+          pattern: /^[a-zA-Z0-9]+(\s+[a-zA-Z0-9]+)*$/,
+          message: 'The user name cannot contain characters except uppercase and lowercase letters.',
+        },
+      ]
+    },
+    emailRules: {
+      validators: [
+        { required: true },
+        { email: true },
+      ],
+    },
+    passwordRules: {
+      validators: [{ required: true }, { minlength: 6 }, { maxlength: 15 }, { pattern: /^[a-zA-Z0-9\d@$!%*?&.]+(\s+[a-zA-Z0-9]+)*$/ }],
+      message: 'Enter a password that contains 6 to 15 digits and letters.',
+    },
+  };
+
+  @HostListener('window:keydown.enter')
+  onEnter() {
+    this.onClick(this.tabActiveId);
+  }
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    <% if(i18n) { %>private translate: TranslateService,<% } %>
+    private i18n: I18nService,
+    private personalizeService: PersonalizeService
+  ) {
+    <% if(i18n) { %>this.language = this.translate.currentLang;<% } %>
+  }
+
+  ngOnInit(): void {
+    <% if(i18n) { %>this.translate
+      .get('loginPage')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.i18nValues = this.translate.instant('loginPage');
+        this.updateTabItems(res);
+      });
+
+    this.translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: TranslationChangeEvent) => {
+        this.i18nValues = this.translate.instant('loginPage');
+        this.updateTabItems(this.i18nValues);
+      });
+    this.language = this.translate.currentLang;<% } %>
+    this.personalizeService.setRefTheme(ThemeType.Default);
+
+    this.route.queryParams.pipe(
+      map(param => param['code'])
+    ).subscribe(code => {
+      if(code && code.length > 0) {
+        setTimeout(() => {
+          this.toastMessage = [
+            {
+              severity: 'success',
+              content: <% if (i18n) { %>this.i18nValues['callbackMessage']<% } else { if(defaultLanguage === 'zh-cn') { %>'Github 授权回调成功'<% } else { %>'Github authorization callback succeeded'<% } } %>,
+            },
+          ];
+        });
+      }
+    });
+  }
+
+  onClick(tabId: string | number) {
+    switch (tabId) {
+      case 'tab1':
+        this.authService
+          .login(this.formData.userAccount, this.formData.userAccountPassword)
+          .subscribe(
+            (res) => {
+              this.authService.setSession(res);
+              this.router.navigate(['/']);
+            },
+            (error) => {
+              this.toastMessage = [
+                {
+                  severity: 'error',
+                  summary: <% if (i18n) { %>this.i18nValues['noticeMessage']['summary']<% } else { if(defaultLanguage === 'zh-cn') { %>'用户名或密码错误'<% } else { %>'Login Failed'<% } } %>,
+                  content: <% if (i18n) { %>this.i18nValues['noticeMessage']['accountContent']<% } else { if(defaultLanguage === 'zh-cn') { %>'请输入正确的用户名密码，用户名：Admin，密码：******'<% } else { %>'Please input correct username and password, username: Admin, password: ******'<% } } %>
+                  
+                }
+              ];
+            }
+          );
+        break;
+      case 'tab2':
+        this.authService
+          .login(this.formData.userEmail, this.formData.userEmailPassword)
+          .subscribe(
+            (res) => {
+              this.authService.setSession(res);
+              this.router.navigate(['/']);
+            },
+            (error) => {
+              this.toastMessage = [
+                {
+                  severity: 'error',
+                  summary: <% if (i18n) { %>this.i18nValues['noticeMessage']['summary']<% } else { if(defaultLanguage === 'zh-cn') { %>'用户名或密码错误'<% } else { %>'Login Failed'<% } } %>,
+                  content: <% if (i18n) { %>this.i18nValues['noticeMessage']['emailContent']<% } else { if(defaultLanguage === 'zh-cn') { %>'请输入正确的用户名密码，用户名：admin@devui.com，密码：******'<% } else { %>'Please input correct username and password, username: admin@devui.com, password: ******'<% } } %>
+                }
+              ];
+            }
+          );
+        break;
+      default:
+        break;
+    }
+  }
+
+  <% if(i18n) { %>onLanguageClick(language: string) {
+    this.language = language;
+    localStorage.setItem('lang', this.language);
+    this.i18n.toggleLang(this.language);
+    this.translate.use(this.language);
+  }<% } %>
+
+  <% if(i18n) { %>updateTabItems(values: any) {
+    this.tabItems = [
+      {
+        id: 'tab1',
+        title: values['loginWays']['account']
+      },
+      {
+        id: 'tab2',
+        title: values['loginWays']['email']
+      }
+    ];
+  }<% } %>
+
+  onKeyUp(e: KeyboardEvent, tabId: string | number) {
+    if (e.keyCode === 13) {
+      this.onClick(tabId);
+    }
+  }
+
+  handleAuth(type: string){
+    console.log(type);
+    const config = {
+      oauth_uri: 'https://github.com/login/oauth/authorize',
+      redirect_uri: 'https://devui.design/admin/login',
+      client_id: 'ef3ce924fcf915c50910'
+    };
+    window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`
+  }
+}

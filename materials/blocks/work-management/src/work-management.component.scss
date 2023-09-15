@@ -1,0 +1,93 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.list-group .list-group-item {
+  padding: 0 16px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.drag-handle {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.da-work-item-container {
+  border: 1px solid $devui-dividing-line;
+  margin: 0 20px 20px 20px;
+}
+
+.da-work-item-container .header {
+  font-size: $devui-font-size-page-title;
+  padding: 10px;
+}
+
+.list-group {
+  padding: 0 12px 12px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.list-group > li {
+  height: 28px;
+  line-height: 28px;
+  font-size: $devui-font-size;
+  color: $devui-text;
+  background: $devui-base-bg;
+  border: 1px solid $devui-line;
+  border-radius: $devui-border-radius;
+  width: 135px;
+  margin-right: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.quadrant-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.da-content-title {
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 2125px) {
+  .da-work-management {
+    .list-group .list-group-item {
+      width: calc(16.66666667% - 12px);
+    }
+  }
+}
+
+@media only screen and (max-width: 1535px) {
+  .da-work-management {
+    .list-group .list-group-item {
+      width: calc(20% - 12px);
+    }
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  .da-work-management {
+    .list-group .list-group-item {
+      width: calc(25% - 12px);
+    }
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .da-work-management {
+    .list-group .list-group-item {
+      width: calc(50% - 12px);
+    }
+  }
+}

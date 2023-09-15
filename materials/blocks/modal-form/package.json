@@ -1,0 +1,24 @@
+{
+  "name": "ng-devui-materials/modal-form",
+  "version": "0.0.1",
+  "description": "弹窗表单",
+  "description-en": "Modal Form",
+  "author": "DevUI",
+  "license": "MIT",
+  "keywords": [
+    "DevUI",
+    "Angular"
+  ],
+  "blockConfig": {
+    "name": "ModalForm",
+    "title": "弹窗表单",
+    "title-en": "Modal Form",
+    "type": "form",
+    "category": [
+      "Form",
+      "Validate"
+    ],
+    "componentModules": [],
+    "selector": "da-modal-form"
+  }
+}

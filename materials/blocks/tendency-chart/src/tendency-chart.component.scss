@@ -1,0 +1,11 @@
+@import 'ng-devui/styles-var/devui-var.scss';
+@import 'src/app/@shared/styles/common.scss';
+
+.da-analysis-echarts {
+  display: flex;
+
+  .da-table-wrapper {
+    height: 100%;
+    padding-top: 16px;
+  }
+}

@@ -13,4 +13,8 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     window.dispatchEvent(new Event('resize'));
   }
+
+  onResize() {
+    window.dispatchEvent(new Event('resize'));
+  }
 }

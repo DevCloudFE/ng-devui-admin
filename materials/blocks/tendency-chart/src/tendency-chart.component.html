@@ -1,0 +1,54 @@
+<da-layout-row class="da-analysis-echarts" [daGutter]="[24, 24]">
+  <da-col-item [daSpan]="24" [daXs]="24">
+    <div class="da-content-card">
+      <div class="da-content-title">服务水位变化图</div>
+      <da-layout-row [daGutter]="[24, 24]">
+        <da-col-item [daSpan]="24" [daXs]="12">
+          <d-echarts
+            [options]="serviceData"
+            height="20rem"
+            width="100%"
+          ></d-echarts>
+        </da-col-item>
+        <da-col-item [daSpan]="24" [daXs]="12">
+          <div class="da-table-wrapper">
+            <d-data-table
+              [dataSource]="serviceSource"
+              [fixHeader]="true"
+              maxHeight="220px"
+              [scrollable]="true"
+              [type]="'striped'"
+            >
+              <thead dTableHead>
+                <tr dTableRow>
+                  <th
+                    dHeadCell
+                    *ngFor="let colOption of dataTableServiceOption.columns"
+                  >
+                    {{ colOption.header }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody dTableBody>
+                <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                  <tr dTableRow>
+                    <td
+                      dTableCell
+                      *ngFor="let colOption of dataTableServiceOption.columns"
+                    >
+                      {{
+                        colOption.fieldType === "date"
+                          ? (rowItem[colOption.field] | i18nDate: "short":false)
+                          : rowItem[colOption.field]
+                      }}
+                    </td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </d-data-table>
+          </div>
+        </da-col-item>
+      </da-layout-row>
+    </div>
+  </da-col-item>
+</da-layout-row>

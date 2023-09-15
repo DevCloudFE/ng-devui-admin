@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsDevUIPlugins",
+  "title": "DevUI Admin Plugins Schema",
+  "type": "object",
+  "properties": {
+    "modulePath": {
+      "type": "string",
+      "description": "Choose module"
+    },
+    "insertModuleName": {
+      "type": "string",
+      "description": "Module to be inserted"
+    }
+  },
+  "required": []
+}

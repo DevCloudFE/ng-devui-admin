@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsDevUIViews",
+  "title": "DevUI Views Schema",
+  "type": "object",
+  "properties": {
+    "viewName": {
+      "type": "string",
+      "description": "Name of your page",
+      "default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What's the name of your page (test-page):"
+    },
+    "dirPath": {
+      "type": "string",
+      "$default": {
+        "$source": "workingDirectory"
+      },
+      "description": "Input the path you'd like to generator",
+      "format": "path"
+    },
+    "routePath": {
+      "type": "string",
+      "description": "Input the route path of your page",
+      "default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What's route path you'd like to use (test-page):"
+    },
+    "selector": {
+      "type": "string",
+      "description": "Selector of your page",
+      "default": {
+        "$source": "selector"
+      }
+    },
+    "style": {
+      "type": "string",
+      "description": "Style of your page",
+      "default": "scss"
+    },
+    "blocks": {
+      "type": "string",
+      "description": "Specifies which blocks to add.",
+      "default": {
+        "$source": "blocks"
+      },
+      "x-prompt": "Which blocks would you like to add (https://devui.design/admin-materials/)?"
+    },
+    "skipImport": {
+      "type": "boolean",
+      "description": "Do not import this view into the owning NgModule.",
+      "default": false
+    },
+    "importWay": {
+      "type": "string",
+      "description": "The way to add blocks",
+      "default": "by-module",
+      "x-prompt": {
+        "message": "How would you like to add blocks: ",
+        "type": "list",
+        "items": [
+          {
+            "value": "by-module",
+            "label": "Insert Module (We will add block module then import it)"
+          },
+          {
+            "value": "by-code",
+            "label": "Insert Source Code (We will insert the source code to your page)"
+          }
+        ]
+      }
+    },
+    "addToNav": {
+      "type": "boolean",
+      "description": "Add view page routing to navigation.",
+      "default": false,
+      "x-prompt": {
+        "message": "Would you like to add the new page to your navigation bar?"
+      }
+    }
+  }
+}

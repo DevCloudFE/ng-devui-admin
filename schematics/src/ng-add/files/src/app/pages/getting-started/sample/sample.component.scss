@@ -1,0 +1,11 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.da-content-card {
+  height: 300px;
+  padding: 24px;
+}
+
+p {
+  font-size: $devui-font-size-price;
+}
