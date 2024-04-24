@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'da-analysis',
+  selector: 'da-analysis-page',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.scss'],
 })
